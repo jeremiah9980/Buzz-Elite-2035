@@ -1,9 +1,9 @@
 import fs from "node:fs";
 
-const [,, csvPath, jsonPath = "cms/content/bombers-site.json"] = process.argv;
+const [,, csvPath, jsonPath = "cms/content/buzz-site.json"] = process.argv;
 
 if (!csvPath) {
-  console.error("Usage: node scripts/import-roster-csv.mjs roster.csv cms/content/bombers-site.json");
+  console.error("Usage: node scripts/import-roster-csv.mjs roster.csv cms/content/buzz-site.json");
   process.exit(1);
 }
 
@@ -51,7 +51,7 @@ const players = rows.map((row, idx) => {
     profileEnabled: /^true|yes|1$/i.test(row.profileEnabled || ""),
     profileStatus: row.profileStatus || "coming-soon",
     profile: {
-      tag: row.tag || "Bombers Athlete",
+      tag: row.tag || "Buzz Athlete",
       oneLine: row.oneLine || "",
       bio: row.bio || "",
       strengths: String(row.strengths || "").split(/[|;]/).map(s => s.trim()).filter(Boolean),

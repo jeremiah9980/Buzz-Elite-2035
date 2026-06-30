@@ -15,15 +15,15 @@ window.PRIMETIME_PLAYER_IMAGES = window.PRIMETIME_PLAYER_IMAGES || {
 };
 
 (function primePlayerImages() {
-  const STYLE_ID = 'primetime-player-image-styles';
+  const STYLE_ID = 'buzz-player-image-styles';
 
   function injectStyles() {
     if (document.getElementById(STYLE_ID)) return;
     const style = document.createElement('style');
     style.id = STYLE_ID;
     style.textContent = `
-      .primetime-page .player-photo-img,
-      .primetime-page .profile-photo-img {
+      .buzz-page .player-photo-img,
+      .buzz-page .profile-photo-img {
         position: relative;
         z-index: 1;
         width: 100%;
@@ -31,7 +31,7 @@ window.PRIMETIME_PLAYER_IMAGES = window.PRIMETIME_PLAYER_IMAGES || {
         object-fit: cover;
         display: block;
       }
-      .primetime-page .player-photo-coming {
+      .buzz-page .player-photo-coming {
         position: absolute;
         z-index: 2;
         bottom: 78px;
@@ -45,21 +45,21 @@ window.PRIMETIME_PLAYER_IMAGES = window.PRIMETIME_PLAYER_IMAGES || {
         text-transform: uppercase;
         color: rgba(255,255,255,.65);
       }
-      .primetime-page .player-photo.has-player-image > i,
-      .primetime-page .player-photo.has-player-image .player-photo-coming,
-      .primetime-page .profile-photo-card.has-player-image > i {
+      .buzz-page .player-photo.has-player-image > i,
+      .buzz-page .player-photo.has-player-image .player-photo-coming,
+      .buzz-page .profile-photo-card.has-player-image > i {
         display: none !important;
       }
-      .primetime-page .player-photo.has-player-image:after,
-      .primetime-page .profile-photo-card.has-player-image:after {
+      .buzz-page .player-photo.has-player-image:after,
+      .buzz-page .profile-photo-card.has-player-image:after {
         z-index: 1;
       }
-      .primetime-page .player-photo.has-player-image .player-watermark,
-      .primetime-page .profile-photo-card.has-player-image .profile-photo-watermark {
+      .buzz-page .player-photo.has-player-image .player-watermark,
+      .buzz-page .profile-photo-card.has-player-image .profile-photo-watermark {
         z-index: 2;
       }
-      .primetime-page .player-photo.has-player-image .jersey-badge,
-      .primetime-page .profile-photo-card.has-player-image .profile-photo-label {
+      .buzz-page .player-photo.has-player-image .jersey-badge,
+      .buzz-page .profile-photo-card.has-player-image .profile-photo-label {
         z-index: 3;
       }
     `;
@@ -86,7 +86,7 @@ window.PRIMETIME_PLAYER_IMAGES = window.PRIMETIME_PLAYER_IMAGES || {
     const photo = card && card.querySelector('.player-photo');
     if (!photo || photo.querySelector('img.player-photo-img')) return;
 
-    const name = card.querySelector('.player-name')?.textContent?.trim() || 'Primetime player';
+    const name = card.querySelector('.player-name')?.textContent?.trim() || 'Buzz player';
     const img = document.createElement('img');
     img.className = 'player-photo-img';
     img.src = srcFor(fileName);
@@ -104,7 +104,7 @@ window.PRIMETIME_PLAYER_IMAGES = window.PRIMETIME_PLAYER_IMAGES || {
     const photo = document.querySelector('.profile-photo-card');
     if (!photo || photo.querySelector('img.profile-photo-img')) return;
 
-    const playerName = document.querySelector('.profile-hero h1')?.textContent?.replace(/^#\d+\s*/, '').trim() || 'Primetime player';
+    const playerName = document.querySelector('.profile-hero h1')?.textContent?.replace(/^#\d+\s*/, '').trim() || 'Buzz player';
     const img = document.createElement('img');
     img.className = 'profile-photo-img';
     img.src = srcFor(fileName);

@@ -1,14 +1,14 @@
 {
   "site": {
-    "name": "Bombers",
-    "tagline": "Official Bombers Website",
+    "name": "Buzz",
+    "tagline": "Official Buzz Website",
     "primaryColor": "#111827",
     "accentColor": "#f59e0b",
     "logoText": "BOMBERS"
   },
   "homepage": {
-    "heroTitle": "Welcome to Bombers",
-    "heroSubtitle": "News, events, roster updates, and highlights from the Bombers.",
+    "heroTitle": "Welcome to Buzz",
+    "heroSubtitle": "News, events, roster updates, and highlights from the Buzz.",
     "ctaText": "View Schedule",
     "ctaUrl": "/schedule",
     "heroImage": "/images/bombers-hero.jpg"
@@ -16,7 +16,7 @@
   "announcements": [
     {
       "id": "ann-001",
-      "title": "Bombers CMS is ready",
+      "title": "Buzz CMS is ready",
       "summary": "Use the dashboard to manage announcements, schedule, roster, sponsors, gallery, and contact information.",
       "date": "2026-06-29",
       "status": "published"
@@ -53,9 +53,9 @@
   "gallery": [
     {
       "id": "gallery-001",
-      "title": "Bombers Highlight",
+      "title": "Buzz Highlight",
       "image": "/images/gallery-1.jpg",
-      "alt": "Bombers team highlight image"
+      "alt": "Buzz team highlight image"
     }
   ],
   "contact": {
@@ -68,8 +68,8 @@
     "youtube": ""
   },
   "seo": {
-    "metaTitle": "Bombers",
-    "metaDescription": "Official website for Bombers news, events, roster, sponsors, and updates.",
+    "metaTitle": "Buzz",
+    "metaDescription": "Official website for Buzz news, events, roster, sponsors, and updates.",
     "ogImage": "/images/bombers-og.jpg"
   },
   "updatedAt": "2026-06-29T00:00:00.000Z"

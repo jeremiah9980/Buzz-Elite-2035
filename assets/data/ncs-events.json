@@ -1,9 +1,9 @@
 {
   "source": "NCS",
-  "sourceUrl": "https://www.playncs.com/fastpitch/Teams/Details/79552/ctx-bombers-meza",
-  "team": "CTX Bombers Meza",
-  "teamId": "26-79552",
-  "ncsTeamId": "79552",
+  "sourceUrl": "[ENTER NCS TEAM URL]",
+  "team": "Buzz Fastpitch",
+  "teamId": "[ENTER NCS TEAM ID]",
+  "ncsTeamId": "[ENTER NCS TEAM ID]",
   "location": "Georgetown, TX",
   "division": "10U C",
   "record": "27-17-0",
@@ -18,7 +18,7 @@
   "runsScored": "279",
   "runsAllowed": "191",
   "updatedAt": "2026-06-28T00:00:00-05:00",
-  "teamPage": "https://www.playncs.com/fastpitch/Teams/Details/79552/ctx-bombers-meza",
+  "teamPage": "[ENTER NCS TEAM URL]",
   "classes": [
     { "class": "9U C", "record": "2-1-0" },
     { "class": "10U C-REC", "record": "1-0-0" },

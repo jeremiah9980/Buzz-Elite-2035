@@ -2,6 +2,7 @@ const ROSTER_DATA_PATH = '../assets/data/primetime-players.json';
 const GAMECHANGER_STATS_PATH = '../assets/data/gamechanger-stats.json';
 const PLAYER_ASSET_ROOT = '../assets/players/';
 const ROSTER_STAT_FIELDS = ['AVG', 'OBP', 'OPS', 'RBI'];
+const TEAM_LABEL = 'Buzz Athlete';
 
 function rosterEl(tag, className, text) {
   const node = document.createElement(tag);

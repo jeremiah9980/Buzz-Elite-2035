@@ -20,7 +20,7 @@
           ]
         },
         {
-          "name": "CTX Bombers Meza",
+          "name": "Buzz Fastpitch",
           "city": "Georgetown",
           "region": "TX",
           "new_team": false,
@@ -31,7 +31,7 @@
           ]
         }
       ],
-      "markdown": "# NCS Roster Changes - 2026-06-24 14:54 UTC\n\n**0 removed - 3 added** across 2 team(s).\n\n## Texas Spark-Velasquez - Waco, TX\n- added: Kylie Hamilton\n\n## CTX Bombers Meza - Georgetown, TX\n- added: Katie Brown\n- added: Sienna Rodriguez",
+      "markdown": "# NCS Roster Changes - 2026-06-24 14:54 UTC\n\n**0 removed - 3 added** across 2 team(s).\n\n## Texas Spark-Velasquez - Waco, TX\n- added: Kylie Hamilton\n\n## Buzz Fastpitch - Georgetown, TX\n- added: Katie Brown\n- added: Sienna Rodriguez",
       "source_report": "changes-20260624-145419.md"
     },
     {
@@ -191,7 +191,7 @@
           "added": []
         },
         {
-          "name": "CTX Bombers Meza",
+          "name": "Buzz Fastpitch",
           "city": "Georgetown",
           "region": "TX",
           "new_team": false,
@@ -202,7 +202,7 @@
           "added": []
         }
       ],
-      "markdown": "# NCS Roster Changes - 2026-06-23 08:10 UTC\n\n**15 removed - 0 added** across 7 team(s).\n\n## Bombers CTX 10U-Singletary - Austin, TX\n- REMOVED: Hazel Gaytan\n- REMOVED: Elise Malish\n\n## CTX Mayhem -Aviles* - Troy, TX\n- REMOVED: Claire Johnson\n- REMOVED: ALEIGHA MARTIN\n- REMOVED: OLIVIA MARTIN\n\n## BYBC Starfire-Ochoa - Hutto, TX\n- REMOVED: Zoe Grondin #9\n\n## Texas Rage 14u - Ramirez - Seguin, TX\n- REMOVED: Clara Gossett\n- REMOVED: Emily Mainz\n- REMOVED: Amy Serna\n\n## Texas Rage 2011 - Seguin, TX\n- REMOVED: Michaelah Schmidt\n- REMOVED: Karley Watts\n\n## Texas Venom - Leander, TX\n- REMOVED: June Sublett #8\n- REMOVED: Jordyn Haynes #24\n\n## CTX Bombers Meza - Georgetown, TX\n- REMOVED: Skylar James\n- REMOVED: McKenna Lehmann",
+      "markdown": "# NCS Roster Changes - 2026-06-23 08:10 UTC\n\n**15 removed - 0 added** across 7 team(s).\n\n## Bombers CTX 10U-Singletary - Austin, TX\n- REMOVED: Hazel Gaytan\n- REMOVED: Elise Malish\n\n## CTX Mayhem -Aviles* - Troy, TX\n- REMOVED: Claire Johnson\n- REMOVED: ALEIGHA MARTIN\n- REMOVED: OLIVIA MARTIN\n\n## BYBC Starfire-Ochoa - Hutto, TX\n- REMOVED: Zoe Grondin #9\n\n## Texas Rage 14u - Ramirez - Seguin, TX\n- REMOVED: Clara Gossett\n- REMOVED: Emily Mainz\n- REMOVED: Amy Serna\n\n## Texas Rage 2011 - Seguin, TX\n- REMOVED: Michaelah Schmidt\n- REMOVED: Karley Watts\n\n## Texas Venom - Leander, TX\n- REMOVED: June Sublett #8\n- REMOVED: Jordyn Haynes #24\n\n## Buzz Fastpitch - Georgetown, TX\n- REMOVED: Skylar James\n- REMOVED: McKenna Lehmann",
       "source_report": "changes-20260623-081043.md"
     },
     {
@@ -547,7 +547,7 @@
           "added": []
         },
         {
-          "name": "CTX Bombers Meza",
+          "name": "Buzz Fastpitch",
           "city": "Georgetown",
           "region": "TX",
           "new_team": true,
@@ -555,7 +555,7 @@
           "added": []
         }
       ],
-      "markdown": "# NCS Roster Changes - 2026-06-18 06:18 UTC\n\n**0 removed - 0 added** across 2 team(s).\n\n## Texas Venom - Leander, TX\n- New team now tracked (no prior baseline).\n\n## CTX Bombers Meza - Georgetown, TX\n- New team now tracked (no prior baseline).",
+      "markdown": "# NCS Roster Changes - 2026-06-18 06:18 UTC\n\n**0 removed - 0 added** across 2 team(s).\n\n## Texas Venom - Leander, TX\n- New team now tracked (no prior baseline).\n\n## Buzz Fastpitch - Georgetown, TX\n- New team now tracked (no prior baseline).",
       "source_report": "changes-20260618-061833.md"
     }
   ]

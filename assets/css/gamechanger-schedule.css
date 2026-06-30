@@ -1,4 +1,4 @@
-.primetime-page .gc-schedule-panel {
+.buzz-page .gc-schedule-panel {
   margin-top: 18px;
   padding: 20px;
   border-radius: 16px;
@@ -8,7 +8,7 @@
   box-shadow: 0 20px 50px -38px #000;
 }
 
-.primetime-page .gc-schedule-loading {
+.buzz-page .gc-schedule-loading {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -19,20 +19,20 @@
   text-transform: uppercase;
 }
 
-.primetime-page .gc-schedule-empty {
+.buzz-page .gc-schedule-empty {
   display: flex;
   gap: 16px;
   align-items: center;
 }
 
-.primetime-page .gc-schedule-actions {
+.buzz-page .gc-schedule-actions {
   margin-top: 14px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.primetime-page .gc-schedule-head {
+.buzz-page .gc-schedule-head {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -42,7 +42,7 @@
   border-bottom: 1px solid rgba(212,160,23,.25);
 }
 
-.primetime-page .gc-schedule-head h3 {
+.buzz-page .gc-schedule-head h3 {
   margin: 4px 0 6px;
   color: #fff;
   font-family: var(--display);
@@ -50,18 +50,18 @@
   letter-spacing: -.5px;
 }
 
-.primetime-page .gc-schedule-head p {
+.buzz-page .gc-schedule-head p {
   margin: 0;
   color: rgba(255,248,230,.72);
   font-size: 13px;
 }
 
-.primetime-page .gc-game-list {
+.buzz-page .gc-game-list {
   display: grid;
   gap: 12px;
 }
 
-.primetime-page .gc-game-card {
+.buzz-page .gc-game-card {
   display: grid;
   grid-template-columns: 126px 1fr auto;
   gap: 14px;
@@ -72,7 +72,7 @@
   background: rgba(255,248,230,.045);
 }
 
-.primetime-page .gc-game-date {
+.buzz-page .gc-game-date {
   padding: 10px 12px;
   border-radius: 10px;
   background: #fff8e6;
@@ -82,37 +82,37 @@
   text-transform: uppercase;
 }
 
-.primetime-page .gc-game-date strong,
-.primetime-page .gc-game-date span {
+.buzz-page .gc-game-date strong,
+.buzz-page .gc-game-date span {
   display: block;
 }
 
-.primetime-page .gc-game-date strong {
+.buzz-page .gc-game-date strong {
   font-size: 14px;
   line-height: 1.1;
 }
 
-.primetime-page .gc-game-date span {
+.buzz-page .gc-game-date span {
   margin-top: 4px;
   color: var(--blue2);
   font-size: 12px;
   font-weight: 900;
 }
 
-.primetime-page .gc-game-main h4 {
+.buzz-page .gc-game-main h4 {
   margin: 0 0 4px;
   color: #fff;
   font-family: var(--display);
   font-size: 20px;
 }
 
-.primetime-page .gc-game-main p {
+.buzz-page .gc-game-main p {
   margin: 0;
   color: rgba(255,248,230,.70);
   font-size: 13px;
 }
 
-.primetime-page .gc-game-meta {
+.buzz-page .gc-game-meta {
   justify-self: end;
   padding: 8px 11px;
   border-radius: 999px;
@@ -126,20 +126,20 @@
 }
 
 @media(max-width:720px) {
-  .primetime-page .gc-schedule-head,
-  .primetime-page .gc-schedule-empty {
+  .buzz-page .gc-schedule-head,
+  .buzz-page .gc-schedule-empty {
     flex-direction: column;
   }
 
-  .primetime-page .gc-game-card {
+  .buzz-page .gc-game-card {
     grid-template-columns: 1fr;
   }
 
-  .primetime-page .gc-game-date {
+  .buzz-page .gc-game-date {
     width: 100%;
   }
 
-  .primetime-page .gc-game-meta {
+  .buzz-page .gc-game-meta {
     justify-self: start;
   }
 }

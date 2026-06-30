@@ -2,7 +2,7 @@
 """
 scrape_ncs.py
 =============
-Scrape an NCS Fastpitch event (playncs.com) into the JSON feed the CTX Bombers
+Scrape an NCS Fastpitch event (playncs.com) into the JSON feed the CTX Buzz
 Meza portal reads.
 
 Pages parsed (server-rendered HTML tables):
@@ -19,7 +19,7 @@ Usage:
     --event 12287 \
     --slug 3p-sports-dingers-for-dads-6gg \
     --division "10U" \
-    --team 79552 \
+    --team [ENTER NCS TEAM ID] \
     --out data/ncs-12287-10U.json \
     --day-map Sat=2026-06-20 Sun=2026-06-21 \
     --tz -05:00
@@ -33,7 +33,7 @@ import requests
 from bs4 import BeautifulSoup
 
 BASE = "https://playncs.com/FASTPITCH/Events"
-UA = {"User-Agent": "Mozilla/5.0 (compatible; ctx-bombers-meza-ncs-scraper/1.0; +github-actions)"}
+UA = {"User-Agent": "Mozilla/5.0 (compatible; buzz-fastpitch-ncs-scraper/1.0; +github-actions)"}
 
 TEAM_RE   = re.compile(r"/Teams/Details/(\d+)/")
 SCORE_RE  = re.compile(r"\b(\d{1,2})\s*-\s*(\d{1,2})\b")
@@ -214,7 +214,7 @@ def build(args):
             "id": args.event, "division": args.division, "name": args.name,
             "venue": args.venue, "city": args.city, "dates": args.dates,
             "teamId": args.team,
-            "teamName": "CTX Bombers Meza" if args.team == 79552 else None,
+            "teamName": "Buzz Fastpitch" if args.team == [ENTER NCS TEAM ID] else None,
             "scrapedAt": datetime.datetime.now(datetime.timezone.utc)
                          .astimezone().replace(microsecond=0).isoformat(),
         },
@@ -239,7 +239,7 @@ def main():
     ap.add_argument("--event", type=int, required=True)
     ap.add_argument("--slug", required=True)
     ap.add_argument("--division", required=True)
-    ap.add_argument("--team", type=int, default=79552, help="your team id (informational)")
+    ap.add_argument("--team", type=int, default=[ENTER NCS TEAM ID], help="your team id (informational)")
     ap.add_argument("--out", required=True)
     ap.add_argument("--day-map", nargs="+", default=["Sat=2026-06-20", "Sun=2026-06-21"],
                     help='weekday=YYYY-MM-DD pairs, e.g. Sat=2026-06-20 Sun=2026-06-21')

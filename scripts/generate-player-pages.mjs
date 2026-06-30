@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const jsonPath = process.argv[2] || "cms/content/bombers-site.json";
+const jsonPath = process.argv[2] || "cms/content/buzz-site.json";
 const content = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 const players = content.pages?.roster?.players || [];
 
@@ -28,13 +28,13 @@ for (const player of players) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>#${escapeHtml(player.jerseyNumber)} ${escapeHtml(player.displayName)} — Bombers Fastpitch</title>
-  <link rel="stylesheet" href="../../assets/css/bombers-cms-managed.css" />
+  <title>#${escapeHtml(player.jerseyNumber)} ${escapeHtml(player.displayName)} — Buzz Fastpitch</title>
+  <link rel="stylesheet" href="../../assets/css/buzz-cms-managed.css" />
 </head>
 <body>
-  <main data-bombers-player-profile data-player-id="${escapeHtml(player.id)}"></main>
+  <main data-buzz-player-profile data-player-id="${escapeHtml(player.id)}"></main>
   <script>
-    window.BOMBERS_CONTENT_URL = "../../cms/content/bombers-site.json";
+    window.BOMBERS_CONTENT_URL = "../../cms/content/buzz-site.json";
   </script>
   <script src="../../assets/js/bombers-content-renderer.js"></script>
 </body>

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NCS -> schedule.json scraper for the CTX Bombers Meza dashboard.
+NCS -> schedule.json scraper for the Buzz Fastpitch dashboard.
 
 Pulls the NCS event Schedule & Results page, parses the game table once NCS
 posts the schedule/results, and writes data/schedule.json in the shape the
@@ -18,7 +18,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # ----------------------------------------------------------------------
-TEAM_ID = "79552"
+TEAM_ID = "[ENTER NCS TEAM ID]"
 EVENT = {
     "name": "3P Sports Dingers for Dads *6GG*",
     "dates": "Jun 20-21, 2026",
@@ -28,8 +28,8 @@ EVENT = {
     "gateFees": "See NCS event page",
     "division": "10U",
     "teamId": "26-79552",
-    "teamName": "CTX Bombers Meza",
-    "teamUrl": "https://www.playncs.com/fastpitch/Teams/Details/79552/ctx-bombers-meza",
+    "teamName": "Buzz Fastpitch",
+    "teamUrl": "https://www.playncs.com/fastpitch/Teams/Details/79552/[ENTER NCS TEAM SLUG]",
     "url": "https://playncs.com/FASTPITCH/Events/Schedule/12287/3p-sports-dingers-for-dads-6gg?division=10U",
 }
 SCHEDULE_URL = EVENT["url"]
@@ -38,7 +38,7 @@ SCHEDULE_URL = EVENT["url"]
 DATE_MAP = {"Fri": "2026-06-19", "Sat": "2026-06-20", "Sun": "2026-06-21"}
 
 OUT = pathlib.Path(__file__).resolve().parent.parent / "data" / "schedule.json"
-HEADERS = {"User-Agent": "Mozilla/5.0 (CTXBombersMeza NCS sync)"}
+HEADERS = {"User-Agent": "Mozilla/5.0 (BuzzFastpitch NCS sync)"}
 
 TIME_RE = re.compile(r"(\d{1,2}:\d{2}\s*[AP]M)", re.I)
 GAME_RE = re.compile(r"Game\s+(\d+)", re.I)

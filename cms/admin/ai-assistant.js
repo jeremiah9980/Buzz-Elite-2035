@@ -1,27 +1,27 @@
 (function () {
   const templates = {
     announcement: ({ facts, tone }) =>
-`Bombers Update
+`Buzz Update
 
 ${facts || "Add the key update here."}
 
-The Bombers continue to build with purpose, stay team-first, and compete the right way. More details will be shared as they are confirmed.
+The Buzz continue to build with purpose, stay team-first, and compete the right way. More details will be shared as they are confirmed.
 
-#BombersFastpitch #BlueBloods #TeamFirst`,
+#BuzzFastpitch #BlueBloods #TeamFirst`,
 
     gameRecap: ({ facts, tone }) =>
 `Game Recap
 
 ${facts || "Add opponent, score, key moments, and player/team highlights."}
 
-The Bombers showed toughness, energy, and a next-pitch mindset. Proud of the work, proud of the effort, and ready for the next one.`,
+The Buzz showed toughness, energy, and a next-pitch mindset. Proud of the work, proud of the effort, and ready for the next one.`,
 
     socialCaption: ({ facts, tone }) =>
 `Built Different. Play Fast. Finish Strong.
 
 ${facts || "Add the moment, event, or player/team highlight."}
 
-Proud of this group and the work they keep putting in. #BombersFastpitch #CTXBombersMeza #BlueBloods`,
+Proud of this group and the work they keep putting in. #BuzzFastpitch #CTXBuzzMeza #BlueBloods`,
 
     playerBio: ({ facts, tone }) =>
 `Player Profile Draft
@@ -33,7 +33,7 @@ She brings energy, coachability, and a team-first approach every time she steps 
     sponsorThanks: ({ facts, tone }) =>
 `Sponsor Thank You
 
-Thank you to ${facts || "our sponsor"} for supporting CTX Bombers Meza.
+Thank you to ${facts || "our sponsor"} for supporting Buzz Fastpitch.
 
 Your support helps our athletes with tournament costs, team needs, equipment, and the opportunity to compete and grow together. We appreciate you investing in these players and families.`,
 
@@ -42,13 +42,13 @@ Your support helps our athletes with tournament costs, team needs, equipment, an
 
 ${facts || "Add tournament name, date, location, division, first game time, and team goals."}
 
-The Bombers are ready to compete with energy, discipline, and a team-first mindset. Follow the NCS dashboard and team updates for scores and weekend progress.`
+The Buzz are ready to compete with energy, discipline, and a team-first mindset. Follow the NCS dashboard and team updates for scores and weekend progress.`
   };
 
   function applyTone(text, tone) {
     if (tone === "short") return text.split("\n").filter(Boolean).slice(0, 4).join("\n\n");
-    if (tone === "hype") return text + "\n\nLet’s go Bombers!";
-    if (tone === "professional") return text.replace(/Let’s go Bombers!/g, "").replace(/Built Different\./g, "Prepared.").trim();
+    if (tone === "hype") return text + "\n\nLet’s go Buzz!";
+    if (tone === "professional") return text.replace(/Let’s go Buzz!/g, "").replace(/Built Different\./g, "Prepared.").trim();
     if (tone === "family-friendly") return text + "\n\nThank you to our families, coaches, and supporters.";
     return text;
   }
@@ -65,7 +65,7 @@ The Bombers are ready to compete with energy, discipline, and a team-first minds
     return data.text || data.output || "";
   }
 
-  window.BombersAI = {
+  window.BuzzAI = {
     draft: async ({ type, facts, tone, endpoint, context }) => {
       const fromEndpoint = await hostedDraft({ endpoint, type, facts, tone, context }).catch((error) => {
         console.warn(error);

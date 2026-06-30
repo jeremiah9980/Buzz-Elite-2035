@@ -1,9 +1,9 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const SOURCE_URL = process.env.GC_SCHEDULE_URL || 'https://web.gc.com/teams/Zn3gbz7yVqgq/2026-spring-ctx-bombers---meza/schedule';
+const SOURCE_URL = process.env.GC_SCHEDULE_URL || '[ENTER GAMECHANGER SCHEDULE URL]';
 const OUTPUT_PATH = process.env.GC_SCHEDULE_OUTPUT || 'assets/data/gamechanger-schedule.json';
-const TEAM_NAME = '2026 Spring CTX Bombers - Meza';
+const TEAM_NAME = 'Buzz Fastpitch';
 
 function stripTags(value = '') {
   return String(value)
@@ -87,7 +87,7 @@ function normalizeGame(raw) {
 
   return {
     startTime: startTime || null,
-    title: title || opponent || 'CTX Bombers Meza Game',
+    title: title || opponent || 'Buzz Fastpitch Game',
     opponent: opponent || null,
     location: location || null,
     status
@@ -130,7 +130,7 @@ function dedupeGames(games) {
 async function main() {
   const response = await fetch(SOURCE_URL, {
     headers: {
-      'user-agent': 'CTXBombersMezaScheduleSync/1.0',
+      'user-agent': 'BuzzFastpitchScheduleSync/1.0',
       'accept': 'text/html,application/json'
     }
   });

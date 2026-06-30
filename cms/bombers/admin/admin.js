@@ -3,7 +3,7 @@ const STORAGE_KEY = "bombers_cms_content_v1";
 const CONTENT_URL = "../content/bombers.json";
 
 const sectionMeta = {
-  overview: ["Overview", "Manage the Bombers public website content."],
+  overview: ["Overview", "Manage the Buzz public website content."],
   homepage: ["Homepage", "Update hero content and site branding."],
   announcements: ["Announcements", "Create and edit public news updates."],
   schedule: ["Schedule", "Manage games, events, times, and results."],
@@ -144,15 +144,15 @@ async function loadContent() {
 function getDefaultContent() {
   return {
     site: {
-      name: "Bombers",
-      tagline: "Official Bombers Website",
+      name: "Buzz",
+      tagline: "Official Buzz Website",
       primaryColor: "#111827",
       accentColor: "#f59e0b",
       logoText: "BOMBERS"
     },
     homepage: {
-      heroTitle: "Welcome to Bombers",
-      heroSubtitle: "News, events, roster updates, and highlights from the Bombers.",
+      heroTitle: "Welcome to Buzz",
+      heroSubtitle: "News, events, roster updates, and highlights from the Buzz.",
       ctaText: "View Schedule",
       ctaUrl: "/schedule",
       heroImage: "/images/bombers-hero.jpg"
@@ -172,8 +172,8 @@ function getDefaultContent() {
       youtube: ""
     },
     seo: {
-      metaTitle: "Bombers",
-      metaDescription: "Official website for Bombers news, events, roster, sponsors, and updates.",
+      metaTitle: "Buzz",
+      metaDescription: "Official website for Buzz news, events, roster, sponsors, and updates.",
       ogImage: "/images/bombers-og.jpg"
     },
     updatedAt: new Date().toISOString()
@@ -216,8 +216,8 @@ function renderMiniPreview() {
   const hero = state.homepage || {};
   const site = state.site || {};
   qs("#miniPreview").innerHTML = `
-    <small>${escapeHtml(site.tagline || "Bombers")}</small>
-    <h3>${escapeHtml(hero.heroTitle || "Welcome to Bombers")}</h3>
+    <small>${escapeHtml(site.tagline || "Buzz")}</small>
+    <h3>${escapeHtml(hero.heroTitle || "Welcome to Buzz")}</h3>
     <p>${escapeHtml(hero.heroSubtitle || "")}</p>
     <a href="${escapeAttr(hero.ctaUrl || "#")}">${escapeHtml(hero.ctaText || "Learn More")}</a>
   `;

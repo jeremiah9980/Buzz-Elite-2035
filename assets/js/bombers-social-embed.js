@@ -4,7 +4,7 @@
  * This helper converts blank embeds into accessible fallback buttons.
  */
 
-window.BombersSocial = {
+window.BuzzSocial = {
   renderFallback(container, profileUrl, label) {
     if (!container) return;
     if (container.innerHTML.trim()) return;

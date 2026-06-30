@@ -4,7 +4,7 @@ const LOCAL_KEY = "bombers-cms-draft-v2";
 const sections = [
   { id: "site", title: "Site Settings", path: "site" },
   { id: "home", title: "Home Page", path: "pages.home" },
-  { id: "teamInfo", title: "Bombers Team Information", path: "pages.teamInfo" },
+  { id: "teamInfo", title: "Buzz Team Information", path: "pages.teamInfo" },
   { id: "social", title: "Social Media Embedded Sections", path: "pages.social" },
   { id: "gamechanger", title: "GameChanger Schedule & Stats", path: "pages.gamechanger" },
   { id: "ncs", title: "NCS Tournament Tracker", path: "pages.ncs" },
@@ -222,7 +222,7 @@ function validateContent() {
   if (!content.pages?.ncs?.teamId) issues.push("NCS teamId is blank. This is okay until you have the ID.");
 
   toast(issues.length ? `Validation found ${issues.length} item(s). See console.` : "Validation passed.");
-  if (issues.length) console.warn("Bombers CMS validation issues:", issues);
+  if (issues.length) console.warn("Buzz CMS validation issues:", issues);
 }
 
 async function loadContent({ preferLocal = true } = {}) {
@@ -271,7 +271,7 @@ function importJson(file) {
 }
 
 async function generateDraft() {
-  const text = await window.BombersAI.draft({
+  const text = await window.BuzzAI.draft({
     type: $("aiContentType").value,
     facts: $("aiFacts").value,
     tone: $("aiTone").value,
@@ -289,7 +289,7 @@ function polishCurrentSection() {
   const section = sections.find((s) => s.id === activeSection);
   const selected = deepGet(content, section.path);
   const text = typeof selected === "string" ? selected : JSON.stringify(selected, null, 2);
-  $("aiOutput").value = window.BombersAI.polish({ text, tone: $("aiTone").value });
+  $("aiOutput").value = window.BuzzAI.polish({ text, tone: $("aiTone").value });
 }
 
 $("loadRepoContentBtn").addEventListener("click", () => loadContent({ preferLocal: false }));

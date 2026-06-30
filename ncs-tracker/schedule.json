@@ -1,20 +1,20 @@
 {
   "event": {
-    "name": "CTX Bombers Meza NCS Team Tracker",
+    "name": "Buzz Fastpitch NCS Team Tracker",
     "dates": "2026 Season",
-    "location": "Georgetown, TX",
+    "location": "Texas",
     "venue": "NCS Fastpitch",
-    "director": "Ruben Meza",
+    "director": "[ENTER COACH NAME]",
     "gateFees": "See event page",
     "division": "10U C",
-    "url": "https://www.playncs.com/fastpitch/Teams/Details/79552/ctx-bombers-meza"
+    "url": "[ENTER NCS TEAM URL]"
   },
   "updated": "2026-06-28T00:00:00-05:00",
   "team": {
     "id": "79552",
     "teamId": "26-79552",
-    "name": "CTX Bombers Meza",
-    "city": "Georgetown, TX",
+    "name": "Buzz Fastpitch",
+    "city": "Texas",
     "division": "10U C",
     "record": "27-17-0",
     "winPct": ".614",
@@ -40,7 +40,7 @@
     }
   ],
   "teams": [
-    {"id":"79552","name":"CTX Bombers Meza","guest":false}
+    {"id":"79552","name":"Buzz Fastpitch","guest":false}
   ],
   "games": []
 }

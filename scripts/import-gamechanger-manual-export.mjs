@@ -9,9 +9,9 @@ import fs from "node:fs";
  * date,time,opponent,location,type,status,scoreFor,scoreAgainst,result
  */
 
-const [,, csvPath, jsonPath = "cms/content/bombers-site.json"] = process.argv;
+const [,, csvPath, jsonPath = "cms/content/buzz-site.json"] = process.argv;
 if (!csvPath) {
-  console.error("Usage: node scripts/import-gamechanger-manual-export.mjs gamechanger-schedule.csv cms/content/bombers-site.json");
+  console.error("Usage: node scripts/import-gamechanger-manual-export.mjs gamechanger-schedule.csv cms/content/buzz-site.json");
   process.exit(1);
 }
 
