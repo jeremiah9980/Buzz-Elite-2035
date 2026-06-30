@@ -1,32 +1,33 @@
-// Buzz Elite Fastpitch — Team Configuration
+// Buzz Elite 2035 — Team Configuration
 // Update this file to change team-wide settings across the entire site.
 
 const teamConfig = {
-  teamName: "Buzz",
-  displayName: "Buzz Fastpitch",
-  fullName: "Buzz Elite Fastpitch",
+  teamName: "Buzz Elite 2035",
+  displayName: "Buzz Elite 2035",
+  fullName: "Buzz Elite 2035 Gilliland",
   season: "2035",
-  location: "Texas",
+  location: "Gilliland",
   sport: "Select Fastpitch Softball",
-  slogan: "Sting Fast. Win Together.",
-  subSlogan: "Built Elite • Play Hard • Finish Strong",
+  slogan: "Together. Relentless. Elite.",
+  subSlogan: "Built on Teamwork • Driven by Passion • Buzz Elite 2035",
   bodyClass: "buzz-page",
 
   colors: {
-    primary: "#F59E0B",    // Buzz gold
-    primaryDark: "#D97706",
-    primaryLight: "#FEF3C7",
-    black: "#060608",
-    inkDark: "#0D0D11",
-    inkMid: "#1A1A22",
+    primary: "#E50914",      // Buzz Elite red
+    primaryDark: "#8B0008",
+    primaryLight: "#FF3B3B",
+    black: "#020204",
+    inkDark: "#08090D",
+    inkMid: "#15161C",
     white: "#FFFFFF",
-    smoke: "#F5F4F0",
-    silver: "#D4C89A",
-    gray: "#8A8070"
+    smoke: "#F4F4F5",
+    silver: "#C9CDD3",
+    gray: "#8A8F98"
   },
 
-  logo: "assets/img/buzz-fastpitch-logo.svg",
-  logoAlt: "Buzz Fastpitch logo",
+  logo: "assets/img/buzz-elite-2035-logo.svg",
+  coverImage: "assets/img/buzz-elite-2035-cover.svg",
+  logoAlt: "Buzz Elite 2035 Gilliland logo",
 
   social: {
     instagram: {
@@ -34,7 +35,7 @@ const teamConfig = {
       url: "[ENTER INSTAGRAM URL]"
     },
     facebook: {
-      name: "Buzz Fastpitch",
+      name: "Buzz Elite 2035",
       url: "[ENTER FACEBOOK URL]"
     }
   },
@@ -42,20 +43,20 @@ const teamConfig = {
   ncs: {
     teamId: "[ENTER NCS TEAM ID]",
     teamUrl: "[ENTER NCS TEAM URL]",
-    teamName: "Buzz Elite Fastpitch",
+    teamName: "Buzz Elite 2035 Gilliland",
     division: "10U"
   },
 
   gamechanger: {
     teamId: "[ENTER GAMECHANGER TEAM ID]",
     teamUrl: "[ENTER GAMECHANGER URL]",
-    teamName: "Buzz Elite Fastpitch"
+    teamName: "Buzz Elite 2035 Gilliland"
   },
 
   contact: {
     email: "[ENTER CONTACT EMAIL]",
     phone: "[ENTER CONTACT PHONE]",
-    location: "Texas"
+    location: "Gilliland"
   }
 };
 
