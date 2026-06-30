@@ -3,66 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050506">
-  <title>Roster · Buzz Fastpitch</title>
-  <link rel="icon" href="../assets/img/buzz-fastpitch-logo.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#020204">
+  <title>Roster · Buzz Elite 2035 Gilliland</title>
+  <link rel="icon" href="../assets/img/buzz-elite-2035-logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/team-primetime.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+  <style>
+    .roster-cover-hero{position:relative;min-height:min(680px,calc(100vh - 70px));display:grid;align-items:end;overflow:hidden;isolation:isolate;border-bottom:1px solid rgba(229,9,20,.72);background:#020204}
+    .roster-cover-hero:before{content:"";position:absolute;inset:0;z-index:-3;background:url('../assets/img/buzz-elite-2035-roster-cover.svg') center/cover no-repeat;filter:saturate(1.08) contrast(1.08)}
+    .roster-cover-hero:after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(2,2,4,.94),rgba(2,2,4,.28),rgba(2,2,4,.92)),linear-gradient(180deg,rgba(2,2,4,.05),rgba(2,2,4,.96))}
+    .roster-cover-inner{width:min(1240px,100%);margin:0 auto;padding:120px 24px 54px}
+    .roster-lockup{display:inline-flex;align-items:center;gap:16px;margin-bottom:24px;padding:10px 16px 10px 10px;background:rgba(2,2,4,.66);border:1px solid rgba(255,255,255,.22);box-shadow:0 0 26px rgba(229,9,20,.30)}
+    .roster-lockup img{width:100px;height:78px;object-fit:contain}.roster-lockup span{display:block;color:rgba(255,255,255,.70);font-family:var(--display);font-size:11px;font-weight:900;letter-spacing:3px;text-transform:uppercase}.roster-lockup strong{display:block;color:#fff;font-family:var(--display);font-size:30px;font-weight:950;letter-spacing:1.6px;line-height:.98;text-transform:uppercase}
+    .roster-kicker{color:#ff2a2a;font-family:var(--display);font-size:14px;font-weight:950;letter-spacing:4px;text-transform:uppercase;margin-bottom:10px;text-shadow:0 0 18px rgba(229,9,20,.65)}
+    .roster-cover-hero h1{margin:0;color:#fff;font-family:var(--display);font-size:clamp(46px,8vw,108px);font-weight:950;font-style:italic;letter-spacing:2px;line-height:.86;text-transform:uppercase;text-shadow:0 0 34px rgba(229,9,20,.60),0 5px 0 #000}.roster-cover-hero h1 span{display:block;color:#ff2a2a;-webkit-text-stroke:1px rgba(255,255,255,.34)}
+    .roster-tagline{margin-top:16px;color:#fff;font-family:var(--display);font-size:clamp(20px,2.4vw,34px);font-style:italic;font-weight:900;letter-spacing:2px;text-transform:uppercase}.roster-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    @media(max-width:720px){.roster-cover-hero{min-height:620px}.roster-cover-inner{padding:96px 16px 42px}.roster-lockup img{width:78px;height:62px}.roster-lockup strong{font-size:24px}}
+  </style>
 </head>
 <body class="buzz-page roster-page">
 <script src="../assets/js/nav.js"></script>
-
-<section class="hero" id="roster-home">
-  <div class="hero-inner">
-    <img class="hero-logo" src="../assets/img/buzz-fastpitch-logo.svg" alt="Buzz Fastpitch logo">
-    <div class="hero-kicker">Buzz Fastpitch · Official Team Roster</div>
-    <h1>Player Cards</h1>
-    <div class="hero-sub">Buzz Fastpitch</div>
-    <div class="hero-rule"></div>
-    <p class="hero-tagline">Standalone roster page with player cards, jersey numbers, guest-player callouts, profile links, and player image paths from <strong>assets/players/firstname-lastinitial.jpg</strong>.</p>
+<section class="roster-cover-hero" id="roster-home">
+  <div class="roster-cover-inner">
+    <div class="roster-lockup"><img src="../assets/img/buzz-elite-2035-logo.svg" alt="Buzz Elite 2035 Gilliland logo"><div><span>Gilliland Fastpitch</span><strong>Buzz Elite 2035</strong></div></div>
+    <div class="roster-kicker">Official Team Roster</div>
+    <h1>Roster <span>2035</span></h1>
+    <p class="roster-tagline">Together. Relentless. Elite.</p>
+    <div class="roster-actions"><a href="#roster" class="elite-button">View Roster <i class="ti ti-arrow-right"></i></a><a href="../ncs-tracker/" class="elite-button-outline">Tournament Tracker <i class="ti ti-trophy"></i></a></div>
   </div>
 </section>
-
-<div class="gold-strip">
-  <p>Official Roster · Player Cards · Guest Players · Buzz Fastpitch</p>
-</div>
-
+<div class="elite-strip"><p>Official Roster · Buzz Elite 2035 Gilliland</p></div>
 <main class="page">
   <section class="section" id="roster">
     <div class="section-label">Official Team Roster</div>
-    <h2>Buzz Player Cards</h2>
+    <h2>Buzz Elite 2035 Roster</h2>
     <div class="section-rule"></div>
-    <p>Player cards use image filenames from <code>assets/players/</code>. Players without a listed jersey number display as <strong>TBD</strong> until numbers are confirmed.</p>
-    <div class="roster-summary">
-      <span class="roster-summary-pill"><i class="ti ti-users"></i> 13 Players</span>
-      <span class="roster-summary-pill"><i class="ti ti-shirt-sport"></i> Jersey Numbers + TBD</span>
-      <span class="roster-summary-pill"><i class="ti ti-star"></i> 2 Guest Players</span>
-      <span class="roster-summary-pill"><i class="ti ti-photo"></i> assets/players/*.jpg</span>
-    </div>
-
-    <div class="player-card-grid" data-roster-grid>
-      <div class="doc-item">
-        <div class="doc-icon"><i class="ti ti-loader-2"></i></div>
-        <div class="doc-info"><div class="doc-name">Loading roster</div><div class="doc-desc">Building Buzz player cards...</div></div>
-      </div>
-    </div>
+    <p>Roster cards load from the team roster script and link to individual profile pages.</p>
+    <div class="roster-summary"><span class="roster-summary-pill"><i class="ti ti-users"></i> Team Roster</span><span class="roster-summary-pill"><i class="ti ti-shirt-sport"></i> Jersey Numbers</span><span class="roster-summary-pill"><i class="ti ti-star"></i> Profile Links</span></div>
+    <div class="player-card-grid" data-roster-grid><div class="doc-item"><div class="doc-icon"><i class="ti ti-loader-2"></i></div><div class="doc-info"><div class="doc-name">Loading roster</div><div class="doc-desc">Building Buzz Elite roster...</div></div></div></div>
   </section>
 </main>
-
-<footer>
-  <div class="footer-brand">B Buzz Fastpitch</div>
-  <div class="footer-links">
-    <a href="../index.html#home">HOME</a>
-    <a href="../index.html#team-info">Team Info</a>
-    <a href="./">Roster</a>
-    <a href="../index.html#schedule">Schedule</a>
-    <a href="../ncs-tracker/">NCS Dashboard</a>
-    <a href="../index.html#fundraising">Fundraising</a>
-  </div>
-  <p>Texas &bull; Select Fastpitch Softball</p>
-</footer>
-
+<footer class="elite-footer"><div class="elite-footer-grid"><div><img src="../assets/img/buzz-elite-2035-logo.svg" alt="Buzz Elite 2035 logo"><p>Gilliland • Select Fastpitch Softball</p><p>Together. Relentless. Elite.</p></div><div><h4>Quick Links</h4><p><a href="../index.html#home">Home</a></p><p><a href="../index.html#team-info">Team Info</a></p><p><a href="./">Roster</a></p><p><a href="../index.html#schedule">Schedule</a></p></div><div><h4>Team Tools</h4><p><a href="../ncs-tracker/">Tournament Tracker</a></p><p><a href="../index.html#media">Media</a></p><p><a href="../index.html#fundraising">Fundraising</a></p></div></div><div class="elite-footer-bottom"><p>© 2025 Buzz Elite 2035 Gilliland. All Rights Reserved.</p></div></footer>
 <script src="../assets/js/roster.js"></script>
 </body>
 </html>
