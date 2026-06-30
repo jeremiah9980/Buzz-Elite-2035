@@ -1,24 +1,19 @@
-const logoStyle = 'width:42px;height:42px;border-radius:50%;object-fit:cover;display:block;border:2px solid #075DFF;box-shadow:0 0 18px rgba(7,93,255,.45);background:#02040A;';
+const logoStyle = 'width:42px;height:42px;border-radius:50%;object-fit:contain;display:block;border:2px solid #F59E0B;box-shadow:0 0 18px rgba(245,158,11,.45);background:#060608;';
 
 const NAV_HTML = `
 <nav>
   <div class="nav-inner">
-    <a class="nav-brand" href="index.html">
-      <img class="nav-logo" style="${logoStyle}" src="../assets/img/bombers-fastpitch-logo.svg" alt="Bombers Fastpitch logo">
-      Bombers <span>FASTPITCH</span>
+    <a class="nav-brand" href="../index.html">
+      <img class="nav-logo" style="${logoStyle}" src="../assets/img/buzz-fastpitch-logo.svg" alt="Buzz Fastpitch logo">
+      Buzz <span>FASTPITCH</span>
     </a>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="board.html">Board</a>
-      <a href="coaching.html">Coaching</a>
-      <a href="roster.html">Roster</a>
-      <a href="bylaws.html">Bylaws</a>
-      <a href="finances.html">Finances</a>
-      <a href="policies.html">Policies</a>
-      <a href="docs.html">Documents</a>
-      <a href="fundraising.html">Support Us</a>
-      <a href="contact.html">Contact</a>
+      <a href="../index.html">Home</a>
+      <a href="../index.html#team-info">Team Info</a>
+      <a href="../roster/">Roster</a>
+      <a href="../index.html#schedule">Schedule</a>
+      <a href="index.html">NCS Tracker</a>
+      <a href="../fundraising.html">Fundraising</a>
     </div>
   </div>
 </nav>`;

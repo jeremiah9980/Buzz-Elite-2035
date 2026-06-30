@@ -1,8 +1,8 @@
-/* NCS dashboard components layered on the production Texas Venom styles */
+/* NCS dashboard components layered on the production Buzz Fastpitch styles */
 html{scroll-padding-top:72px}
 body.venom-page{min-height:100vh}
 
-/* NCS marks use the same dimensions and treatment as the Venom logo */
+/* NCS marks use the same dimensions and treatment as the Buzz logo */
 .ncs-nav-mark{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#8b5cf6 0%,#5b21b6 48%,#1a0a2e 100%);border:1px solid rgba(198,255,0,.3);color:#fff;font-family:var(--display);font-size:12px;font-weight:900;letter-spacing:-.5px;box-shadow:0 0 20px rgba(109,40,217,.35);flex-shrink:0}
 .ncs-hero-mark.hero-logo{border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#8b5cf6 0%,#5b21b6 48%,#1a0a2e 100%);border:1px solid rgba(198,255,0,.32);color:#fff;font-family:var(--display);font-size:36px;font-weight:900;letter-spacing:-2px;box-shadow:0 12px 40px rgba(109,40,217,.5),inset 0 0 24px rgba(255,255,255,.07)}
 
@@ -12,7 +12,7 @@ body.venom-page{min-height:100vh}
 .theme-option{border:0;background:transparent;color:rgba(255,255,255,.52);font-family:var(--display);font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:6px 8px;border-radius:999px;cursor:pointer}
 .theme-option:hover{color:#fff}.theme-option.active{background:var(--yellow);color:var(--ink-dark);box-shadow:0 0 16px rgba(198,255,0,.2)}
 
-/* Venom gold strip converted into the live dashboard metric band */
+/* Buzz gold strip converted into the live dashboard metric band */
 .gold-strip.stats-band{padding:14px 24px}
 .stats-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:18px;position:relative;z-index:1}
 .stat{text-align:center}.stat-num{font-family:var(--display);font-size:29px;font-weight:900;color:var(--yellow);line-height:1}.stat-label{font-family:var(--display);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--silver);margin-top:4px}
@@ -40,7 +40,7 @@ table{width:100%;border-collapse:collapse;font-size:14px;margin-top:16px}thead t
 .note{border-left:3px solid var(--blue);background:linear-gradient(90deg,rgba(109,40,217,.06),transparent);border-radius:0 8px 8px 0;padding:13px 15px;font-size:13px;color:var(--g1);margin-top:14px}.empty{text-align:center;padding:32px;color:var(--g3);font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase}.error{color:#b91c1c}.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(109,40,217,.25);border-top-color:currentColor;border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
 .tabs{display:flex;gap:3px;flex-wrap:wrap;border-bottom:1px solid var(--g4);margin:-3px 0 18px}.tab{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;padding:10px 14px;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--g2);cursor:pointer}.tab:hover{color:var(--blue)}.tab.active{color:var(--blue);border-bottom-color:var(--yellow)}.change-filters{margin-bottom:14px}.changes-meta{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--g2);margin:5px 0 12px}.csv-panel{background:var(--white);border:1px solid rgba(109,40,217,.1);border-radius:10px;padding:0 18px 18px;margin-top:14px}.csv-panel summary{font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--blue);cursor:pointer;padding:15px 0}.csv-panel textarea{display:block;width:100%;min-height:110px;margin-bottom:10px;resize:vertical}.search-box{display:block}.search-box input{width:100%}
 
-/* Light is the exact Venom page. Mid keeps the same system on purple-gray softball surfaces. */
+/* Light is the exact Buzz page. Mid keeps the same system on purple-gray softball surfaces. */
 html[data-theme="mid"] .page{background:#ded9e4}html[data-theme="mid"] body{background:#ded9e4}html[data-theme="mid"] .card,html[data-theme="mid"] .filter-panel,html[data-theme="mid"] .csv-panel,html[data-theme="mid"] .team-card{background:#f4f1f7}html[data-theme="mid"] tbody tr:nth-child(odd) td{background:#e9e4ed}html[data-theme="mid"] tbody tr:nth-child(even) td{background:#f7f5f9}
 html[data-theme="dark"] body{background:var(--ink-dark);color:#e4dfec}html[data-theme="dark"] .page{background:var(--ink-dark)}html[data-theme="dark"] .section h2{color:#fff}html[data-theme="dark"] .lead{color:rgba(255,255,255,.72)}html[data-theme="dark"] .section-label{color:var(--yellow)}html[data-theme="dark"] .section-rule{background:var(--yellow)}html[data-theme="dark"] .card,html[data-theme="dark"] .filter-panel,html[data-theme="dark"] .csv-panel,html[data-theme="dark"] .team-card{background:linear-gradient(180deg,#150828,#0d0518);border-color:rgba(109,40,217,.32);box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 20px 50px rgba(0,0,0,.45)}html[data-theme="dark"] .team-card h3{color:#fff}html[data-theme="dark"] .filter-label,html[data-theme="dark"] .roster-count,html[data-theme="dark"] .changes-meta{color:rgba(255,255,255,.65)}html[data-theme="dark"] select,html[data-theme="dark"] input,html[data-theme="dark"] textarea{background:#0d0615;color:#fff;border-color:rgba(255,255,255,.12)}html[data-theme="dark"] td{border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.82)}html[data-theme="dark"] tbody tr:nth-child(odd) td{background:#170b25}html[data-theme="dark"] tbody tr:nth-child(even) td{background:#100719}html[data-theme="dark"] tbody tr:hover td{background:#211134}
 

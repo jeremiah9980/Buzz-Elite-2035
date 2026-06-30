@@ -152,7 +152,7 @@ async function loadGameChangerStats() {
   gcStatsLoadStylesheet();
   const container = document.querySelector('[data-gamechanger-stats]');
   if (!container) return;
-  const sourceUrl = container.dataset.gamechangerStatsUrl || 'https://web.gc.com/teams/Zn3gbz7yVqgq/2026-spring-ctx-bombers---meza/stats';
+  const sourceUrl = container.dataset.gamechangerStatsUrl || '[ENTER GAMECHANGER STATS URL]';
   container.textContent = 'Loading GameChanger stats…';
 
   try {

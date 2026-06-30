@@ -109,7 +109,7 @@ function gcRenderGames(container, data, sourceUrl) {
     const main = document.createElement('div');
     main.className = 'gc-game-main';
     const gameTitle = document.createElement('h4');
-    gameTitle.textContent = game.title || game.opponent || 'Primetime Game';
+    gameTitle.textContent = game.title || game.opponent || 'Buzz Game';
     const location = document.createElement('p');
     location.textContent = game.location || 'Location TBD';
     main.append(gameTitle, location);

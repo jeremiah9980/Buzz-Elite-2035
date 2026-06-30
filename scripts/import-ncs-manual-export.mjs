@@ -1,7 +1,7 @@
 import fs from "node:fs";
 
 /**
- * Import a manually curated NCS tournament JSON file into Bombers CMS content.
+ * Import a manually curated NCS tournament JSON file into Buzz CMS content.
  *
  * Expected JSON:
  * [
@@ -20,9 +20,9 @@ import fs from "node:fs";
  * ]
  */
 
-const [,, tournamentsPath, jsonPath = "cms/content/bombers-site.json"] = process.argv;
+const [,, tournamentsPath, jsonPath = "cms/content/buzz-site.json"] = process.argv;
 if (!tournamentsPath) {
-  console.error("Usage: node scripts/import-ncs-manual-export.mjs ncs-tournaments.json cms/content/bombers-site.json");
+  console.error("Usage: node scripts/import-ncs-manual-export.mjs ncs-tournaments.json cms/content/buzz-site.json");
   process.exit(1);
 }
 

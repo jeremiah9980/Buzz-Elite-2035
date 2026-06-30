@@ -1,5 +1,5 @@
 (function () {
-  const DEFAULT_CONTENT_URL = "/bombers/cms/content/bombers-site.json";
+  const DEFAULT_CONTENT_URL = "/Buzz-Elite-2035/cms/content/buzz-site.json";
 
   const escapeHtml = (value) => String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -10,11 +10,11 @@
 
   const get = (obj, path) => path.split(".").reduce((acc, part) => acc ? acc[part] : undefined, obj);
 
-  async function loadBombersContent() {
+  async function loadBuzzContent() {
     const script = document.currentScript;
     const contentUrl = script?.dataset?.contentUrl || window.BOMBERS_CONTENT_URL || DEFAULT_CONTENT_URL;
     const response = await fetch(contentUrl, { cache: "no-store" });
-    if (!response.ok) throw new Error(`Unable to load Bombers content: ${contentUrl}`);
+    if (!response.ok) throw new Error(`Unable to load Buzz content: ${contentUrl}`);
     const content = await response.json();
     window.BOMBERS_CONTENT = content;
     renderDataBindings(content);
@@ -30,22 +30,22 @@
   }
 
   function renderDataBindings(content) {
-    document.querySelectorAll("[data-bombers-text]").forEach((el) => {
-      el.textContent = get(content, el.dataset.bombersText) ?? "";
+    document.querySelectorAll("[data-buzz-text]").forEach((el) => {
+      el.textContent = get(content, el.dataset.buzzText) ?? "";
     });
-    document.querySelectorAll("[data-bombers-html]").forEach((el) => {
-      el.innerHTML = get(content, el.dataset.bombersHtml) ?? "";
+    document.querySelectorAll("[data-buzz-html]").forEach((el) => {
+      el.innerHTML = get(content, el.dataset.buzzHtml) ?? "";
     });
-    document.querySelectorAll("[data-bombers-src]").forEach((el) => {
-      el.src = get(content, el.dataset.bombersSrc) ?? "";
+    document.querySelectorAll("[data-buzz-src]").forEach((el) => {
+      el.src = get(content, el.dataset.buzzSrc) ?? "";
     });
-    document.querySelectorAll("[data-bombers-href]").forEach((el) => {
-      el.href = get(content, el.dataset.bombersHref) ?? "#";
+    document.querySelectorAll("[data-buzz-href]").forEach((el) => {
+      el.href = get(content, el.dataset.buzzHref) ?? "#";
     });
   }
 
   function renderHome(content) {
-    const target = document.querySelector("[data-bombers-home]");
+    const target = document.querySelector("[data-buzz-home]");
     if (!target) return;
     const home = content.pages.home;
     target.innerHTML = `
@@ -214,7 +214,7 @@
   }
 
   function renderPlayerProfile(content) {
-    const target = document.querySelector("[data-bombers-player-profile]");
+    const target = document.querySelector("[data-buzz-player-profile]");
     if (!target) return;
     const params = new URLSearchParams(window.location.search);
     const id = target.dataset.playerId || params.get("id");
@@ -228,7 +228,7 @@
       <section class="cms-player-hero">
         <img src="${escapeHtml(player.photo)}" alt="${escapeHtml(player.displayName)}" />
         <div>
-          <p class="eyebrow">${escapeHtml(profile.tag || "Bombers Athlete")}</p>
+          <p class="eyebrow">${escapeHtml(profile.tag || "Buzz Athlete")}</p>
           <h1>#${escapeHtml(player.jerseyNumber)} ${escapeHtml(player.displayName)}</h1>
           <p>${escapeHtml((player.positions || []).join(" · "))}</p>
           <p>${escapeHtml(profile.oneLine || "")}</p>
@@ -261,7 +261,7 @@
     </table>`;
   }
 
-  loadBombersContent().catch((error) => {
+  loadBuzzContent().catch((error) => {
     console.error(error);
     document.querySelectorAll("[data-bombers-error]").forEach((el) => el.textContent = error.message);
   });

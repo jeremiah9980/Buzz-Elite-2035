@@ -44,7 +44,7 @@ function buildHero(player) {
   const number = displayNumber(player);
   const role = player.guest ? 'Guest Athlete' : 'Rostered Athlete';
   hero.innerHTML = `
-    <div class="profile-kicker">CTX Bombers Meza · Georgetown, Texas · 2026</div>
+    <div class="profile-kicker">Buzz Fastpitch · Texas · 2035</div>
     <h1><span>#${number}</span> ${player.name}</h1>
     <div class="profile-role">${role}</div>
     <div class="profile-hero-rule"></div>
@@ -58,7 +58,7 @@ function buildPhotoCard(player) {
   const image = player.image ? `${PLAYER_ASSET_ROOT}${player.image}` : '';
   card.innerHTML = `
     <span class="profile-photo-watermark">${number}</span>
-    ${image ? `<img class="profile-player-image" src="${image}" alt="${player.name} Bombers player graphic" loading="eager">` : ''}
+    ${image ? `<img class="profile-player-image" src="${image}" alt="${player.name} Buzz player graphic" loading="eager">` : ''}
     <i class="ti ti-user-circle"></i>
     <div class="profile-photo-label">
       <strong>${image ? 'Player Graphic' : 'Player Image Coming Soon'}</strong>
@@ -83,7 +83,7 @@ function buildSnapshotPanel(player, gcStats) {
   const label = profileEl('div', 'profile-section-label', `${player.name.split(' ')[0]} · Player Profile`);
   const h2 = profileEl('h2', '', 'GameChanger Snapshot');
   const p = profileEl('p', '', gcStats
-    ? `Verified source: 2026 Spring CTX Bombers - Meza GameChanger snapshot${gcStats.syncedAt ? ` · ${new Date(gcStats.syncedAt).toLocaleDateString([], { month: 'short', day: 'numeric' })}` : ''}.`
+    ? `Verified source: Buzz Fastpitch GameChanger snapshot${gcStats.syncedAt ? ` · ${new Date(gcStats.syncedAt).toLocaleDateString([], { month: 'short', day: 'numeric' })}` : ''}.`
     : 'Verified GameChanger stat slots are connected and ready to populate once public stat rows or exported team stats are available.');
   const grid = profileEl('div', 'stat-grid');
 
@@ -100,7 +100,7 @@ function buildSnapshotPanel(player, gcStats) {
 function buildCharacter(player) {
   const block = profileEl('section', 'profile-block character-block');
   const inner = profileEl('div', 'profile-block-inner');
-  const quote = player.quote || `${player.name} brings effort, coachability, and team-first energy to CTX Bombers Meza.`;
+  const quote = player.quote || `${player.name} brings effort, coachability, and team-first energy to Buzz Fastpitch.`;
   const bullets = Array.isArray(player.characterBullets) && player.characterBullets.length
     ? player.characterBullets
     : [
@@ -114,7 +114,7 @@ function buildCharacter(player) {
     <div class="character-grid">
       <div class="coach-quote">
         “${quote}”
-        <span>Bombers coach profile</span>
+        <span>Buzz coach profile</span>
       </div>
       <ul class="character-list">
         ${bullets.map(item => `<li>${item}</li>`).join('')}
@@ -172,7 +172,7 @@ function buildFilmRoom(player) {
       <div>
         <span class="clip-tag">${tag}</span>
         <h3>Game Clip ${String(index + 1).padStart(2, '0')}</h3>
-        <p>${player.name} · CTX Bombers Meza</p>
+        <p>${player.name} · Buzz Fastpitch</p>
       </div>`;
     clips.appendChild(clip);
   });
@@ -185,7 +185,7 @@ function buildFilmRoom(player) {
 function buildFooter() {
   const footer = profileEl('footer', 'profile-footer');
   footer.innerHTML = `
-    <h2>Bombers Fastpitch</h2>
+    <h2>Buzz Fastpitch</h2>
     <div class="profile-hero-rule"></div>
     <div class="profile-footer-links">
       <a href="../index.html#home">Home</a>
@@ -222,7 +222,7 @@ async function renderPlayerProfile() {
   const gcStats = statsForPlayer(player, statsData);
   const number = displayNumber(player);
 
-  document.title = `#${number} ${player.name} · CTX Bombers Meza`;
+  document.title = `#${number} ${player.name} · Buzz Fastpitch`;
 
   const shell = profileEl('div', 'player-profile-shell');
   shell.appendChild(buildHero(player));
@@ -238,7 +238,7 @@ async function renderPlayerProfile() {
 
   shell.append(main, buildFooter());
   root.appendChild(shell);
-  window.dispatchEvent(new CustomEvent('bombers-player-profile-rendered', { detail: { slug: player.slug } }));
+  window.dispatchEvent(new CustomEvent('buzz-player-profile-rendered', { detail: { slug: player.slug } }));
 }
 
 document.addEventListener('DOMContentLoaded', renderPlayerProfile);

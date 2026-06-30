@@ -1,9 +1,9 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const TEAM_BASE_URL = process.env.GC_TEAM_URL || 'https://web.gc.com/teams/Zn3gbz7yVqgq/2026-spring-ctx-bombers---meza';
+const TEAM_BASE_URL = process.env.GC_TEAM_URL || '[ENTER GAMECHANGER TEAM URL]';
 const OUTPUT_PATH = process.env.GC_STATS_OUTPUT || 'assets/data/gamechanger-stats.json';
-const TEAM_NAME = '2026 Spring CTX Bombers - Meza';
+const TEAM_NAME = 'Buzz Fastpitch';
 
 const STAT_PAGES = [
   ['all', `${TEAM_BASE_URL}/stats`],
@@ -203,7 +203,7 @@ function mergePlayerStats(categories) {
 async function fetchPage(category, url) {
   const response = await fetch(url, {
     headers: {
-      'user-agent': 'CTXBombersMezaStatsSync/1.0',
+      'user-agent': 'BuzzFastpitchStatsSync/1.0',
       'accept': 'text/html,application/json'
     }
   });

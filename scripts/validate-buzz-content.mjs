@@ -1,6 +1,6 @@
 import fs from "node:fs";
 
-const path = process.argv[2] || "cms/content/bombers-site.json";
+const path = process.argv[2] || "cms/content/buzz-site.json";
 const content = JSON.parse(fs.readFileSync(path, "utf8"));
 const issues = [];
 
@@ -36,9 +36,9 @@ for (const tournament of content.pages?.ncs?.tournaments || []) {
 }
 
 if (issues.length) {
-  console.error("Bombers CMS validation failed:\n");
+  console.error("Buzz CMS validation failed:\n");
   for (const issue of issues) console.error(`- ${issue}`);
   process.exit(1);
 }
 
-console.log(`Bombers CMS validation passed. ${players.length} roster player(s) checked.`);
+console.log(`Buzz CMS validation passed. ${players.length} roster player(s) checked.`);

@@ -1,13 +1,13 @@
 /**
- * Bombers public-site content loader.
+ * Buzz public-site content loader.
  *
  * Use this on public pages to render content from:
  * /bombers/content/bombers.json
  */
 
-async function loadBombersContent() {
+async function loadBuzzContent() {
   const response = await fetch("/bombers/content/bombers.json", { cache: "no-store" });
-  if (!response.ok) throw new Error("Could not load Bombers content");
+  if (!response.ok) throw new Error("Could not load Buzz content");
   return response.json();
 }
 
@@ -21,7 +21,7 @@ function attr(selector, name, value) {
   if (element && value) element.setAttribute(name, value);
 }
 
-function renderBombersHomepage(content) {
+function renderBuzzHomepage(content) {
   text("[data-bombers='heroTitle']", content.homepage.heroTitle);
   text("[data-bombers='heroSubtitle']", content.homepage.heroSubtitle);
   text("[data-bombers='ctaText']", content.homepage.ctaText);
@@ -57,8 +57,8 @@ function escapeHtml(value) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const content = await loadBombersContent();
-    renderBombersHomepage(content);
+    const content = await loadBuzzContent();
+    renderBuzzHomepage(content);
   } catch (error) {
     console.error(error);
   }

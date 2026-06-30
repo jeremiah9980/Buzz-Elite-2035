@@ -2,36 +2,36 @@
   "schemaVersion": "2.0.0",
   "lastUpdated": "2026-06-29",
   "site": {
-    "slug": "bombers",
-    "teamName": "CTX Bombers Meza",
-    "brandName": "Bombers Fastpitch",
+    "slug": "buzz",
+    "teamName": "Buzz Fastpitch",
+    "brandName": "Buzz Fastpitch",
     "season": "2026 Spring",
     "location": "Georgetown, Texas",
     "sport": "10U Select Fastpitch Softball",
-    "tagline": "Built Different • Play Fast • Finish Strong",
-    "logo": "assets/images/bombers-logo.png",
-    "primaryColor": "#0b3d91",
-    "accentColor": "#f8c400",
-    "publicBaseUrl": "https://jeremiah9980.github.io/bombers/"
+    "tagline": "Sting Fast. Win Together.",
+    "logo": "assets/images/buzz-fastpitch-logo.png",
+    "primaryColor": "#F59E0B",
+    "accentColor": "#060608",
+    "publicBaseUrl": "[ENTER PUBLIC BASE URL]"
   },
   "pages": {
     "home": {
       "enabled": true,
       "navLabel": "Home",
       "hero": {
-        "eyebrow": "Texas • Select Fastpitch • Bombers Team Hub",
-        "title": "Bombers Fastpitch",
-        "subtitle": "Built Different • Play Fast • Finish Strong",
-        "body": "CTX Bombers Meza is a 10U select fastpitch softball team based in Georgetown, Texas, built for athletes who want to train with purpose, compete with confidence, and prepare for the next level of the game.\nOur mission is to develop elite athletes through disciplined preparation, high standards, game IQ, toughness, and a team-first culture that pushes every player to grow on and off the field.\nWe are proud to represent Bomber Nation, a championship softball family creating champions since 2001. #BlueBloods\n\n",
+        "eyebrow": "Texas • Select Fastpitch • Buzz Team Hub",
+        "title": "Buzz Fastpitch",
+        "subtitle": "Sting Fast. Win Together. Built Elite.",
+        "body": "Buzz Fastpitch is a 10U select fastpitch softball team based in Georgetown, Texas, built for athletes who want to train with purpose, compete with confidence, and prepare for the next level of the game.\nOur mission is to develop elite athletes through disciplined preparation, high standards, game IQ, toughness, and a team-first culture that pushes every player to grow on and off the field.\nWe are proud to represent Buzz program, a championship softball family creating champions since 2001. #BuzzNation\n\n",
         "primaryCtaText": "Open Roster",
         "primaryCtaUrl": "roster.html",
-        "secondaryCtaText": "NCS Dashboard",
+        "secondaryCtaText": "NCS Tracker",
         "secondaryCtaUrl": "ncs-tracker/"
       },
       "featureCards": [
         {
           "title": "Team Info",
-          "body": "Mission, culture, coaches, contact info, and Bomber Nation details.",
+          "body": "Mission, culture, coaches, contact info, and Buzz program details.",
           "url": "#team-info"
         },
         {
@@ -45,14 +45,14 @@
           "url": "#gamechanger"
         },
         {
-          "title": "NCS Dashboard",
+          "title": "NCS Tracker",
           "body": "Tournament tracker for events, scores, records, and standings.",
           "url": "ncs-tracker/"
         }
       ],
       "announcements": [
         {
-          "title": "Welcome to the Bombers Team Hub",
+          "title": "Welcome to the Buzz Team Hub",
           "date": "2026-06-29",
           "status": "published",
           "body": "Use the CMS to update team information, social embeds, roster, player profiles, GameChanger references, NCS tournaments, and fundraising content."
@@ -61,11 +61,11 @@
     },
     "teamInfo": {
       "enabled": true,
-      "navLabel": "Bombers Team Information",
-      "headline": "Bombers Team Information",
-      "summary": "CTX Bombers Meza is a 10U select fastpitch softball team based in Georgetown, Texas, built for athletes who want to train with purpose, compete with confidence, and prepare for the next level of the game.",
+      "navLabel": "Buzz Team Information",
+      "headline": "Buzz Team Information",
+      "summary": "Buzz Fastpitch is a 10U select fastpitch softball team based in Georgetown, Texas, built for athletes who want to train with purpose, compete with confidence, and prepare for the next level of the game.",
       "mission": "Our mission is to develop elite athletes through disciplined preparation, high standards, game IQ, toughness, and a team-first culture that pushes every player to grow on and off the field.",
-      "bomberNation": "We are proud to represent Bomber Nation, a championship softball family creating champions since 2001. #BlueBloods",
+      "bomberNation": "We are proud to represent Buzz program, a championship softball family creating champions since 2001. #BuzzNation",
       "values": [
         "Hard Work",
         "Discipline",
@@ -90,8 +90,8 @@
     "social": {
       "enabled": true,
       "navLabel": "Social Media",
-      "headline": "CTX Bombers Meza Social",
-      "intro": "See reels, tournament weekends, player moments, team culture, practice clips, and shareable Bombers updates directly from the homepage.",
+      "headline": "Buzz Fastpitch Social",
+      "intro": "See reels, tournament weekends, player moments, team culture, practice clips, and shareable Buzz updates directly from the homepage.",
       "instagram": {
         "handle": "ctxbombersmeza",
         "profileUrl": "https://www.instagram.com/ctxbombersmeza/",
@@ -99,7 +99,7 @@
         "fallbackText": "Open Instagram"
       },
       "facebook": {
-        "pageName": "Bombers Facebook Reels",
+        "pageName": "Buzz Facebook",
         "profileUrl": "https://www.facebook.com/",
         "embedHtml": "",
         "fallbackText": "Open Facebook"
@@ -115,7 +115,7 @@
           "url": "https://www.instagram.com/ctxbombersmeza/"
         },
         {
-          "title": "Share Bombers Updates",
+          "title": "Share Buzz Updates",
           "body": "Use the CMS AI helper to draft captions and weekly recaps.",
           "url": "#"
         }
@@ -125,7 +125,7 @@
       "enabled": true,
       "navLabel": "GameChanger Schedule & Stats",
       "teamId": "",
-      "teamName": "2026 Spring CTX Bombers - Meza",
+      "teamName": "Buzz Fastpitch",
       "teamUrl": "",
       "scheduleWidgetUrl": "",
       "calendarIcsUrl": "",
@@ -156,9 +156,9 @@
       "enabled": true,
       "navLabel": "NCS Tournament Dashboard",
       "teamId": "",
-      "teamName": "CTX Bombers Meza",
+      "teamName": "Buzz Fastpitch",
       "teamUrl": "",
-      "dashboardTitle": "Bombers · NCS Dashboard",
+      "dashboardTitle": "Buzz · NCS Tracker",
       "syncMode": "manual-public-data",
       "syncNotes": "Track public tournament details and your own game results. Use NCS team/event IDs only where pages are public or authorized.",
       "lastSyncAt": "",
@@ -213,7 +213,7 @@
           "profileEnabled": false,
           "profileStatus": "coming-soon",
           "profile": {
-            "tag": "Bombers Athlete",
+            "tag": "Buzz Athlete",
             "oneLine": "Add a short player description after media release approval.",
             "bio": "Profile coming soon.",
             "strengths": [],
@@ -282,12 +282,12 @@
     }
   },
   "seo": {
-    "title": "Bombers Fastpitch — Texas Select Softball",
-    "description": "Official Bombers team hub for roster, schedule, GameChanger updates, NCS tournament tracking, social media, and fundraising.",
+    "title": "Buzz Fastpitch — Texas Select Softball",
+    "description": "Official Buzz team hub for roster, schedule, GameChanger updates, NCS tournament tracking, social media, and fundraising.",
     "image": "assets/images/bombers-social-card.jpg",
     "keywords": [
-      "Bombers Fastpitch",
-      "CTX Bombers Meza",
+      "Buzz Fastpitch",
+      "Buzz Fastpitch",
       "Texas select softball",
       "10U fastpitch"
     ]

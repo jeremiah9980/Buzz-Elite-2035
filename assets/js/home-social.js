@@ -1,5 +1,5 @@
 (() => {
-  const INSTAGRAM_PROFILE = 'https://www.instagram.com/ctxbombersmeza/';
+  const INSTAGRAM_PROFILE = '[ENTER INSTAGRAM URL]';
   const FACEBOOK_REELS = 'https://www.facebook.com/profile.php?id=61583868568607&sk=reels_tab';
   const FACEBOOK_PROFILE = 'https://www.facebook.com/profile.php?id=61583868568607';
 
@@ -27,7 +27,7 @@
     const iframe = document.createElement('iframe');
     const encoded = encodeURIComponent(profileUrl);
     iframe.className = 'social-facebook-frame';
-    iframe.title = 'CTX Bombers Meza Facebook reels';
+    iframe.title = 'Buzz Fastpitch Facebook reels';
     iframe.loading = 'lazy';
     iframe.src = `https://www.facebook.com/plugins/page.php?href=${encoded}&tabs=timeline&width=500&height=560&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`;
     iframe.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
@@ -36,12 +36,12 @@
 
     const fallback = document.createElement('div');
     fallback.className = 'social-embed-fallback social-facebook-fallback';
-    fallback.innerHTML = `<div><i class="ti ti-brand-facebook"></i><strong>CTX Bombers Meza Reels</strong><p>Facebook will load the live viewer when the profile/page allows embedding. Open Reels directly if the frame does not load.</p><a class="social-btn social-btn-primary" href="${fallbackUrl}" target="_blank" rel="noopener noreferrer">Open Facebook Reels</a></div>`;
+    fallback.innerHTML = `<div><i class="ti ti-brand-facebook"></i><strong>Buzz Fastpitch Reels</strong><p>Facebook will load the live viewer when the profile/page allows embedding. Open Reels directly if the frame does not load.</p><a class="social-btn social-btn-primary" href="${fallbackUrl}" target="_blank" rel="noopener noreferrer">Open Facebook Reels</a></div>`;
     container.appendChild(fallback);
   }
 
-  instagramEmbed('bombers-instagram-embed', INSTAGRAM_PROFILE, 'CTX Bombers Meza on Instagram');
-  facebookEmbed('bombers-facebook-embed', FACEBOOK_PROFILE, FACEBOOK_REELS);
+  instagramEmbed('buzz-instagram-embed', INSTAGRAM_PROFILE, 'Buzz Fastpitch on Instagram');
+  facebookEmbed('buzz-facebook-embed', FACEBOOK_PROFILE, FACEBOOK_REELS);
 
   const script = document.createElement('script');
   script.async = true;

@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>CTX Bombers Meza · NCS Command</title>
-<meta name="theme-color" content="#02040A" />
-<link rel="icon" href="../assets/img/bombers-fastpitch-logo.svg" type="image/svg+xml">
+<title>Buzz Fastpitch · NCS Command</title>
+<meta name="theme-color" content="#060608" />
+<link rel="icon" href="../assets/img/buzz-fastpitch-logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Saira+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#02040A; --bg2:#07111F; --bg3:#0B1728; --raised:#0E1B31;
-    --line:#1A365F; --line2:#2F6DCC;
+    --bg:#060608; --bg2:#0D0D11; --bg3:#1A1208; --raised:#1A1208;
+    --line:#2A1A05; --line2:#D97706;
     --txt:#F5F7FB; --muted:#B8C4D8; --faint:#6F809C;
-    --team:#075DFF; --team2:#66A7FF;       /* Bombers electric blue */
+    --team:#F59E0B; --team2:#FDE68A;       /* Buzz gold */
     --live:#ff3b3b; --win:#2fd27f; --loss:#ff6b6b; --cyan:#7DD3FC;
     --shadow:0 18px 40px -18px rgba(0,0,0,.85);
     --r:16px;
@@ -220,9 +220,9 @@
 
   <header class="top">
     <div class="top-row">
-      <div class="crest" id="crest"><img src="../assets/img/bombers-fastpitch-logo.svg" alt="Bombers logo"></div>
+      <div class="crest" id="crest"><img src="../assets/img/buzz-fastpitch-logo.svg" alt="Buzz Fastpitch logo"></div>
       <div class="ttl">
-        <h1 id="evtName">CTX Bombers Meza</h1>
+        <h1 id="evtName">Buzz Fastpitch</h1>
         <div class="sub">
           <span id="evtDates">Jun 20–21</span><span class="dot"></span>
           <span id="evtLoc">Taylor/Lorena, TX</span><span class="dot"></span>
@@ -260,15 +260,15 @@
 
 <script>
 /* =====================================================================
-   CTX BOMBERS MEZA · NCS COMMAND
-   Same mobile command-center layout as the Primetime tracker, with the
-   Bombers electric blue / black / white smoke UI scheme.
+   BUZZ FASTPITCH · NCS COMMAND
+   Same mobile command-center layout as the Buzz tracker, with the
+   Buzz gold / black / white smoke UI scheme.
    ===================================================================== */
 
 const CONFIG = {
   myTeamId: "79552",
   teamAbbrev: "BM",
-  ncsTeamUrl: "https://www.playncs.com/fastpitch/Teams/Details/79552/ctx-bombers-meza",
+  ncsTeamUrl: "[ENTER NCS TEAM URL]",
   ncsScheduleUrl: "https://playncs.com/FASTPITCH/Events/Schedule/12287/3p-sports-dingers-for-dads-6gg?division=10U",
   ncsBracketUrl:  "https://playncs.com/FASTPITCH/Events/Bracket/12287/3p-sports-dingers-for-dads-6gg?division=10U",
   ncsStandingsUrl:"https://playncs.com/FASTPITCH/Events/Standings/12287/3p-sports-dingers-for-dads-6gg?division=10U",
@@ -285,7 +285,7 @@ const SEED = {
   },
   updated:null,
   teams:[
-    {id:"79552", name:"CTX Bombers Meza"}
+    {id:"79552", name:"Buzz Fastpitch"}
   ],
   games:[]
 };
@@ -308,7 +308,7 @@ function normalizeLivePayload(j){
   if(!Array.isArray(out.games)) out.games = [];
   if(!Array.isArray(out.teams)) out.teams = [];
   if(out.team && out.team.id && !out.teams.find(t=>idStr(t.id)===idStr(out.team.id))){
-    out.teams.push({id:idStr(out.team.id), name:out.team.name || "CTX Bombers Meza"});
+    out.teams.push({id:idStr(out.team.id), name:out.team.name || "Buzz Fastpitch"});
   }
   out.teams = out.teams.map(t=>({id:idStr(t.id), name:t.name || t.teamName || "TBD", guest:!!t.guest}));
   out.games = out.games.map(x=>({
@@ -375,7 +375,7 @@ function fmtCountdown(ms){
 }
 
 function renderShell(){
-  $("#evtName").textContent = DATA.event.name || "CTX Bombers Meza";
+  $("#evtName").textContent = DATA.event.name || "Buzz Fastpitch";
   $("#evtDates").textContent = DATA.event.dates || "2026 Season";
   $("#evtLoc").textContent = DATA.event.location || DATA.event.city || "Georgetown, TX";
   const strip = $("#metaStrip");
@@ -395,7 +395,7 @@ function renderHero(){
     const rec = TEAM_SUMMARY?.record || "27-17-0";
     const pct = TEAM_SUMMARY?.winPct || ".614";
     hero.className = "hero";
-    hero.innerHTML = `<div class="eyebrow">CTX Bombers Meza · NCS Team 26-79552</div>
+    hero.innerHTML = `<div class="eyebrow">Buzz Fastpitch · NCS Team 26-79552</div>
       <div class="matchup">
         <div class="side us"><div class="nm">NCS Record</div><div class="sc">${rec}</div></div>
         <div class="vs">•</div>
@@ -446,7 +446,7 @@ function gameCard(gm, opts={}){
 }
 function viewTeam(){
   const id=state.teamId, games=teamGames(id), rec=record(id);
-  if(!games.length) return `<div class="empty"><div class="ic">🥎</div><h3>No games loaded yet</h3><p>CTX Bombers Meza is connected to NCS Team 26-79552. Tournament games will display here when the NCS event schedule is posted or when <code>schedule.json</code> is refreshed.</p><a class="btn" href="${CONFIG.ncsTeamUrl}" target="_blank" rel="noopener">Open NCS Team ↗</a></div>`;
+  if(!games.length) return `<div class="empty"><div class="ic">🥎</div><h3>No games loaded yet</h3><p>Buzz Fastpitch is connected to NCS Team 26-79552. Tournament games will display here when the NCS event schedule is posted or when <code>schedule.json</code> is refreshed.</p><a class="btn" href="${CONFIG.ncsTeamUrl}" target="_blank" rel="noopener">Open NCS Team ↗</a></div>`;
   let html = `<div class="recordbar"><div class="stat w"><div class="n">${rec.w}</div><div class="l">Wins</div></div><div class="stat l-stat"><div class="n">${rec.l}</div><div class="l">Losses</div></div><div class="stat"><div class="n">${rec.diff>0?"+":""}${rec.diff}</div><div class="l">Run Diff</div></div><div class="stat"><div class="n">${games.length}</div><div class="l">Pool Gms</div></div></div>`;
   html += `<div class="slot-h">Pool Games · ${cleanName(nameById(id))}</div>`;
   games.forEach(gm=> html += gameCard(gm,{editable:true}));
@@ -456,7 +456,7 @@ function viewDay(day){
   const games=DATA.games.filter(x=>x.day===day).sort((a,b)=>new Date(a.dateISO)-new Date(b.dateISO));
   if(!games.length){
     if(day==="Sun") return bracketEmpty();
-    return `<div class="empty"><div class="ic">📅</div><h3>No ${day} games</h3><p>Nothing loaded for this day yet. Once the NCS schedule is posted, this tab will match the Primetime command-center layout with Bombers colors.</p></div>`;
+    return `<div class="empty"><div class="ic">📅</div><h3>No ${day} games</h3><p>Nothing loaded for this day yet. Once the NCS schedule is posted, this tab will match the Buzz command-center layout with Buzz colors.</p></div>`;
   }
   let html="", lastTime=null;
   games.forEach(gm=>{ if(gm.time!==lastTime){ html+=`<div class="slot-h">${gm.time}</div>`; lastTime=gm.time; } html += gameCard(gm,{editable:true}); });
@@ -521,7 +521,7 @@ async function pullLive(showToast){
         return;
       }
     }
-    if(showToast) toast("No live games yet — showing Bombers seed");
+    if(showToast) toast("No live games yet — showing Buzz seed");
   }catch(err){ if(showToast) toast("Offline — showing loaded data"); }
   finally{ setTimeout(()=>btn.classList.remove("spin"),500); }
 }

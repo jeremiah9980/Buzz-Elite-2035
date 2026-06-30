@@ -1,11 +1,11 @@
 /**
- * Bombers sports sync helpers.
+ * Buzz sports sync helpers.
  *
  * GitHub Pages is static, so this file does not bypass third-party login or scrape protected pages.
- * Use it to render already-approved public/manual data from cms/content/bombers-site.json.
+ * Use it to render already-approved public/manual data from cms/content/buzz-site.json.
  */
 
-window.BombersSportsSync = {
+window.BuzzSportsSync = {
   buildGameChangerEmbed(team) {
     if (!team) return "";
     if (team.scheduleWidgetUrl) {
