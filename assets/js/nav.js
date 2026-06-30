@@ -5,6 +5,23 @@ const isRosterPage = currentPath.includes('/roster/');
 const sitePrefix = isPlayerPage || isRosterPage ? '../' : '';
 const assetPrefix = sitePrefix;
 
+function ensureThemeAssets() {
+  if (!document.querySelector('link[data-buzz-theme-css]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `${assetPrefix}assets/css/theme-toggle.css`;
+    link.dataset.buzzThemeCss = 'true';
+    document.head.appendChild(link);
+  }
+  if (!document.querySelector('script[data-buzz-theme-js]')) {
+    const script = document.createElement('script');
+    script.src = `${assetPrefix}assets/js/theme-toggle.js`;
+    script.defer = true;
+    script.dataset.buzzThemeJs = 'true';
+    document.head.appendChild(script);
+  }
+}
+
 const NAV_LINKS = [
   ['HOME', `${sitePrefix}index.html#home`, 'home'],
   ['Team Info', `${sitePrefix}index.html#team-info`, 'team-info'],
@@ -26,6 +43,7 @@ const NAV_HTML = `
     </a>
     <div class="nav-links">
       ${NAV_LINKS.map(([label, href, id]) => `<a href="${href}" data-anchor-id="${id}">${label}</a>`).join('')}
+      <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode"><i class="ti ti-sun"></i><span class="theme-toggle-label">Light</span></button>
     </div>
   </div>
 </nav>`;
@@ -47,6 +65,7 @@ function loadPlayerImageData() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  ensureThemeAssets();
   document.body.insertAdjacentHTML('afterbegin', NAV_HTML);
   setActiveAnchor();
   loadPlayerImageData();
