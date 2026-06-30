@@ -1,0 +1,145 @@
+.primetime-page .gc-schedule-panel {
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(212,160,23,.35);
+  background: linear-gradient(180deg,#171717,#0d0d0d);
+  color: #fff8e6;
+  box-shadow: 0 20px 50px -38px #000;
+}
+
+.primetime-page .gc-schedule-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff8e6;
+  font-family: var(--display);
+  font-weight: 850;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+}
+
+.primetime-page .gc-schedule-empty {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.primetime-page .gc-schedule-actions {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.primetime-page .gc-schedule-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(212,160,23,.25);
+}
+
+.primetime-page .gc-schedule-head h3 {
+  margin: 4px 0 6px;
+  color: #fff;
+  font-family: var(--display);
+  font-size: 26px;
+  letter-spacing: -.5px;
+}
+
+.primetime-page .gc-schedule-head p {
+  margin: 0;
+  color: rgba(255,248,230,.72);
+  font-size: 13px;
+}
+
+.primetime-page .gc-game-list {
+  display: grid;
+  gap: 12px;
+}
+
+.primetime-page .gc-game-card {
+  display: grid;
+  grid-template-columns: 126px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid rgba(212,160,23,.24);
+  border-radius: 12px;
+  background: rgba(255,248,230,.045);
+}
+
+.primetime-page .gc-game-date {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fff8e6;
+  color: #111;
+  text-align: center;
+  font-family: var(--display);
+  text-transform: uppercase;
+}
+
+.primetime-page .gc-game-date strong,
+.primetime-page .gc-game-date span {
+  display: block;
+}
+
+.primetime-page .gc-game-date strong {
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+.primetime-page .gc-game-date span {
+  margin-top: 4px;
+  color: var(--blue2);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.primetime-page .gc-game-main h4 {
+  margin: 0 0 4px;
+  color: #fff;
+  font-family: var(--display);
+  font-size: 20px;
+}
+
+.primetime-page .gc-game-main p {
+  margin: 0;
+  color: rgba(255,248,230,.70);
+  font-size: 13px;
+}
+
+.primetime-page .gc-game-meta {
+  justify-self: end;
+  padding: 8px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(212,160,23,.35);
+  color: var(--yellow);
+  font-family: var(--display);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@media(max-width:720px) {
+  .primetime-page .gc-schedule-head,
+  .primetime-page .gc-schedule-empty {
+    flex-direction: column;
+  }
+
+  .primetime-page .gc-game-card {
+    grid-template-columns: 1fr;
+  }
+
+  .primetime-page .gc-game-date {
+    width: 100%;
+  }
+
+  .primetime-page .gc-game-meta {
+    justify-self: start;
+  }
+}

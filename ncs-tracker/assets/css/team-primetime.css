@@ -1,0 +1,82 @@
+
+/* ===== BOMBERS MEZA FASTPITCH SKIN — compatibility file for pages importing team-primetime.css ===== */
+body.primetime-page,
+body.bombers-page {
+  --bombers-black:#02040A;
+  --bombers-ink:#07111F;
+  --bombers-navy:#001A4D;
+  --bombers-blue:#075DFF;
+  --bombers-blue-2:#0039C7;
+  --bombers-blue-dark:#00164A;
+  --bombers-blue-light:#66A7FF;
+  --bombers-silver:#B8C4D8;
+  --blue:var(--bombers-blue);
+  --blue2:var(--bombers-blue-2);
+  --blue-l:#EAF2FF;
+  --blue-m:#BBD6FF;
+  --yellow:var(--bombers-blue);
+  --yellow2:var(--bombers-blue-2);
+  --yellow-l:#EAF2FF;
+  --yellow-m:#D6E7FF;
+  --off-white:#F5F7FB;
+  --cream:#EAF2FF;
+  --stripe:repeating-linear-gradient(90deg,rgba(7,93,255,.20) 0px,rgba(7,93,255,.20) 6px,transparent 6px,transparent 28px);
+  background:var(--bombers-black);
+}
+:is(.primetime-page,.bombers-page) nav{background:rgba(2,4,10,.96);border-bottom-color:var(--bombers-blue);box-shadow:0 12px 34px rgba(0,0,0,.34),0 0 28px rgba(7,93,255,.16);backdrop-filter:saturate(150%) blur(14px)}
+:is(.primetime-page,.bombers-page) .nav-brand{color:#fff;text-shadow:0 0 18px rgba(7,93,255,.28)}
+:is(.primetime-page,.bombers-page) .nav-brand span{color:var(--bombers-silver)}
+:is(.primetime-page,.bombers-page) .nav-links a{color:rgba(255,255,255,.66)}
+:is(.primetime-page,.bombers-page) .nav-links a:hover,
+:is(.primetime-page,.bombers-page) .nav-links a.active{color:#fff;background:rgba(7,93,255,.20)}
+:is(.primetime-page,.bombers-page) .nav-links a[href*="fundraising"]{color:#fff;background:linear-gradient(135deg,var(--bombers-blue),var(--bombers-blue-2));border:1px solid rgba(255,255,255,.18);box-shadow:0 0 22px rgba(7,93,255,.22)}
+:is(.primetime-page,.bombers-page) .nav-links a[href*="fundraising"]:hover{background:#fff;color:var(--bombers-blue-dark)}
+:is(.primetime-page,.bombers-page) .hero{background:radial-gradient(circle at 78% 18%,rgba(7,93,255,.42),transparent 30%),radial-gradient(circle at 16% 70%,rgba(102,167,255,.18),transparent 34%),linear-gradient(135deg,#02040A 0%,#07111F 48%,#001A4D 100%);border-bottom:3px solid var(--bombers-blue);box-shadow:inset 0 -90px 120px rgba(0,0,0,.38)}
+:is(.primetime-page,.bombers-page) .hero::before{background:linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(0deg,rgba(255,255,255,.025) 1px,transparent 1px),repeating-linear-gradient(112deg,rgba(7,93,255,.08) 0,rgba(7,93,255,.08) 1px,transparent 1px,transparent 10px);background-size:54px 54px,54px 54px,auto;opacity:.82}
+:is(.primetime-page,.bombers-page) .hero h1{color:#fff;text-shadow:0 0 46px rgba(7,93,255,.72),0 4px 0 rgba(0,0,0,.42)}
+:is(.primetime-page,.bombers-page) .hero-kicker{color:#fff}
+:is(.primetime-page,.bombers-page) .hero-sub{color:rgba(255,255,255,.86)}
+:is(.primetime-page,.bombers-page) .hero-logo,
+:is(.primetime-page,.bombers-page) .hero-mark{width:130px;height:130px;margin:0 auto 14px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff 0%,#dbe8ff 34%,#0b2f91 70%,#02040A 100%);border:5px solid #02040A;outline:4px solid var(--bombers-blue);color:#fff;font-family:Georgia,'Times New Roman',serif;font-size:60px;font-weight:900;text-shadow:0 0 18px rgba(7,93,255,.72);box-shadow:0 16px 40px rgba(0,0,0,.48),0 0 38px rgba(7,93,255,.54)}
+:is(.primetime-page,.bombers-page) .hero-rule{background:linear-gradient(90deg,#fff,var(--bombers-blue),#fff)}
+:is(.primetime-page,.bombers-page) .hero-tagline{color:rgba(255,255,255,.78)}
+:is(.primetime-page,.bombers-page) .page{background:#F5F7FB;border-radius:20px 20px 0 0;margin-top:0;padding-top:8px}
+:is(.primetime-page,.bombers-page) .gold-strip{background:linear-gradient(90deg,#00164A 0%,#075DFF 45%,#00164A 100%);border-bottom-color:#02040A;box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 24px rgba(7,93,255,.24)}
+:is(.primetime-page,.bombers-page) .gold-strip p{color:#fff}
+:is(.primetime-page,.bombers-page) .section-label{color:var(--bombers-blue)}
+:is(.primetime-page,.bombers-page) .section-rule{background:linear-gradient(90deg,var(--bombers-blue),var(--bombers-black))}
+:is(.primetime-page,.bombers-page) .card h3{color:var(--bombers-blue-dark)}
+:is(.primetime-page,.bombers-page) .card-gold,
+:is(.primetime-page,.bombers-page) .card-blue{border-top-color:var(--bombers-blue)}
+:is(.primetime-page,.bombers-page) .card-teal{border-top-color:var(--bombers-black)}
+:is(.primetime-page,.bombers-page) .callout{border-left-color:var(--bombers-blue);background:#EAF2FF}
+:is(.primetime-page,.bombers-page) .doc-item:hover{border-color:var(--bombers-blue);box-shadow:0 0 0 3px rgba(7,93,255,.15)}
+:is(.primetime-page,.bombers-page) .doc-icon{background:#EAF2FF;border-color:#BBD6FF;color:var(--bombers-blue-dark)}
+:is(.primetime-page,.bombers-page) .btn-primary{background:linear-gradient(135deg,var(--bombers-blue),var(--bombers-blue-2));color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 26px rgba(7,93,255,.26)}
+:is(.primetime-page,.bombers-page) .btn-primary:hover{background:#fff;color:var(--bombers-blue-dark)}
+:is(.primetime-page,.bombers-page) .btn-outline{border-color:var(--bombers-blue);color:var(--bombers-blue)}
+:is(.primetime-page,.bombers-page) .btn-outline:hover{background:var(--bombers-blue);color:#fff}
+:is(.primetime-page,.bombers-page) #roster{background:radial-gradient(circle at 10% 0%,rgba(7,93,255,.28),transparent 30%),radial-gradient(circle at 90% 12%,rgba(102,167,255,.16),transparent 26%),linear-gradient(180deg,#02040A 0%,#07111F 45%,#02040A 100%);border-radius:22px;margin:30px 0;padding:38px 26px;border:1px solid rgba(7,93,255,.42);box-shadow:0 28px 70px -42px #000,0 0 42px rgba(7,93,255,.16)}
+:is(.primetime-page,.bombers-page) #roster .section-label,
+:is(.primetime-page,.bombers-page) #roster h2,
+:is(.primetime-page,.bombers-page) #roster p{color:#F5F7FB}
+:is(.primetime-page,.bombers-page) .roster-summary{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0 24px}
+:is(.primetime-page,.bombers-page) .roster-summary-pill{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:#fff;color:#02040A;font-family:var(--display);font-size:11px;font-weight:900;letter-spacing:1.1px;text-transform:uppercase;border:1px solid rgba(7,93,255,.48)}
+:is(.primetime-page,.bombers-page) .player-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+:is(.primetime-page,.bombers-page) .player-card{position:relative;overflow:hidden;border-radius:9px;background:linear-gradient(180deg,#081426 0%,#050B16 45%,#02040A 100%);border:1px solid rgba(255,255,255,.14);box-shadow:0 22px 48px -34px #000}
+:is(.primetime-page,.bombers-page) .player-card:before{content:"";position:absolute;left:0;top:0;width:96px;height:5px;background:linear-gradient(90deg,#fff,var(--bombers-blue));z-index:2}
+:is(.primetime-page,.bombers-page) .player-photo{position:relative;height:176px;overflow:hidden;background:linear-gradient(135deg,rgba(7,93,255,.34),transparent 34%),radial-gradient(circle at 68% 28%,rgba(255,255,255,.12),transparent 28%),linear-gradient(145deg,#02040A,#0C1E38 62%,#001A4D);display:grid;place-items:center}
+:is(.primetime-page,.bombers-page) .jersey-badge{background:#fff;color:#02040A;border:3px solid var(--bombers-blue);box-shadow:0 10px 24px -18px #000,0 0 18px rgba(7,93,255,.35)}
+:is(.primetime-page,.bombers-page) .player-name{color:#fff!important}
+:is(.primetime-page,.bombers-page) .player-status{border:1px solid rgba(7,93,255,.52);background:rgba(7,93,255,.18);color:#fff}
+:is(.primetime-page,.bombers-page) .player-stat{border:1px solid rgba(7,93,255,.36);background:rgba(255,255,255,.06)}
+:is(.primetime-page,.bombers-page) .player-stat strong{color:#fff;text-shadow:0 0 18px rgba(7,93,255,.55)}
+:is(.primetime-page,.bombers-page) .player-profile-link{color:#fff}
+:is(.primetime-page,.bombers-page) .player-profile-link:hover{color:var(--bombers-blue-light)}
+:is(.primetime-page,.bombers-page) footer{background:linear-gradient(180deg,#02040A 0%,#07111F 100%);border-top-color:var(--bombers-blue);box-shadow:0 -16px 36px rgba(7,93,255,.12)}
+:is(.primetime-page,.bombers-page) .footer-brand{color:#fff;text-shadow:0 0 28px rgba(7,93,255,.54)}
+:is(.primetime-page,.bombers-page) footer p{color:rgba(255,255,255,.60)}
+:is(.primetime-page,.bombers-page) .footer-links a{color:rgba(255,255,255,.62)}
+:is(.primetime-page,.bombers-page) .footer-links a:hover{color:#fff;text-shadow:0 0 14px rgba(7,93,255,.64)}
+@media(max-width:960px){:is(.primetime-page,.bombers-page) .player-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){:is(.primetime-page,.bombers-page) #roster{padding:30px 16px}:is(.primetime-page,.bombers-page) .player-card-grid{grid-template-columns:1fr}:is(.primetime-page,.bombers-page) .player-photo{height:164px}}

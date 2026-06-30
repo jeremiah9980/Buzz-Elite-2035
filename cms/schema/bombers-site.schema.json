@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeremiah9980.github.io/bombers/cms/schema/bombers-site.schema.json",
+  "title": "Bombers CMS Content",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "site",
+    "pages",
+    "seo"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "lastUpdated": {
+      "type": "string"
+    },
+    "site": {
+      "type": "object"
+    },
+    "pages": {
+      "type": "object"
+    },
+    "seo": {
+      "type": "object"
+    },
+    "publishing": {
+      "type": "object"
+    }
+  }
+}

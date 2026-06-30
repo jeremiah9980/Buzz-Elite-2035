@@ -1,0 +1,58 @@
+# .github/workflows/ncs-scrape.yml
+# Refreshes the NCS feed for CTX Bombers Meza, then commits it.
+# Times are UTC. Central (CDT, UTC-5): 8:00 AM–8:00 PM == 13:00–01:00 UTC.
+
+name: NCS feed
+
+on:
+  workflow_dispatch:            # run manually anytime from the Actions tab
+  schedule:
+    # every 5 min, 13:00–23:59 UTC, Saturday(6) & Sunday(0)
+    - cron: "*/5 13-23 * * 6,0"
+
+permissions:
+  contents: write               # allow the bot to push the updated JSON
+
+concurrency:                    # don't overlap runs
+  group: ncs-scrape
+  cancel-in-progress: true
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests beautifulsoup4
+
+      - name: Scrape CTX Bombers Meza NCS event feed
+        run: |
+          python scrape_ncs.py \
+            --event 12287 \
+            --slug 3p-sports-dingers-for-dads-6gg \
+            --division "10U" \
+            --team 79552 \
+            --out data/ncs-12287-10U.json \
+            --day-map Sat=2026-06-20 Sun=2026-06-21 \
+            --tz -05:00 \
+            --name "3P Sports Dingers for Dads *6GG*" \
+            --venue "Taylor/Lorena" \
+            --city "Taylor/Lorena, TX" \
+            --dates "Jun 20-21, 2026"
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "ncs-feed-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/ncs-12287-10U.json
+          if git diff --staged --quiet; then
+            echo "No change."
+          else
+            git commit -m "feed: refresh CTX Bombers Meza NCS $(date -u +%H:%MZ)"
+            git push
+          fi

@@ -1,0 +1,39 @@
+name: GameChanger Stats Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Refresh public GameChanger stat data daily at 7:15 AM Central during season.
+    - cron: "15 12 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gamechanger-stats-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Pull CTX Bombers Meza GameChanger stats
+        run: node scripts/fetch-gamechanger-stats.mjs
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "gamechanger-stats-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if [[ -n "$(git status --porcelain assets/data/gamechanger-stats.json)" ]]; then
+            git add assets/data/gamechanger-stats.json
+            git commit -m "stats: refresh GameChanger stats $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          else
+            echo "No GameChanger stat changes."
+          fi

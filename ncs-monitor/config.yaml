@@ -1,0 +1,67 @@
+# ============================================================================
+# NCS Roster Watch -- CTX Bombers Meza configuration
+# ----------------------------------------------------------------------------
+# Primary team: CTX Bombers Meza
+# NCS Team URL: https://www.playncs.com/fastpitch/Teams/Details/79552/ctx-bombers-meza
+# Team ID: 26-79552
+# Division: 10U C
+# ============================================================================
+
+discovery:
+  enabled: true
+
+  # Keep discovery focused around the Bombers age group and adjacent NCS event lists.
+  age_prefixes: ["10U"]
+
+  # Central Texas cities around Georgetown / Taylor / Lorena tournament routes.
+  central_tx_cities:
+    - Georgetown
+    - Round Rock
+    - Cedar Park
+    - Leander
+    - Hutto
+    - Liberty Hill
+    - Taylor
+    - Lorena
+    - Waco
+    - Temple
+    - Belton
+    - Killeen
+    - Harker Heights
+    - Austin
+    - Pflugerville
+    - Manor
+    - Bastrop
+
+  # Seed events used to discover related teams.
+  events:
+    - 12287     # 3P Sports Dingers for Dads *6GG* - Taylor/Lorena, TX - Jun 20-21
+    - 12474     # Jazz'in It Up in June - Georgetown, TX - Jun 27-28
+    - 12475     # July Sizzler - Georgetown, TX - Jul 25-26
+    - 13484     # NCS Central Texas Fall State - Taylor/Temple/Georgetown
+
+  # Re-crawl the events at most this often (hours).
+  refresh_hours: 24
+  cache_file: "discovered_teams.json"
+
+# Always watch the Bombers team regardless of discovery results.
+teams:
+  - url: "https://www.playncs.com/fastpitch/Teams/Details/79552/ctx-bombers-meza"
+
+# Be polite to the site: seconds between requests.
+request_delay_seconds: 2
+user_agent: "ctx-bombers-meza-ncs-roster-watch/1.0"
+
+snapshot_file: "snapshots/latest.json"
+
+notify:
+  github_issue:
+    labels: ["roster-change", "ctx-bombers-meza"]
+  slack:
+    webhook_env: SLACK_WEBHOOK_URL
+  # email:
+  #   host_env: SMTP_HOST
+  #   port_env: SMTP_PORT
+  #   user_env: SMTP_USER
+  #   pass_env: SMTP_PASS
+  #   to: "you@example.com"

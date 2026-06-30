@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roster — Primetime Fastpitch</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/team-primetime.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+  /* ===== ROSTER GRID CARDS ===== */
+  .roster-counter{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid var(--blue-m);background:var(--blue-l);border-radius:999px;font-family:var(--display);text-transform:uppercase;letter-spacing:1.5px;font-size:12px;color:var(--blue2);}
+  .roster-counter .rc-live{color:var(--blue);font-weight:800;}
+  .roster-counter .rc-sep{opacity:.4;}
+  .roster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px;margin-top:24px;}
+  .roster-card{background:#fff;border:1px solid var(--g4);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.25s;}
+  .roster-card.is-live{border-color:var(--yellow);box-shadow:0 6px 0 var(--yellow2),0 8px 30px rgba(212,160,23,.2);}
+  .rc-photo{position:relative;aspect-ratio:3/4;background:linear-gradient(165deg,#0a0a0a 0%,#1a1a0a 45%,#050500 100%);overflow:hidden;}
+  .rc-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .rc-photo-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,.18);}
+  .rc-photo-fallback i{font-size:78px;}
+  .rc-photo-fallback .rc-spot-label{font-family:var(--display);font-weight:900;font-size:42px;letter-spacing:1px;color:rgba(212,160,23,.20);margin-top:6px;text-shadow:0 0 30px rgba(212,160,23,.3);}
+  .rc-photo img+.rc-photo-fallback{display:none;}
+  .roster-card .no-photo .rc-photo-fallback{display:flex;}
+  .rc-num{position:absolute;bottom:12px;left:12px;background:#0a0a0a;color:#fff;font-family:var(--display);font-weight:900;font-size:18px;padding:6px 14px;border-radius:8px;border:2px solid var(--yellow);letter-spacing:1px;box-shadow:0 4px 12px rgba(0,0,0,.4);}
+  .rc-body{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1;}
+  .rc-name{font-family:var(--display);font-weight:900;font-size:22px;text-transform:uppercase;letter-spacing:0.5px;line-height:1;color:var(--blue);}
+  .rc-name .rc-ln{color:var(--yellow2);}
+  .rc-pos{font-family:var(--display);text-transform:uppercase;letter-spacing:2px;font-size:11px;color:var(--g3);margin-top:8px;}
+  .rc-stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:14px;}
+  .rc-stat{background:var(--blue-l);border-radius:8px;padding:10px 10px 8px;}
+  .rc-stat-val{font-family:var(--display);font-size:18px;font-weight:900;color:var(--blue);line-height:1;letter-spacing:-.5px;}
+  .rc-stat-lbl{font-family:var(--display);text-transform:uppercase;letter-spacing:1.5px;font-size:9px;color:var(--g3);margin-top:4px;}
+  .rc-tag-pill{margin-top:14px;background:transparent;border:1px solid var(--g4);border-radius:999px;text-align:center;font-family:var(--display);text-transform:uppercase;letter-spacing:2px;font-size:10px;padding:8px 10px;color:var(--g3);}
+  .is-live .rc-tag-pill{background:var(--yellow-l);border-color:var(--yellow);color:var(--blue2);}
+  .rc-cta{margin-top:12px;display:flex;align-items:center;justify-content:space-between;background:var(--g5);color:var(--g3);font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:12px;padding:14px 16px;border-radius:8px;text-decoration:none;pointer-events:none;}
+  .rc-cta::after{content:"→";opacity:.4;}
+  .is-live .rc-cta{background:var(--yellow);color:#080808;pointer-events:auto;}
+  .is-live .rc-cta::after{opacity:1;}
+  .is-live .rc-cta:hover{background:var(--yellow2);color:#fff;}
+</style>
+</head>
+<body class="primetime-page">
+<script src="assets/js/nav.js"></script>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">Primetime Fastpitch &bull; 2025</div>
+    <h1>Roster</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-tagline">Hard work. Dedication. Discipline. Passion. This is the team.</p>
+  </div>
+</section>
+
+<div class="gold-strip">
+  <p>2025 Season &nbsp;&bull;&nbsp; Where Champions Are Made &nbsp;&bull;&nbsp; Texas Select Fastpitch</p>
+</div>
+
+<div class="page">
+
+  <div class="section">
+    <span class="roster-counter">
+      <i class="ti ti-users"></i>
+      <span class="rc-live" id="liveCount">0 Profiles Live</span>
+      <span class="rc-sep">—</span>
+      <span>Roster</span>
+    </span>
+    <h2 style="margin-top:18px;">Players</h2>
+    <div class="section-rule"></div>
+    <p style="margin-bottom:8px;">Roster shown in GameChanger format (first name + last initial + jersey). Individual profile pages activate per player once a written parent media release is on file and the photo + profile are dropped in.</p>
+    <div class="roster-grid">
+
+      <div class="roster-card" data-slug="player-1">
+        <div class="rc-photo">
+          <img src="assets/players/player-1.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('no-photo');">
+          <div class="rc-photo-fallback">
+            <i class="ti ti-user"></i>
+            <div class="rc-spot-label">#1</div>
+          </div>
+          <div class="rc-num">#1</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name"><span class="rc-fn">Player</span> <span class="rc-ln">1.</span></div>
+          <div class="rc-pos">Position TBD</div>
+          <div class="rc-stats">
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+          </div>
+          <div class="rc-tag-pill">Profile Coming Soon</div>
+          <a class="rc-cta" href="player-profile.html"><i class="ti ti-clock"></i> Coming Soon</a>
+        </div>
+      </div>
+
+      <div class="roster-card" data-slug="player-2">
+        <div class="rc-photo">
+          <img src="assets/players/player-2.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('no-photo');">
+          <div class="rc-photo-fallback">
+            <i class="ti ti-user"></i>
+            <div class="rc-spot-label">#2</div>
+          </div>
+          <div class="rc-num">#2</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name"><span class="rc-fn">Player</span> <span class="rc-ln">2.</span></div>
+          <div class="rc-pos">Position TBD</div>
+          <div class="rc-stats">
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+          </div>
+          <div class="rc-tag-pill">Profile Coming Soon</div>
+          <a class="rc-cta" href="player-profile.html"><i class="ti ti-clock"></i> Coming Soon</a>
+        </div>
+      </div>
+
+      <div class="roster-card" data-slug="player-3">
+        <div class="rc-photo">
+          <img src="assets/players/player-3.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('no-photo');">
+          <div class="rc-photo-fallback">
+            <i class="ti ti-user"></i>
+            <div class="rc-spot-label">#3</div>
+          </div>
+          <div class="rc-num">#3</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name"><span class="rc-fn">Player</span> <span class="rc-ln">3.</span></div>
+          <div class="rc-pos">Position TBD</div>
+          <div class="rc-stats">
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+          </div>
+          <div class="rc-tag-pill">Profile Coming Soon</div>
+          <a class="rc-cta" href="player-profile.html"><i class="ti ti-clock"></i> Coming Soon</a>
+        </div>
+      </div>
+
+      <div class="roster-card" data-slug="player-4">
+        <div class="rc-photo">
+          <img src="assets/players/player-4.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('no-photo');">
+          <div class="rc-photo-fallback">
+            <i class="ti ti-user"></i>
+            <div class="rc-spot-label">#4</div>
+          </div>
+          <div class="rc-num">#4</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name"><span class="rc-fn">Player</span> <span class="rc-ln">4.</span></div>
+          <div class="rc-pos">Position TBD</div>
+          <div class="rc-stats">
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+          </div>
+          <div class="rc-tag-pill">Profile Coming Soon</div>
+          <a class="rc-cta" href="player-profile.html"><i class="ti ti-clock"></i> Coming Soon</a>
+        </div>
+      </div>
+
+      <div class="roster-card" data-slug="player-5">
+        <div class="rc-photo">
+          <img src="assets/players/player-5.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('no-photo');">
+          <div class="rc-photo-fallback">
+            <i class="ti ti-user"></i>
+            <div class="rc-spot-label">#5</div>
+          </div>
+          <div class="rc-num">#5</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name"><span class="rc-fn">Player</span> <span class="rc-ln">5.</span></div>
+          <div class="rc-pos">Position TBD</div>
+          <div class="rc-stats">
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+          </div>
+          <div class="rc-tag-pill">Profile Coming Soon</div>
+          <a class="rc-cta" href="player-profile.html"><i class="ti ti-clock"></i> Coming Soon</a>
+        </div>
+      </div>
+
+      <div class="roster-card" data-slug="player-6">
+        <div class="rc-photo">
+          <img src="assets/players/player-6.jpg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('no-photo');">
+          <div class="rc-photo-fallback">
+            <i class="ti ti-user"></i>
+            <div class="rc-spot-label">#6</div>
+          </div>
+          <div class="rc-num">#6</div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-name"><span class="rc-fn">Player</span> <span class="rc-ln">6.</span></div>
+          <div class="rc-pos">Position TBD</div>
+          <div class="rc-stats">
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+            <div class="rc-stat"><div class="rc-stat-val">—</div><div class="rc-stat-lbl">Stat</div></div>
+          </div>
+          <div class="rc-tag-pill">Profile Coming Soon</div>
+          <a class="rc-cta" href="player-profile.html"><i class="ti ti-clock"></i> Coming Soon</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="callout">
+      <p><strong>Want to join the roster?</strong> Tryouts are open. Contact the Co-Directors to learn about roster openings and the tryout schedule. <a href="contact.html">Reach out here.</a></p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-brand">★ Primetime Fastpitch</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="coaching.html">Coaching</a><a href="contact.html">Contact</a>
+  </div>
+  <p>Texas &bull; Select Fastpitch Softball &bull; 2025</p>
+</footer>
+
+<script>
+  const LIVE_PROFILES = [];
+  document.querySelectorAll('.roster-card').forEach(card => {
+    const slug = card.dataset.slug;
+    if (LIVE_PROFILES.includes(slug)) card.classList.add('is-live');
+  });
+  document.getElementById('liveCount').textContent = LIVE_PROFILES.length + ' Profile' + (LIVE_PROFILES.length !== 1 ? 's' : '') + ' Live';
+</script>
+</body>
+</html>

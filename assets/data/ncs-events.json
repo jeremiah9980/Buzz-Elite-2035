@@ -1,0 +1,71 @@
+{
+  "source": "NCS",
+  "sourceUrl": "https://www.playncs.com/fastpitch/Teams/Details/79552/ctx-bombers-meza",
+  "team": "CTX Bombers Meza",
+  "teamId": "26-79552",
+  "ncsTeamId": "79552",
+  "location": "Georgetown, TX",
+  "division": "10U C",
+  "record": "27-17-0",
+  "winPct": ".614",
+  "last10": "6-4-0",
+  "streak": "L1",
+  "avgFinish": "6.00",
+  "rankingPoints": "1900",
+  "avgRunsScored": "6.34",
+  "avgRunsAllowed": "4.34",
+  "avgRunsDifference": "2.00",
+  "runsScored": "279",
+  "runsAllowed": "191",
+  "updatedAt": "2026-06-28T00:00:00-05:00",
+  "teamPage": "https://www.playncs.com/fastpitch/Teams/Details/79552/ctx-bombers-meza",
+  "classes": [
+    { "class": "9U C", "record": "2-1-0" },
+    { "class": "10U C-REC", "record": "1-0-0" },
+    { "class": "10U C", "record": "23-14-0" },
+    { "class": "10U B", "record": "0-1-0" },
+    { "class": "12U C", "record": "1-1-0" }
+  ],
+  "upcomingEvents": [
+    {
+      "date": "2026-06-20",
+      "dateLabel": "Jun 20-21",
+      "event": "3P Sports Dingers for Dads *6GG*",
+      "eventId": "12287",
+      "location": "Taylor/Lorena, TX",
+      "director": "Jennifer Anderson",
+      "divisions": "8U · 10U · 12U · 14U · 18U",
+      "registeredTeams": "64",
+      "url": "https://www.playncs.com/fastpitch/Events/Details/12287/3p-sports-dingers-for-dads-6gg"
+    }
+  ],
+  "pastEvents": [
+    { "date": "2026-02-28", "event": "LET'S GET IT STARTED 5GG", "division": "10U OPEN", "place": "7", "points": "325", "record": "3-4-0", "avgRunsScored": "4.57", "maxRunsScored": "17", "avgRunsAllowed": "4.57", "avgRunsDifference": "0.00" },
+    { "date": "2026-03-14", "event": "MARCH MADNESS 6GG 70 MIN POOLS 10u , 12u, C TEAMS ONLY.", "division": "10U C", "place": "3", "points": "350", "record": "7-2-0", "avgRunsScored": "7.78", "maxRunsScored": "15", "avgRunsAllowed": "3.78", "avgRunsDifference": "4.00" },
+    { "date": "2026-03-28", "event": "3P Sports 2nd Annual Sliding Into Spring C-CLASS ONLY", "division": "10U C", "place": "3", "points": "250", "record": "5-2-0", "avgRunsScored": "7.00", "maxRunsScored": "14", "avgRunsAllowed": "3.86", "avgRunsDifference": "3.14" },
+    { "date": "2026-04-11", "event": "GATESVILLE CLASSIC 6GG", "division": "10U OPEN", "place": "8", "points": "200", "record": "2-2-0", "avgRunsScored": "5.25", "maxRunsScored": "8", "avgRunsAllowed": "5.25", "avgRunsDifference": "0.00" },
+    { "date": "2026-05-09", "event": "MOTHER'S DAY MADNESS 6GG 65 MIN POOLS", "division": "10U OPEN", "place": "11", "points": "575", "record": "6-4-0", "avgRunsScored": "6.30", "maxRunsScored": "13", "avgRunsAllowed": "5.60", "avgRunsDifference": "0.70" },
+    { "date": "2026-05-30", "event": "The Round Rock Diamond Champs (\"C\" Teams)", "division": "10U C", "place": "6", "points": "200", "record": "4-3-0", "avgRunsScored": "6.29", "maxRunsScored": "14", "avgRunsAllowed": "3.00", "avgRunsDifference": "3.29" }
+  ],
+  "ncsRoster": [
+    { "number": "1", "name": "Lexi Heinrichs" },
+    { "number": "2", "name": "Emery Krumlauf" },
+    { "number": "9", "name": "Amelia Villarreal" },
+    { "number": "11", "name": "Hayden Hughes" },
+    { "number": "15", "name": "Peyton Gundersen" },
+    { "number": "16", "name": "Birdi Meza" },
+    { "number": "17", "name": "Abigail Joy Presswood" },
+    { "number": "21", "name": "Sawyer Jones" },
+    { "number": "22", "name": "Karter Kellogg" },
+    { "number": "45", "name": "Shaeleigh Fox" },
+    { "number": "78", "name": "Chloe Cruz" },
+    { "number": "99", "name": "Avery Moore-Dominguez" }
+  ],
+  "coaches": [
+    { "name": "Ruben Meza", "role": "Head Coach" },
+    { "name": "Tim Gundersen", "role": "Assistant Coach" },
+    { "name": "Nate Heinrichs", "role": "Assistant Coach" },
+    { "name": "Dustin Jones", "role": "Assistant Coach" },
+    { "name": "Clayton Presswood", "role": "Assistant Coach" }
+  ]
+}

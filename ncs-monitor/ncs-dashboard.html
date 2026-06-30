@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Primetime NCS">
+  <title>Primetime — NCS Roster Dashboard</title>
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260624-root">
+  <link rel="stylesheet" href="../assets/css/team-primetime.css?v=20260624-root">
+  <link rel="stylesheet" href="assets/css/ncs-dashboard-primetime.css?v=20260624-root">
+  <link rel="stylesheet" href="assets/css/slack-feed-primetime.css?v=20260624-root">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+</head>
+<body class="primetime-page">
+  <nav aria-label="Dashboard navigation">
+    <div class="nav-inner">
+      <a class="nav-brand" href="../index.html">
+        ★ Primetime <span>NCS Roster Intelligence</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="#overview">Overview</a>
+        <a href="#rosters">Rosters</a>
+        <a href="#changes">Changes</a>
+        <a href="#teams">Teams</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div style="font-size:56px;line-height:1;margin:0 auto 10px;display:block;text-align:center;filter:drop-shadow(0 8px 26px rgba(212,160,23,.5));">★</div>
+        <div class="hero-kicker">Central Texas &bull; 10U / 12U / 14U Fastpitch &bull; NCS Monitor</div>
+        <h1>Roster Dashboard</h1>
+        <div class="hero-sub">Primetime Roster Intelligence</div>
+        <div class="hero-rule"></div>
+        <p class="hero-tagline">Track Central Texas fastpitch teams, inspect complete rosters, monitor player movement, and identify newly registered teams.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px;">
+          <a href="#overview" class="btn-primary">Explore Teams <i class="ti ti-arrow-right"></i></a>
+          <a href="#changes" class="btn-outline" style="color:var(--yellow);border-color:rgba(255,255,255,.4);">Recent Changes</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="gold-strip stats-band">
+      <div class="stats-inner">
+        <div class="stat"><div class="stat-num" id="stat-teams">--</div><div class="stat-label">Teams Tracked</div></div>
+        <div class="stat"><div class="stat-num" id="stat-10u">--</div><div class="stat-label">10U Teams</div></div>
+        <div class="stat"><div class="stat-num" id="stat-12u">--</div><div class="stat-label">12U Teams</div></div>
+        <div class="stat"><div class="stat-num" id="stat-14u">--</div><div class="stat-label">14U Teams</div></div>
+        <div class="stat"><div class="stat-num" id="stat-players">--</div><div class="stat-label">Total Players</div></div>
+        <div class="stat"><div class="stat-num" id="stat-updated">--</div><div class="stat-label">Last Updated</div></div>
+      </div>
+    </div>
+
+    <div class="page">
+      <section class="section" id="overview">
+        <div class="section-label">Dashboard</div>
+        <div class="section-heading-row">
+          <div><h2>Team Overview</h2><div class="section-rule"></div></div>
+          <button class="btn-outline" id="refresh-data" type="button"><span class="spin" id="refresh-spin" hidden></span>Refresh Data</button>
+        </div>
+        <p class="lead">Quick view of every tracked team. Filter by age group or city, then select a team card to open its roster.</p>
+        <div class="filter-panel">
+          <div class="filters">
+            <label class="filter-group"><span class="filter-label">Filter by Age</span><select id="overview-age"><option value="all">All Age Groups</option><option value="10U">10U Only</option><option value="12U">12U Only</option><option value="14U">14U Only</option></select></label>
+            <label class="filter-group"><span class="filter-label">Filter by City</span><select id="overview-city"><option value="all">All Cities</option></select></label>
+          </div>
+        </div>
+        <div id="team-grid" class="team-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="section" id="rosters">
+        <div class="section-label">Team Rosters</div>
+        <h2>View Roster</h2>
+        <div class="section-rule"></div>
+        <p class="lead">Choose an age group and team to view its current roster and available player history.</p>
+        <div class="card card-gold">
+          <div class="filters">
+            <label class="filter-group"><span class="filter-label">Age Group</span><select id="roster-age"><option value="all">All Ages</option><option value="10U">10U</option><option value="12U">12U</option><option value="14U">14U</option></select></label>
+            <label class="filter-group filter-grow"><span class="filter-label">Team</span><select id="team-select" class="team-select"><option value="">— Select a Team —</option></select></label>
+          </div>
+          <div id="team-info" class="team-info" hidden></div>
+          <div id="roster-out" class="table-wrap" aria-live="polite"></div>
+          <div id="roster-count" class="roster-count"></div>
+        </div>
+        <div class="note">Roster data comes from the latest automated NCS monitor snapshot.</div>
+      </section>
+
+      <section class="section" id="changes">
+        <div class="section-label">Roster Movements</div>
+        <h2>Recent Changes</h2>
+        <div class="section-rule"></div>
+        <p class="lead">The monitor alerts below mirror the reports sent to Slack. Use the detailed table afterward to filter individual additions and removals.</p>
+
+        <div class="slack-feed-wrap">
+          <div class="slack-feed-heading">
+            <div><h3>Slack Monitor Alerts</h3><p>Exact roster reports generated by NCS-MONITOR</p></div>
+          </div>
+          <div id="slack-alerts" class="slack-alerts" aria-live="polite"><div class="empty"><span class="spin"></span> Loading monitor alerts…</div></div>
+        </div>
+
+        <div class="card card-blue">
+          <div class="tabs" role="tablist" aria-label="Roster change type">
+            <button type="button" class="tab active" data-tab="all-changes" aria-selected="true">All Changes</button>
+            <button type="button" class="tab" data-tab="new-teams" aria-selected="false">New Teams</button>
+            <button type="button" class="tab" data-tab="removals" aria-selected="false">Removals</button>
+            <button type="button" class="tab" data-tab="additions" aria-selected="false">Additions</button>
+          </div>
+          <div class="filters change-filters">
+            <label class="filter-group"><span class="filter-label">Age Group</span><select id="changes-age"><option value="all">All Ages</option><option value="10U">10U</option><option value="12U">12U</option><option value="14U">14U</option></select></label>
+            <label class="filter-group"><span class="filter-label">Time Window</span><select id="changes-window"><option value="7">Last 7 Days</option><option value="14" selected>Last 2 Weeks</option><option value="30">Last 30 Days</option><option value="0">All Time</option></select></label>
+          </div>
+          <div id="changes-meta" class="changes-meta"></div>
+          <div id="changes-out" class="table-wrap" aria-live="polite"></div>
+        </div>
+        <details class="csv-panel"><summary>Load changelog CSV manually</summary><p>Paste CSV data here to compare it with the live changelog.</p><textarea id="csv-input" placeholder="timestamp,type,team,city,region,player,number,player_id"></textarea><button class="btn-primary" id="parse-csv" type="button">Load CSV Data</button></details>
+      </section>
+
+      <section class="section" id="teams">
+        <div class="section-label">Team Directory</div>
+        <h2>All Tracked Teams</h2>
+        <div class="section-rule"></div>
+        <p class="lead">Search the complete list of monitored teams by team name or city.</p>
+        <div class="card card-blue"><label class="search-box"><span class="sr-only">Search teams</span><input type="search" id="team-search" placeholder="Search teams by name or city…" autocomplete="off"></label><div id="teams-table-out" class="table-wrap" aria-live="polite"></div></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-brand">★ Primetime Fastpitch</div>
+    <div class="footer-links"><a href="../index.html">Home</a><a href="#overview">Overview</a><a href="#rosters">Rosters</a><a href="#changes">Recent Changes</a><a href="#teams">Team Directory</a></div>
+    <p>Texas &bull; Select Fastpitch Softball &bull; USSSA &bull; NSA &bull; NCS &bull; 2026</p>
+    <p style="margin-top:4px;">Hard Work &bull; Dedication &bull; Discipline &bull; Passion &bull; Where Champions Are Made</p>
+  </footer>
+
+  <script src="assets/js/ncs-dashboard.js?v=20260624-root"></script>
+  <script src="assets/js/slack-feed.js?v=20260624-root"></script>
+</body>
+</html>

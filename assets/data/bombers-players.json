@@ -1,0 +1,84 @@
+[
+  {
+    "number": "",
+    "name": "Katie Brown",
+    "slug": "katie-brown",
+    "image": "katie-b.jpg",
+    "guest": true,
+    "note": "Guest Player: 3P Sports 2nd Annual Double Play Derby"
+  },
+  {
+    "number": "1",
+    "name": "Lexi Heinrichs",
+    "slug": "lexi-heinrichs",
+    "image": "lexi-h.jpg"
+  },
+  {
+    "number": "15",
+    "name": "Peyton Gundersen",
+    "slug": "peyton-gundersen",
+    "image": "peyton-g.jpg"
+  },
+  {
+    "number": "",
+    "name": "Skylar James",
+    "slug": "skylar-james",
+    "image": "skylar-j.jpg",
+    "guest": true,
+    "note": "Guest Player: 3P Sports 2nd Annual Double Play Derby"
+  },
+  {
+    "number": "2",
+    "name": "Emery Krumlauf",
+    "slug": "emery-krumlauf",
+    "image": "emery-k.jpg"
+  },
+  {
+    "number": "",
+    "name": "McKenna Lehmann",
+    "slug": "mckenna-lehmann",
+    "image": "mckenna-l.jpg"
+  },
+  {
+    "number": "9",
+    "name": "Amelia Villarreal",
+    "slug": "amelia-villarreal",
+    "image": "amelia-v.jpg"
+  },
+  {
+    "number": "16",
+    "name": "Birdi Meza",
+    "slug": "birdi-meza",
+    "image": "birdi-m.jpg"
+  },
+  {
+    "number": "17",
+    "name": "Abigail Joy Presswood",
+    "slug": "abigail-joy-presswood",
+    "image": "abigail-p.jpg"
+  },
+  {
+    "number": "21",
+    "name": "Sawyer Jones",
+    "slug": "sawyer-jones",
+    "image": "sawyer-j.jpg"
+  },
+  {
+    "number": "22",
+    "name": "Karter Kellogg",
+    "slug": "karter-kellogg",
+    "image": "karter-k.jpg"
+  },
+  {
+    "number": "45",
+    "name": "Shaeleigh Fox",
+    "slug": "shaeleigh-fox",
+    "image": "shaeleigh-f.jpg"
+  },
+  {
+    "number": "78",
+    "name": "Chloe Cruz",
+    "slug": "chloe-cruz",
+    "image": "chloe-c.jpg"
+  }
+]

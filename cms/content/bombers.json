@@ -1,0 +1,76 @@
+{
+  "site": {
+    "name": "Bombers",
+    "tagline": "Official Bombers Website",
+    "primaryColor": "#111827",
+    "accentColor": "#f59e0b",
+    "logoText": "BOMBERS"
+  },
+  "homepage": {
+    "heroTitle": "Welcome to Bombers",
+    "heroSubtitle": "News, events, roster updates, and highlights from the Bombers.",
+    "ctaText": "View Schedule",
+    "ctaUrl": "/schedule",
+    "heroImage": "/images/bombers-hero.jpg"
+  },
+  "announcements": [
+    {
+      "id": "ann-001",
+      "title": "Bombers CMS is ready",
+      "summary": "Use the dashboard to manage announcements, schedule, roster, sponsors, gallery, and contact information.",
+      "date": "2026-06-29",
+      "status": "published"
+    }
+  ],
+  "schedule": [
+    {
+      "id": "game-001",
+      "date": "2026-07-12",
+      "time": "6:00 PM",
+      "opponent": "TBD",
+      "location": "Home Field",
+      "result": "",
+      "status": "scheduled"
+    }
+  ],
+  "roster": [
+    {
+      "id": "player-001",
+      "name": "Player Name",
+      "number": "00",
+      "position": "Position",
+      "bio": "Short player bio."
+    }
+  ],
+  "sponsors": [
+    {
+      "id": "sponsor-001",
+      "name": "Sponsor Name",
+      "url": "https://example.com",
+      "logo": "/images/sponsor-logo.png"
+    }
+  ],
+  "gallery": [
+    {
+      "id": "gallery-001",
+      "title": "Bombers Highlight",
+      "image": "/images/gallery-1.jpg",
+      "alt": "Bombers team highlight image"
+    }
+  ],
+  "contact": {
+    "email": "contact@example.com",
+    "phone": "",
+    "address": "",
+    "facebook": "",
+    "instagram": "",
+    "x": "",
+    "youtube": ""
+  },
+  "seo": {
+    "metaTitle": "Bombers",
+    "metaDescription": "Official website for Bombers news, events, roster, sponsors, and updates.",
+    "ogImage": "/images/bombers-og.jpg"
+  },
+  "updatedAt": "2026-06-29T00:00:00.000Z"
+}

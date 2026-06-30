@@ -1,0 +1,46 @@
+{
+  "event": {
+    "name": "CTX Bombers Meza NCS Team Tracker",
+    "dates": "2026 Season",
+    "location": "Georgetown, TX",
+    "venue": "NCS Fastpitch",
+    "director": "Ruben Meza",
+    "gateFees": "See event page",
+    "division": "10U C",
+    "url": "https://www.playncs.com/fastpitch/Teams/Details/79552/ctx-bombers-meza"
+  },
+  "updated": "2026-06-28T00:00:00-05:00",
+  "team": {
+    "id": "79552",
+    "teamId": "26-79552",
+    "name": "CTX Bombers Meza",
+    "city": "Georgetown, TX",
+    "division": "10U C",
+    "record": "27-17-0",
+    "winPct": ".614",
+    "last10": "6-4-0",
+    "streak": "L1",
+    "rankingPoints": "1900",
+    "avgRunsScored": "6.34",
+    "avgRunsAllowed": "4.34",
+    "avgRunsDifference": "2.00",
+    "runsScored": "279",
+    "runsAllowed": "191"
+  },
+  "upcomingEvents": [
+    {
+      "eventId": "12287",
+      "name": "3P Sports Dingers for Dads *6GG*",
+      "dates": "Jun 20-21",
+      "location": "Taylor/Lorena, TX",
+      "director": "Jennifer Anderson",
+      "registeredTeams": "64",
+      "divisions": "8U · 10U · 12U · 14U · 18U",
+      "url": "https://www.playncs.com/fastpitch/Events/Details/12287/3p-sports-dingers-for-dads-6gg"
+    }
+  ],
+  "teams": [
+    {"id":"79552","name":"CTX Bombers Meza","guest":false}
+  ],
+  "games": []
+}

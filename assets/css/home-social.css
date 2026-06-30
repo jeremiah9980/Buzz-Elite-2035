@@ -1,0 +1,40 @@
+.bombers-page .social-section{margin-top:56px}
+.bombers-page .social-section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;margin-bottom:24px}
+.bombers-page .social-kicker{font-family:var(--display);font-size:10px;font-weight:950;letter-spacing:3px;text-transform:uppercase;color:#075DFF;margin-bottom:7px}
+.bombers-page .social-title{font-family:var(--display);font-size:clamp(34px,5vw,56px);font-weight:950;letter-spacing:-1px;text-transform:uppercase;line-height:.95;margin:0;color:#02040A}
+.bombers-page .social-copy{max-width:540px;color:#536176;line-height:1.65;margin:0}
+.bombers-page .social-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:24px;align-items:start}
+.bombers-page .social-panel{background:#fff;border:1px solid rgba(7,93,255,.18);border-radius:20px;overflow:hidden;box-shadow:0 18px 48px rgba(2,20,70,.08)}
+.bombers-page .social-panel-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;border-bottom:1px solid #DCE5F5;background:linear-gradient(90deg,#fff,#F5F8FF)}
+.bombers-page .social-platform{display:flex;align-items:center;gap:13px}
+.bombers-page .social-platform-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:22px;color:#fff;box-shadow:0 0 18px rgba(7,93,255,.20)}
+.bombers-page .social-platform-icon.ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)}
+.bombers-page .social-platform-icon.fb{background:#1877f2}
+.bombers-page .social-platform-text strong{display:block;font-family:var(--display);font-size:16px;text-transform:uppercase;color:#02040A}
+.bombers-page .social-platform-text span{display:block;font-size:12px;color:#536176;margin-top:2px}
+.bombers-page .social-external{display:inline-flex;align-items:center;gap:7px;color:#075DFF;font-family:var(--display);font-size:10px;font-weight:950;letter-spacing:1.2px;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.bombers-page .social-external:hover{color:#00164A;text-decoration:none}
+.bombers-page .social-embed-wrap{padding:18px;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;min-height:520px;background:#F5F7FB}
+.bombers-page .social-embed-wrap .instagram-media{margin:0!important;min-width:0!important;width:100%!important;max-width:540px!important}
+.bombers-page .social-embed-fallback{width:100%;min-height:480px;display:grid;place-items:center;border:1px dashed #BBD6FF;border-radius:14px;background:#fff;text-align:center;padding:28px}
+.bombers-page .social-facebook-fallback{min-height:auto;margin-top:12px;padding:16px}
+.bombers-page .social-facebook-fallback i{font-size:32px;margin-bottom:8px}
+.bombers-page .social-facebook-fallback strong{font-size:18px}
+.bombers-page .social-facebook-fallback p{font-size:12px;margin:8px auto 12px}
+.bombers-page .social-embed-fallback i{font-size:54px;color:#075DFF;display:block;margin-bottom:12px;text-shadow:0 0 18px rgba(7,93,255,.22)}
+.bombers-page .social-embed-fallback strong{font-family:var(--display);font-size:24px;text-transform:uppercase;display:block;color:#02040A}
+.bombers-page .social-embed-fallback p{color:#536176;line-height:1.6;max-width:360px;margin:10px auto 18px}
+.bombers-page .social-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 20px;border-radius:9px;font-family:var(--display);font-size:12px;font-weight:950;letter-spacing:1.4px;text-transform:uppercase;text-decoration:none;transition:.2s ease}
+.bombers-page .social-btn:hover{transform:translateY(-2px);text-decoration:none}
+.bombers-page .social-btn-primary{background:linear-gradient(135deg,#075DFF,#0039C7);color:#fff;box-shadow:0 15px 34px rgba(7,93,255,.20)}
+.bombers-page .social-btn-secondary{border:1px solid rgba(7,93,255,.34);background:rgba(7,93,255,.08);color:#00164A}
+.bombers-page .social-btn-instagram{background:linear-gradient(100deg,#833ab4,#fd1d1d,#fcb045);color:#fff}
+.bombers-page .social-facebook-frame{width:100%;height:560px;border:0;overflow:hidden;background:#fff}
+.bombers-page .social-cta{position:relative;border-radius:24px;padding:46px 28px;text-align:center;background:radial-gradient(circle at 20% 30%,rgba(7,93,255,.22),transparent 26%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.09),transparent 25%),linear-gradient(125deg,#02040A,#001A4D);overflow:hidden;color:#fff;margin-top:34px}
+.bombers-page .social-cta h2{position:relative;font-family:var(--display);font-size:clamp(38px,6vw,68px);line-height:.92;text-transform:uppercase;margin:0;color:#fff}
+.bombers-page .social-cta h2 span{color:#66A7FF;text-shadow:0 0 28px rgba(7,93,255,.55)}
+.bombers-page .social-cta p{position:relative;max-width:650px;margin:16px auto 24px;color:rgba(255,255,255,.75);line-height:1.65}
+.bombers-page .social-hero-actions{display:flex;gap:13px;flex-wrap:wrap;justify-content:center;margin-top:0}
+@media(max-width:1020px){.bombers-page .social-grid{grid-template-columns:1fr}}
+@media(max-width:720px){.bombers-page .social-section-head{display:block}.bombers-page .social-copy{margin-top:14px}.bombers-page .social-panel-head{align-items:flex-start}.bombers-page .social-external span{display:none}.bombers-page .social-facebook-frame{height:500px}}
+@media(max-width:470px){.bombers-page .social-grid{grid-template-columns:1fr}.bombers-page .social-embed-wrap{padding:10px}.bombers-page .social-facebook-frame{height:470px}.bombers-page .social-hero-actions{display:grid}.bombers-page .social-btn{width:100%}}

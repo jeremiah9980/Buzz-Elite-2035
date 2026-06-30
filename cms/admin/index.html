@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bombers CMS Command Center</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">B</div>
+        <div>
+          <strong>Bombers CMS</strong>
+          <span>Repo-aware content manager</span>
+        </div>
+      </div>
+
+      <nav id="sectionNav" class="section-nav" aria-label="CMS sections"></nav>
+
+      <div class="sidebar-card">
+        <strong>Publish path</strong>
+        <code>cms/content/bombers-site.json</code>
+        <p>Export JSON and replace this file in the GitHub repo.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">jeremiah9980/bombers</p>
+          <h1>Bombers CMS Command Center</h1>
+          <p class="muted">Manage Home, Social, Team Info, GameChanger, NCS, Roster, and Player Profiles from one JSON-backed dashboard.</p>
+        </div>
+        <div class="topbar-actions">
+          <button id="loadRepoContentBtn" class="btn ghost">Reload JSON</button>
+          <label class="btn ghost" for="importFile">Import JSON</label>
+          <input id="importFile" type="file" accept="application/json" hidden />
+          <button id="saveLocalBtn" class="btn">Save Draft</button>
+          <button id="exportBtn" class="btn primary">Export for GitHub</button>
+        </div>
+      </header>
+
+      <section class="status-grid">
+        <div class="status-card">
+          <span>Content Store</span>
+          <strong id="contentPath">cms/content/bombers-site.json</strong>
+        </div>
+        <div class="status-card">
+          <span>Last Updated</span>
+          <strong id="lastUpdated">—</strong>
+        </div>
+        <div class="status-card">
+          <span>Players</span>
+          <strong id="playerCount">0</strong>
+        </div>
+        <div class="status-card">
+          <span>Profiles Live</span>
+          <strong id="profileCount">0</strong>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="editor-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Editing</p>
+              <h2 id="sectionTitle">Home</h2>
+            </div>
+            <button id="validateBtn" class="btn ghost">Validate</button>
+          </div>
+          <div id="formRoot"></div>
+        </div>
+
+        <aside class="assistant-panel">
+          <div class="panel-heading compact">
+            <div>
+              <p class="eyebrow">AI Content Assistant</p>
+              <h2>Draft Helper</h2>
+            </div>
+          </div>
+
+          <label>
+            Content type
+            <select id="aiContentType">
+              <option value="announcement">Announcement</option>
+              <option value="gameRecap">Game recap</option>
+              <option value="socialCaption">Social caption</option>
+              <option value="playerBio">Player bio</option>
+              <option value="sponsorThanks">Sponsor thank-you</option>
+              <option value="tournamentPreview">Tournament preview</option>
+            </select>
+          </label>
+
+          <label>
+            Facts / notes
+            <textarea id="aiFacts" rows="8" placeholder="Example: 10U Bombers, Saturday tournament, great defense, team-first attitude, thank families..."></textarea>
+          </label>
+
+          <label>
+            Tone
+            <select id="aiTone">
+              <option value="confident">Confident</option>
+              <option value="family-friendly">Family-friendly</option>
+              <option value="hype">Hype</option>
+              <option value="professional">Professional</option>
+              <option value="short">Short</option>
+            </select>
+          </label>
+
+          <div class="button-row">
+            <button id="aiDraftBtn" class="btn primary">Generate Draft</button>
+            <button id="aiPolishBtn" class="btn ghost">Polish Current Section</button>
+          </div>
+
+          <label>
+            Draft output
+            <textarea id="aiOutput" rows="12" placeholder="AI/content helper output appears here."></textarea>
+          </label>
+
+          <button id="copyAiBtn" class="btn ghost">Copy Draft</button>
+
+          <details class="note">
+            <summary>Optional hosted AI endpoint</summary>
+            <p>For real OpenAI-powered drafts, deploy the included Cloudflare Worker and place its URL below. Do not put API keys in GitHub Pages frontend code.</p>
+            <input id="aiEndpoint" placeholder="https://your-worker.example.workers.dev" />
+          </details>
+        </aside>
+      </section>
+
+      <section class="preview-panel">
+        <div class="panel-heading compact">
+          <div>
+            <p class="eyebrow">Preview / Export</p>
+            <h2>Current JSON</h2>
+          </div>
+          <button id="copyJsonBtn" class="btn ghost">Copy JSON</button>
+        </div>
+        <pre id="jsonPreview"></pre>
+      </section>
+    </main>
+  </div>
+
+  <template id="arrayItemTemplate">
+    <div class="array-item">
+      <div class="array-item-body"></div>
+      <button type="button" class="btn danger small array-remove">Remove</button>
+    </div>
+  </template>
+
+  <script src="./ai-assistant.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

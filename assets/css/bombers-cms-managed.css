@@ -1,0 +1,38 @@
+.cms-hero, .cms-panel, .cms-card, .cms-player-card, .cms-player-hero, .cms-stat {
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 20px;
+  background: rgba(7, 17, 31, .74);
+  box-shadow: 0 20px 50px rgba(0,0,0,.18);
+}
+.cms-hero, .cms-panel, .cms-player-hero { padding: clamp(1.25rem, 3vw, 2.5rem); margin: 1rem 0; }
+.cms-hero h1 { font-size: clamp(2.25rem, 6vw, 5rem); margin: 0; }
+.hero-subtitle { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 800; }
+.eyebrow { color: #f9c80e; text-transform: uppercase; letter-spacing: .12em; font-weight: 900; font-size: .75rem; }
+.cms-actions, .cms-pill-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
+.cms-btn, .cms-pill-row span {
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px; padding: .75rem 1rem;
+  border: 1px solid rgba(255,255,255,.16); text-decoration: none; font-weight: 800;
+}
+.cms-btn.primary { background: #2f7df6; color: white; border-color: #2f7df6; }
+.cms-btn.disabled { opacity: .55; pointer-events: none; }
+.cms-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.cms-card { display: block; padding: 1rem; color: inherit; text-decoration: none; }
+.cms-list-item { border-top: 1px solid rgba(255,255,255,.12); padding: 1rem 0; }
+.cms-list-item span { display:block; opacity:.72; font-size:.9rem; margin:.25rem 0; }
+.cms-table { width: 100%; border-collapse: collapse; margin-top: 1rem; overflow: auto; }
+.cms-table th, .cms-table td { text-align: left; border-bottom: 1px solid rgba(255,255,255,.12); padding: .75rem; vertical-align: top; }
+.cms-table th { color: #f9c80e; }
+.cms-roster-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.cms-player-card { overflow: hidden; }
+.cms-player-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display:block; background: rgba(255,255,255,.06); }
+.cms-player-card div { padding: 1rem; }
+.cms-player-card .jersey { color: #f9c80e; font-weight: 900; }
+.cms-player-hero { display:grid; grid-template-columns: minmax(180px, 320px) 1fr; gap: 1.5rem; align-items:center; }
+.cms-player-hero img { width:100%; border-radius: 18px; aspect-ratio: 4/5; object-fit: cover; }
+.cms-stat { padding: 1rem; text-align:center; }
+.cms-stat strong { display:block; font-size: 2rem; }
+.cms-stat span { opacity:.72; font-size:.85rem; }
+.cms-embed-frame { width:100%; min-height:420px; border:0; border-radius:16px; background:white; }
+.social-embed iframe, .social-embed blockquote { max-width: 100%; }
+@media (max-width: 700px) { .cms-player-hero { grid-template-columns: 1fr; } .cms-table { font-size: .85rem; } }

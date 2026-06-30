@@ -1,0 +1,49 @@
+name: CTX Bombers Meza NCS Results Sync
+
+# Pulls the NCS schedule/results during the tournament window and commits
+# data/schedule.json when anything changes. GitHub Pages then serves the fresh
+# file, and the dashboard can auto-load it.
+
+on:
+  workflow_dispatch:        # manual "Run workflow" button any time
+  schedule:
+    # GitHub cron is UTC. Central (CDT) = UTC-5.
+    # Covers Jun 20-21 tournament day windows, roughly 8:00 AM–8:00 PM CT.
+    - cron: "*/10 13-23 * * 6,0"
+    - cron: "*/10 0-1   * * 0,1"
+
+permissions:
+  contents: write           # allow the action to commit the JSON
+
+concurrency:
+  group: ctx-bombers-meza-ncs-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests beautifulsoup4
+
+      - name: Scrape CTX Bombers Meza NCS
+        run: python ncs-tracker/ncs_scrape.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "ncs-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if [[ -n "$(git status --porcelain data/schedule.json)" ]]; then
+            git add data/schedule.json
+            git commit -m "NCS sync CTX Bombers Meza: $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+            echo "Pushed updated results."
+          else
+            echo "No change."
+          fi

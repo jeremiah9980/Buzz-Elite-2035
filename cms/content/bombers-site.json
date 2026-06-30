@@ -1,0 +1,302 @@
+{
+  "schemaVersion": "2.0.0",
+  "lastUpdated": "2026-06-29",
+  "site": {
+    "slug": "bombers",
+    "teamName": "CTX Bombers Meza",
+    "brandName": "Bombers Fastpitch",
+    "season": "2026 Spring",
+    "location": "Georgetown, Texas",
+    "sport": "10U Select Fastpitch Softball",
+    "tagline": "Built Different \u2022 Play Fast \u2022 Finish Strong",
+    "logo": "assets/images/bombers-logo.png",
+    "primaryColor": "#0b3d91",
+    "accentColor": "#f8c400",
+    "publicBaseUrl": "https://jeremiah9980.github.io/bombers/"
+  },
+  "pages": {
+    "home": {
+      "enabled": true,
+      "navLabel": "Home",
+      "hero": {
+        "eyebrow": "Texas \u2022 Select Fastpitch \u2022 Bombers Team Hub",
+        "title": "Bombers Fastpitch",
+        "subtitle": "Built Different \u2022 Play Fast \u2022 Finish Strong",
+        "body": "A clean Bombers team site for team information, roster visibility, schedule updates, GameChanger schedule, GameChanger stats, NCS tournament dashboards, social media, and fundraising.",
+        "primaryCtaText": "Open Roster",
+        "primaryCtaUrl": "roster.html",
+        "secondaryCtaText": "NCS Dashboard",
+        "secondaryCtaUrl": "ncs-tracker/"
+      },
+      "featureCards": [
+        {
+          "title": "Team Info",
+          "body": "Mission, culture, coaches, contact info, and Bomber Nation details.",
+          "url": "#team-info"
+        },
+        {
+          "title": "Roster",
+          "body": "Player cards, profile links, positions, and media-release status.",
+          "url": "roster.html"
+        },
+        {
+          "title": "GameChanger",
+          "body": "Team schedule, stats references, and sync status.",
+          "url": "#gamechanger"
+        },
+        {
+          "title": "NCS Dashboard",
+          "body": "Tournament tracker for events, scores, records, and standings.",
+          "url": "ncs-tracker/"
+        }
+      ],
+      "announcements": [
+        {
+          "title": "Welcome to the Bombers Team Hub",
+          "date": "2026-06-29",
+          "status": "published",
+          "body": "Use the CMS to update team information, social embeds, roster, player profiles, GameChanger references, NCS tournaments, and fundraising content."
+        }
+      ]
+    },
+    "teamInfo": {
+      "enabled": true,
+      "navLabel": "Bombers Team Information",
+      "headline": "Bombers Team Information",
+      "summary": "CTX Bombers Meza is a 10U select fastpitch softball team based in Georgetown, Texas, built for athletes who want to train with purpose, compete with confidence, and prepare for the next level of the game.",
+      "mission": "Our mission is to develop elite athletes through disciplined preparation, high standards, game IQ, toughness, and a team-first culture that pushes every player to grow on and off the field.",
+      "bomberNation": "We are proud to represent Bomber Nation, a championship softball family creating champions since 2001. #BlueBloods",
+      "values": [
+        "Hard Work",
+        "Discipline",
+        "Team First",
+        "Finish Strong"
+      ],
+      "coaches": [
+        {
+          "name": "Coach Meza",
+          "role": "Head Coach",
+          "email": "",
+          "phone": "",
+          "bio": "Add coach bio here."
+        }
+      ],
+      "contact": {
+        "email": "",
+        "phone": "",
+        "location": "Georgetown, Texas"
+      }
+    },
+    "social": {
+      "enabled": true,
+      "navLabel": "Social Media",
+      "headline": "CTX Bombers Meza Social",
+      "intro": "See reels, tournament weekends, player moments, team culture, practice clips, and shareable Bombers updates directly from the homepage.",
+      "instagram": {
+        "handle": "ctxbombersmeza",
+        "profileUrl": "https://www.instagram.com/ctxbombersmeza/",
+        "embedHtml": "",
+        "fallbackText": "Open Instagram"
+      },
+      "facebook": {
+        "pageName": "Bombers Facebook Reels",
+        "profileUrl": "https://www.facebook.com/",
+        "embedHtml": "",
+        "fallbackText": "Open Facebook"
+      },
+      "youtube": {
+        "channelUrl": "",
+        "embedHtml": ""
+      },
+      "socialCards": [
+        {
+          "title": "Follow the Team",
+          "body": "Catch highlights, reels, photos, and team updates.",
+          "url": "https://www.instagram.com/ctxbombersmeza/"
+        },
+        {
+          "title": "Share Bombers Updates",
+          "body": "Use the CMS AI helper to draft captions and weekly recaps.",
+          "url": "#"
+        }
+      ]
+    },
+    "gamechanger": {
+      "enabled": true,
+      "navLabel": "GameChanger Schedule & Stats",
+      "teamId": "",
+      "teamName": "2026 Spring CTX Bombers - Meza",
+      "teamUrl": "",
+      "scheduleWidgetUrl": "",
+      "calendarIcsUrl": "",
+      "statsUrl": "",
+      "syncMode": "manual-export",
+      "syncNotes": "Use public widgets, calendar feeds, or authorized exports. Do not bypass login, paywalls, robots, or platform controls.",
+      "lastSyncAt": "",
+      "schedule": [
+        {
+          "date": "2026-07-04",
+          "time": "TBD",
+          "opponent": "TBD",
+          "location": "TBD",
+          "type": "Tournament",
+          "status": "scheduled",
+          "scoreFor": "",
+          "scoreAgainst": "",
+          "result": ""
+        }
+      ],
+      "statTables": {
+        "batting": [],
+        "pitching": [],
+        "fielding": []
+      }
+    },
+    "ncs": {
+      "enabled": true,
+      "navLabel": "NCS Tournament Dashboard",
+      "teamId": "",
+      "teamName": "CTX Bombers Meza",
+      "teamUrl": "",
+      "dashboardTitle": "Bombers \u00b7 NCS Dashboard",
+      "syncMode": "manual-public-data",
+      "syncNotes": "Track public tournament details and your own game results. Use NCS team/event IDs only where pages are public or authorized.",
+      "lastSyncAt": "",
+      "tournaments": [
+        {
+          "id": "ncs-sample-001",
+          "name": "Sample NCS Tournament",
+          "dateRange": "2026-07-04",
+          "location": "Texas",
+          "division": "10U",
+          "status": "upcoming",
+          "record": "0-0",
+          "standing": "TBD",
+          "eventUrl": "",
+          "games": [
+            {
+              "date": "2026-07-04",
+              "time": "TBD",
+              "field": "TBD",
+              "opponent": "TBD",
+              "scoreFor": "",
+              "scoreAgainst": "",
+              "result": "",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    "roster": {
+      "enabled": true,
+      "navLabel": "Roster",
+      "headline": "Roster",
+      "intro": "Roster shown in GameChanger format. Individual profile pages activate per player once written parent/guardian media release is on file.",
+      "defaultCardImage": "assets/players/player-placeholder.jpg",
+      "players": [
+        {
+          "id": "player-1",
+          "jerseyNumber": "1",
+          "firstName": "Player",
+          "lastInitial": "1",
+          "displayName": "Player 1.",
+          "positions": [
+            "Position TBD"
+          ],
+          "bats": "",
+          "throws": "",
+          "graduationYear": "",
+          "hometown": "",
+          "photo": "assets/players/player-1.jpg",
+          "guardianMediaRelease": false,
+          "profileEnabled": false,
+          "profileStatus": "coming-soon",
+          "profile": {
+            "tag": "Bombers Athlete",
+            "oneLine": "Add a short player description after media release approval.",
+            "bio": "Profile coming soon.",
+            "strengths": [],
+            "coachQuote": "",
+            "familyQuote": "",
+            "teammateQuote": "",
+            "filmUrl": "",
+            "nextStep": ""
+          },
+          "stats": {
+            "avg": "",
+            "obp": "",
+            "slg": "",
+            "ops": "",
+            "sb": "",
+            "sbPct": "",
+            "seasonRows": []
+          }
+        }
+      ]
+    },
+    "fundraising": {
+      "enabled": true,
+      "navLabel": "Fundraising",
+      "headline": "Fundraising",
+      "intro": "Use this fundraising area for team support links, raffle information, sponsor packages, donation QR codes, and fundraising goals.",
+      "campaigns": [
+        {
+          "title": "Team Sponsors",
+          "body": "Local business sponsorships and sponsor recognition.",
+          "url": "",
+          "goal": "",
+          "raised": ""
+        },
+        {
+          "title": "Raffles",
+          "body": "Bat raffles, squares, silent auctions, and team fundraisers.",
+          "url": "",
+          "goal": "",
+          "raised": ""
+        },
+        {
+          "title": "Travel Fund",
+          "body": "Support tournament fees, hotels, gas, meals, and team expenses.",
+          "url": "",
+          "goal": "",
+          "raised": ""
+        },
+        {
+          "title": "Donations",
+          "body": "Add Venmo, Cash App, PayPal, or donation form links here.",
+          "url": "",
+          "goal": "",
+          "raised": ""
+        }
+      ],
+      "sponsors": [
+        {
+          "name": "Sponsor Name",
+          "tier": "Local Sponsor",
+          "logo": "",
+          "url": "",
+          "description": "Sponsor description."
+        }
+      ]
+    }
+  },
+  "seo": {
+    "title": "Bombers Fastpitch \u2014 Texas Select Softball",
+    "description": "Official Bombers team hub for roster, schedule, GameChanger updates, NCS tournament tracking, social media, and fundraising.",
+    "image": "assets/images/bombers-social-card.jpg",
+    "keywords": [
+      "Bombers Fastpitch",
+      "CTX Bombers Meza",
+      "Texas select softball",
+      "10U fastpitch"
+    ]
+  },
+  "publishing": {
+    "workflow": "Export from CMS, replace cms/content/bombers-site.json, commit to main.",
+    "generatedFiles": [
+      "players/<player-id>/index.html"
+    ],
+    "doNotCommitSecrets": true
+  }
+}

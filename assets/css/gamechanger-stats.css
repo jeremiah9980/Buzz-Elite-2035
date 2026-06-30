@@ -1,0 +1,203 @@
+:is(.primetime-page,.bombers-page) .gc-stats-panel {
+  margin-top: 18px;
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid rgba(7,93,255,.42);
+  background: linear-gradient(180deg,#081426,#02040A);
+  color: #f5f7fb;
+  box-shadow: 0 20px 50px -38px #000, 0 0 34px rgba(7,93,255,.14);
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(7,93,255,.30);
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-head h3 {
+  margin: 4px 0 6px;
+  color: #fff;
+  font-family: var(--display);
+  font-size: 26px;
+  text-shadow: 0 0 20px rgba(7,93,255,.38);
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-head p {
+  margin: 0;
+  color: rgba(255,255,255,.74);
+  font-size: 13px;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-metrics div {
+  padding: 14px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(7,93,255,.28);
+  background: rgba(255,255,255,.055);
+  text-align: center;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-metrics strong {
+  display: block;
+  color: #fff;
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 950;
+  text-shadow: 0 0 18px rgba(7,93,255,.56);
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-metrics span {
+  display: block;
+  margin-top: 6px;
+  color: rgba(216,231,255,.72);
+  font-family: var(--display);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-table-grid {
+  display: grid;
+  gap: 18px;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-table-panel {
+  border: 1px solid rgba(7,93,255,.26);
+  border-radius: 16px;
+  background: rgba(255,255,255,.045);
+  overflow: hidden;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-table-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(7,93,255,.22);
+  background: rgba(255,255,255,.04);
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-table-head span {
+  display: block;
+  color: #BBD6FF;
+  font-family: var(--display);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-table-head h4 {
+  margin: 4px 0 0;
+  color: #fff;
+  font-family: var(--display);
+  font-size: 20px;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-table {
+  min-width: 780px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-table th,
+:is(.primetime-page,.bombers-page) .gc-stats-table td {
+  padding: 10px 9px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  color: rgba(255,255,255,.84);
+  font-size: 12px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-table th {
+  color: #D8E7FF;
+  font-family: var(--display);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  background: rgba(2,4,10,.42);
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-table th:first-child,
+:is(.primetime-page,.bombers-page) .gc-stats-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  text-align: left;
+  background: #07111F;
+  color: #fff;
+  font-weight: 800;
+  min-width: 185px;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stat-number {
+  display: inline-flex;
+  margin-right: 8px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #075DFF;
+  color: #fff;
+  font-family: var(--display);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-empty {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px dashed rgba(7,93,255,.38);
+  background: rgba(255,255,255,.035);
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-empty .doc-name {
+  color: #fff;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-empty .doc-desc {
+  color: rgba(216,231,255,.70);
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-warnings {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: rgba(216,231,255,.70);
+  font-size: 12px;
+}
+
+:is(.primetime-page,.bombers-page) .gc-stats-actions {
+  margin-top: 13px;
+}
+
+@media(max-width: 720px) {
+  :is(.primetime-page,.bombers-page) .gc-stats-head {
+    flex-direction: column;
+  }
+  :is(.primetime-page,.bombers-page) .gc-stats-metrics {
+    grid-template-columns: 1fr;
+  }
+  :is(.primetime-page,.bombers-page) .gc-stats-empty {
+    grid-template-columns: 1fr;
+  }
+}

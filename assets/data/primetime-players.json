@@ -1,0 +1,175 @@
+[
+  {
+    "number": "",
+    "name": "Katie Brown",
+    "slug": "katie-brown",
+    "image": "katie-b.jpg",
+    "guest": true,
+    "hasProfile": true,
+    "note": "Guest Player: 3P Sports 2nd Annual Double Play Derby",
+    "quote": "Katie brings guest-player energy, confidence, and a ready-to-compete mindset every time she joins the group.",
+    "characterBullets": [
+      "Ready to compete: steps into the lineup with confidence and purpose.",
+      "Team-first approach: fits into the dugout rhythm and supports the group.",
+      "High-effort athlete: brings focus, hustle, and positive energy."
+    ]
+  },
+  {
+    "number": "1",
+    "name": "Lexi Heinrichs",
+    "slug": "lexi-heinrichs",
+    "image": "lexi-h.jpg",
+    "hasProfile": true,
+    "quote": "Lexi plays with confidence, focus, and the kind of competitive edge that sets the tone for the team.",
+    "characterBullets": [
+      "Confident competitor: brings focus and presence into every rep.",
+      "Coachability: responds to instruction and keeps building her game.",
+      "Team energy: plays hard and helps create momentum for the group."
+    ]
+  },
+  {
+    "number": "15",
+    "name": "Peyton Gundersen",
+    "slug": "peyton-gundersen",
+    "image": "peyton-g.jpg",
+    "hasProfile": true,
+    "quote": "Peyton brings steady effort, toughness, and a team-first attitude to the Bombers standard.",
+    "characterBullets": [
+      "Consistent effort: brings dependable work to practices and games.",
+      "Growth mindset: continues building confidence through reps and feedback.",
+      "Team-first habits: supports teammates and keeps the group moving forward."
+    ]
+  },
+  {
+    "number": "",
+    "name": "Skylar James",
+    "slug": "skylar-james",
+    "image": "skylar-j.jpg",
+    "guest": true,
+    "hasProfile": true,
+    "note": "Guest Player: 3P Sports 2nd Annual Double Play Derby",
+    "quote": "Skylar brings a ready-to-play mindset and the ability to help the team compete when called on.",
+    "characterBullets": [
+      "Prepared guest player: shows up ready to contribute.",
+      "Competitive mindset: brings energy into game-day moments.",
+      "Positive teammate: adds support and effort to the dugout."
+    ]
+  },
+  {
+    "number": "2",
+    "name": "Emery Krumlauf",
+    "slug": "emery-krumlauf",
+    "image": "emery-k.jpg",
+    "hasProfile": true,
+    "quote": "Emery brings athleticism, work ethic, and a steady desire to keep improving her game.",
+    "characterBullets": [
+      "Hard worker: stays committed to development and preparation.",
+      "Athletic base: continues building skills through quality reps.",
+      "Focused teammate: competes with effort and attention to detail."
+    ]
+  },
+  {
+    "number": "",
+    "name": "McKenna Lehmann",
+    "slug": "mckenna-lehmann",
+    "image": "mckenna-l.jpg",
+    "hasProfile": true,
+    "quote": "McKenna brings focus, composure, and a strong willingness to grow inside the Bombers system.",
+    "characterBullets": [
+      "Composed competitor: stays steady as the game speeds up.",
+      "Coachability: listens, adjusts, and keeps improving.",
+      "Team-first mindset: values the group and the standard."
+    ]
+  },
+  {
+    "number": "9",
+    "name": "Amelia Villarreal",
+    "slug": "amelia-villarreal",
+    "image": "amelia-v.jpg",
+    "hasProfile": true,
+    "quote": "Amelia brings grit, energy, and the kind of competitive toughness that helps a team win close moments.",
+    "characterBullets": [
+      "Competitive toughness: stays engaged in pressure moments.",
+      "Positive energy: helps keep teammates connected.",
+      "Development focus: works to sharpen the details of her game."
+    ]
+  },
+  {
+    "number": "16",
+    "name": "Birdi Meza",
+    "slug": "birdi-meza",
+    "image": "birdi-m.jpg",
+    "hasProfile": true,
+    "quote": "Birdi brings command, toughness, and a strong presence behind the plate and inside the dugout.",
+    "characterBullets": [
+      "Strong presence: brings confidence and leadership into big moments.",
+      "Game IQ: keeps learning the details that help control the field.",
+      "Tough competitor: plays with focus, pride, and team-first energy."
+    ]
+  },
+  {
+    "number": "17",
+    "name": "Abigail Joy Presswood",
+    "slug": "abigail-joy-presswood",
+    "image": "abigail-p.jpg",
+    "hasProfile": true,
+    "quote": "Abigail Joy brings joy, confidence, and a fearless personality that makes her teammates feel her presence.",
+    "characterBullets": [
+      "Big personality: brings confidence and energy to the team environment.",
+      "Fearless competitor: embraces moments and keeps playing forward.",
+      "Team spark: adds positivity, pride, and effort to the Bombers culture."
+    ]
+  },
+  {
+    "number": "21",
+    "name": "Sawyer Jones",
+    "slug": "sawyer-jones",
+    "image": "sawyer-j.jpg",
+    "hasProfile": true,
+    "quote": "Sawyer brings effort, toughness, and a competitive spirit that fits the Bombers identity.",
+    "characterBullets": [
+      "Hard-nosed effort: brings energy into practices and games.",
+      "Growth mindset: keeps improving through reps and coaching.",
+      "Team-first approach: supports the group and competes with pride."
+    ]
+  },
+  {
+    "number": "22",
+    "name": "Karter Kellogg",
+    "slug": "karter-kellogg",
+    "image": "karter-k.jpg",
+    "hasProfile": true,
+    "quote": "Karter brings focus, effort, and steady development to the Bombers lineup.",
+    "characterBullets": [
+      "Focused athlete: stays locked into the details of the game.",
+      "Reliable effort: brings consistent work to every opportunity.",
+      "Positive teammate: helps build trust and team rhythm."
+    ]
+  },
+  {
+    "number": "45",
+    "name": "Shaeleigh Fox",
+    "slug": "shaeleigh-fox",
+    "image": "shaeleigh-f.jpg",
+    "hasProfile": true,
+    "quote": "Shaeleigh brings power, confidence, and a strong competitive presence to every Bombers rep.",
+    "characterBullets": [
+      "Power presence: brings strength and confidence to the field.",
+      "Locked-in competitor: stays focused when the moment matters.",
+      "Team energy: plays with pride and helps raise the standard."
+    ]
+  },
+  {
+    "number": "78",
+    "name": "Chloe Cruz",
+    "slug": "chloe-cruz",
+    "image": "chloe-c.jpg",
+    "hasProfile": true,
+    "quote": "Chloe brings grit, effort, and the willingness to keep improving every part of her game.",
+    "characterBullets": [
+      "High-effort player: competes hard and keeps pushing forward.",
+      "Coachable mindset: accepts feedback and applies it quickly.",
+      "Team-first energy: contributes to the group with pride and focus."
+    ]
+  }
+]

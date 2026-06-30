@@ -1,0 +1,22 @@
+{
+  "event": {
+    "id": 12287,
+    "division": "10U",
+    "name": "3P Sports Dingers for Dads *6GG*",
+    "venue": "Taylor/Lorena",
+    "city": "Taylor/Lorena, TX",
+    "dates": "Jun 20-21, 2026",
+    "teamId": "26-79552",
+    "teamName": "CTX Bombers Meza",
+    "teamUrl": "https://www.playncs.com/fastpitch/Teams/Details/79552/ctx-bombers-meza",
+    "url": "https://www.playncs.com/fastpitch/Events/Details/12287/3p-sports-dingers-for-dads-6gg",
+    "scrapedAt": null
+  },
+  "teams": [
+    { "id": 79552, "name": "CTX Bombers Meza", "seed": null, "rec": null, "rs": null, "ra": null, "rd": null, "pts": null }
+  ],
+  "pool": [],
+  "champ": [],
+  "silver": [],
+  "note": "Placeholder until NCS posts event schedule/standings/bracket data."
+}
