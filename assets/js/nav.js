@@ -23,23 +23,23 @@ function ensureThemeAssets() {
 }
 
 const NAV_LINKS = [
-  ['HOME', `${sitePrefix}index.html#home`, 'home'],
+  ['Home', `${sitePrefix}index.html#home`, 'home'],
   ['Team Info', `${sitePrefix}index.html#team-info`, 'team-info'],
   ['Roster', `${sitePrefix}roster/`, 'roster'],
   ['Schedule', `${sitePrefix}index.html#schedule`, 'schedule'],
-  ['Tournament Tracker', `${sitePrefix}ncs-tracker/`, 'ncs-dashboard'],
+  ['NCS Tracker', `${sitePrefix}ncs-tracker/`, 'ncs-dashboard'],
   ['Media', `${sitePrefix}index.html#media`, 'media'],
   ['Contact', `${sitePrefix}contact.html`, 'contact'],
 ];
 
-const logoStyle = 'width:54px;height:54px;border-radius:10px;object-fit:contain;display:block;border:1px solid rgba(255,255,255,.42);box-shadow:0 0 24px rgba(229,9,20,.65);background:#020204;padding:2px;';
+const logoStyle = 'width:54px;height:54px;border-radius:18px;object-fit:cover;display:block;border:1px solid rgba(255,22,31,.62);box-shadow:0 0 34px rgba(255,22,31,.42);background:#050508;padding:0;';
 
 const NAV_HTML = `
 <nav class="elite-nav">
   <div class="nav-inner">
-    <a class="nav-brand" href="${sitePrefix}index.html#home">
-      <img class="nav-logo" style="${logoStyle}" src="${assetPrefix}assets/img/buzz-elite-2035-logo.svg" alt="Buzz Elite 2035 logo">
-      <strong>Buzz</strong> <span>ELITE 2035</span>
+    <a class="nav-brand" href="${sitePrefix}index.html#home" aria-label="Buzz Elite 2035 home">
+      <img class="nav-logo" style="${logoStyle}" src="${assetPrefix}assets/img/buzz-elite-2035-logo.svg" alt="Buzz Elite 2035 Gilliland logo">
+      <span class="nav-brand-text"><strong>Buzz Elite</strong><span>2035 Gilliland</span></span>
     </a>
     <div class="nav-links">
       ${NAV_LINKS.map(([label, href, id]) => `<a href="${href}" data-anchor-id="${id}">${label}</a>`).join('')}
