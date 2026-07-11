@@ -10,13 +10,28 @@ const cors = (env) => ({
   "access-control-allow-headers": "content-type,authorization",
 });
 
+const NCS_AGE_IDS = Object.freeze({
+  "10U": "4",
+  "10 & Under": "4",
+  "12U": "6",
+  "12 & Under": "6",
+});
+
+function resolveNcsAgeId(params = {}, env = {}) {
+  if (params.ageId) return String(params.ageId);
+  if (params.division && NCS_AGE_IDS[params.division]) {
+    return NCS_AGE_IDS[params.division];
+  }
+  return env.NCS_AGE_ID || "4";
+}
+
 function buildNcsTeamsUrl(params = {}, env = {}) {
   const base = env.NCS_TEAMS_BASE_URL || "https://playncs.com/fastpitch/Teams";
   const url = new URL(base);
   url.searchParams.set("seasonId", params.seasonId || env.NCS_SEASON_ID || "33");
   url.searchParams.set("country", params.country || env.NCS_COUNTRY || "US");
   url.searchParams.set("state", params.state || env.NCS_STATE || "TX");
-  url.searchParams.set("ageId", params.ageId || env.NCS_AGE_ID || "4");
+  url.searchParams.set("ageId", resolveNcsAgeId(params, env));
 
   const teamName = params.teamName || params.q;
   if (teamName) url.searchParams.set("teamName", teamName);
@@ -106,7 +121,8 @@ export default {
               seasonId: env.NCS_SEASON_ID || "33",
               country: env.NCS_COUNTRY || "US",
               state: env.NCS_STATE || "TX",
-              ageId: env.NCS_AGE_ID || "4",
+              defaultAgeId: env.NCS_AGE_ID || "4",
+              ageMappings: NCS_AGE_IDS,
               teamNameParameter: "teamName",
             },
             timestamp: new Date().toISOString(),
