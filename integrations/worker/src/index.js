@@ -16,9 +16,10 @@ function buildNcsTeamsUrl(params = {}, env = {}) {
   url.searchParams.set("seasonId", params.seasonId || env.NCS_SEASON_ID || "33");
   url.searchParams.set("country", params.country || env.NCS_COUNTRY || "US");
   url.searchParams.set("state", params.state || env.NCS_STATE || "TX");
+  url.searchParams.set("ageId", params.ageId || env.NCS_AGE_ID || "8");
 
-  if (params.q) url.searchParams.set("search", params.q);
-  if (params.division) url.searchParams.set("division", params.division);
+  const teamName = params.teamName || params.q;
+  if (teamName) url.searchParams.set("teamName", teamName);
   return url.toString();
 }
 
@@ -107,6 +108,8 @@ export default {
               seasonId: env.NCS_SEASON_ID || "33",
               country: env.NCS_COUNTRY || "US",
               state: env.NCS_STATE || "TX",
+              ageId: env.NCS_AGE_ID || "8",
+              teamNameParameter: "teamName",
             },
             timestamp: new Date().toISOString(),
           },
