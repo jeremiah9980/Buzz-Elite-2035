@@ -8,6 +8,35 @@ crons = ["*/15 * * * *"]
 [vars]
 ALLOWED_ORIGIN = "https://jeremiah9980.github.io"
 SYNC_TIMEZONE = "America/Chicago"
+NCS_TEAMS_BASE_URL = "https://playncs.com/fastpitch/Teams"
+NCS_SEASON_ID = "33"
+NCS_COUNTRY = "US"
+NCS_STATE = "TX"
+MAX_REQUEST_BYTES = "32768"
+
+# General public API protection: 120 requests per minute per client + route.
+[[ratelimits]]
+name = "PUBLIC_API_LIMITER"
+namespace_id = "10401"
+  [ratelimits.simple]
+  limit = 120
+  period = 60
+
+# Expensive sync/import routes: 10 requests per minute per client + route.
+[[ratelimits]]
+name = "EXPENSIVE_API_LIMITER"
+namespace_id = "10402"
+  [ratelimits.simple]
+  limit = 10
+  period = 60
+
+# Age is intentionally omitted by default so searches include every age group.
+# Verified mappings used when a division is selected:
+# 10U = ageId 4
+# 12U = ageId 6
+
+# Set this secret before deployment. It protects write and manual-sync routes:
+#   npx wrangler secret put API_ADMIN_TOKEN
 
 # Bind a KV namespace before deployment:
 # [[kv_namespaces]]
