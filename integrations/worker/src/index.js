@@ -10,7 +10,7 @@ const cors = env => ({
   "access-control-allow-headers": "content-type,authorization"
 });
 
-function authorizeMutation(request, env) {
+async function authorizeMutation(request, env) {
   if (!env.INTEGRATION_API_TOKEN) {
     return {
       error: "INTEGRATION_API_TOKEN secret is required for mutating API routes",
@@ -18,11 +18,31 @@ function authorizeMutation(request, env) {
     };
   }
 
-  if (request.headers.get("authorization") !== "Bearer " + env.INTEGRATION_API_TOKEN) {
+  const authorization = request.headers.get("authorization");
+  if (!authorization?.startsWith("Bearer ")) {
     return { error: "Unauthorized", status: 401 };
   }
 
+  const providedToken = authorization.slice("Bearer ".length);
+  const isAuthorized = await timingSafeEqual(providedToken, env.INTEGRATION_API_TOKEN);
+  if (!isAuthorized) return { error: "Unauthorized", status: 401 };
+
   return null;
+}
+
+async function timingSafeEqual(left, right) {
+  const encoder = new TextEncoder();
+  const [leftDigest, rightDigest] = await Promise.all([
+    crypto.subtle.digest("SHA-256", encoder.encode(left)),
+    crypto.subtle.digest("SHA-256", encoder.encode(right))
+  ]);
+  const leftBytes = new Uint8Array(leftDigest);
+  const rightBytes = new Uint8Array(rightDigest);
+  let mismatch = 0;
+  for (let index = 0; index < leftBytes.length; index += 1) {
+    mismatch |= leftBytes[index] ^ rightBytes[index];
+  }
+  return mismatch === 0;
 }
 
 async function readConfig(env) {
@@ -75,7 +95,8 @@ export default {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers });
 
     const url = new URL(request.url);
-    const authError = request.method === "POST" ? authorizeMutation(request, env) : null;
+    const requiresAuth = !["GET", "OPTIONS"].includes(request.method);
+    const authError = requiresAuth ? await authorizeMutation(request, env) : null;
     if (authError) return json({ error: authError.error }, authError.status, headers);
 
     try {
