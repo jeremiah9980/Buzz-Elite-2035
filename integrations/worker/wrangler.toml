@@ -1,0 +1,15 @@
+name = "buzz-elite-integrations"
+main = "src/index.js"
+compatibility_date = "2026-07-11"
+
+[triggers]
+crons = ["*/15 * * * *"]
+
+[vars]
+ALLOWED_ORIGIN = "https://jeremiah9980.github.io"
+SYNC_TIMEZONE = "America/Chicago"
+
+# Bind a KV namespace before deployment:
+# [[kv_namespaces]]
+# binding = "BUZZ_DATA"
+# id = "replace-with-kv-namespace-id"
