@@ -12,7 +12,11 @@ NCS_TEAMS_BASE_URL = "https://playncs.com/fastpitch/Teams"
 NCS_SEASON_ID = "33"
 NCS_COUNTRY = "US"
 NCS_STATE = "TX"
-NCS_AGE_ID = "4"
+
+# Age is intentionally omitted by default so searches include every age group.
+# Verified mappings used when a division is selected:
+# 10U = ageId 4
+# 12U = ageId 6
 
 # Bind a KV namespace before deployment:
 # [[kv_namespaces]]
