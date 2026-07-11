@@ -27,7 +27,7 @@ test('CMS includes all critical workflow controls', () => {
   }
 });
 
-test('NCS base URL defaults to Texas fastpitch season 33', () => {
+test('NCS CMS defaults to Texas fastpitch season 33', () => {
   assert.match(cmsJs, /https:\/\/playncs\.com\/fastpitch\/Teams/);
   assert.match(cmsJs, /seasonId:'33'/);
   assert.match(cmsJs, /country:'US'/);
@@ -59,12 +59,16 @@ test('Worker exposes all required integration routes', () => {
   }
 });
 
-test('Worker builds searches from configured PlayNCS defaults', () => {
+test('Worker builds exact PlayNCS team search parameters', () => {
   assert.match(worker, /NCS_TEAMS_BASE_URL/);
   assert.match(worker, /NCS_SEASON_ID/);
   assert.match(worker, /NCS_COUNTRY/);
   assert.match(worker, /NCS_STATE/);
+  assert.match(worker, /NCS_AGE_ID/);
   assert.match(worker, /url\.searchParams\.set\("seasonId"/);
+  assert.match(worker, /url\.searchParams\.set\("teamName"/);
+  assert.match(worker, /url\.searchParams\.set\("ageId"/);
+  assert.match(wrangler, /NCS_AGE_ID\s*=\s*"8"/);
 });
 
 test('Worker cron is configured for every 15 minutes', () => {
