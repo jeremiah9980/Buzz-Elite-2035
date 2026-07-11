@@ -31,7 +31,6 @@ async function authorizeMutation(request, env) {
 }
 
 async function timingSafeEqual(left, right) {
-  if (left.length !== right.length) return false;
   const encoder = new TextEncoder();
   const [leftDigest, rightDigest] = await Promise.all([
     crypto.subtle.digest("SHA-256", encoder.encode(left)),
@@ -40,8 +39,8 @@ async function timingSafeEqual(left, right) {
   const leftBytes = new Uint8Array(leftDigest);
   const rightBytes = new Uint8Array(rightDigest);
   let mismatch = 0;
-  for (let index = 0; index < leftBytes.length; index += 1) {
-    mismatch |= leftBytes[index] ^ rightBytes[index];
+  for (let byteIndex = 0; byteIndex < leftBytes.length; byteIndex += 1) {
+    mismatch |= leftBytes[byteIndex] ^ rightBytes[byteIndex];
   }
   return mismatch === 0;
 }
