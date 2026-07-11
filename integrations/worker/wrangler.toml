@@ -12,7 +12,7 @@ NCS_TEAMS_BASE_URL = "https://playncs.com/fastpitch/Teams"
 NCS_SEASON_ID = "33"
 NCS_COUNTRY = "US"
 NCS_STATE = "TX"
-NCS_AGE_ID = "6"
+NCS_AGE_ID = "8"
 
 # Bind a KV namespace before deployment:
 # [[kv_namespaces]]
