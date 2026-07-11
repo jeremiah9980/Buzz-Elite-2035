@@ -64,11 +64,16 @@ test('Worker builds exact PlayNCS team search parameters', () => {
   assert.match(worker, /NCS_SEASON_ID/);
   assert.match(worker, /NCS_COUNTRY/);
   assert.match(worker, /NCS_STATE/);
-  assert.match(worker, /NCS_AGE_ID/);
   assert.match(worker, /url\.searchParams\.set\("seasonId"/);
   assert.match(worker, /url\.searchParams\.set\("teamName"/);
-  assert.match(worker, /url\.searchParams\.set\("ageId"/);
-  assert.match(wrangler, /NCS_AGE_ID\s*=\s*"8"/);
+});
+
+test('Worker defaults to any age and applies verified mappings only when selected', () => {
+  assert.match(worker, /defaultAge:\s*"any"/);
+  assert.match(worker, /"10U":\s*"4"/);
+  assert.match(worker, /"12U":\s*"6"/);
+  assert.match(worker, /if \(ageId\) url\.searchParams\.set\("ageId", ageId\)/);
+  assert.doesNotMatch(wrangler, /^NCS_AGE_ID\s*=/m);
 });
 
 test('Worker cron is configured for every 15 minutes', () => {
