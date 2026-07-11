@@ -16,7 +16,7 @@ function buildNcsTeamsUrl(params = {}, env = {}) {
   url.searchParams.set("seasonId", params.seasonId || env.NCS_SEASON_ID || "33");
   url.searchParams.set("country", params.country || env.NCS_COUNTRY || "US");
   url.searchParams.set("state", params.state || env.NCS_STATE || "TX");
-  url.searchParams.set("ageId", params.ageId || env.NCS_AGE_ID || "8");
+  url.searchParams.set("ageId", params.ageId || env.NCS_AGE_ID || "4");
 
   const teamName = params.teamName || params.q;
   if (teamName) url.searchParams.set("teamName", teamName);
@@ -38,9 +38,7 @@ async function writeLog(env, entry) {
 
 async function ncsSearch(params, env) {
   const sourceUrl = buildNcsTeamsUrl(params, env);
-  throw new Error(
-    `NCS adapter is not configured yet. Base search URL: ${sourceUrl}`
-  );
+  throw new Error(`NCS adapter is not configured yet. Base search URL: ${sourceUrl}`);
 }
 
 async function ncsRoster() {
@@ -108,7 +106,7 @@ export default {
               seasonId: env.NCS_SEASON_ID || "33",
               country: env.NCS_COUNTRY || "US",
               state: env.NCS_STATE || "TX",
-              ageId: env.NCS_AGE_ID || "8",
+              ageId: env.NCS_AGE_ID || "4",
               teamNameParameter: "teamName",
             },
             timestamp: new Date().toISOString(),
