@@ -80,6 +80,34 @@ test('Worker cron is configured for every 15 minutes', () => {
   assert.match(wrangler, /crons\s*=\s*\["\*\/15 \* \* \* \*"\]/);
 });
 
+test('Worker configures separate public and expensive route rate limiters', () => {
+  assert.match(wrangler, /name\s*=\s*"PUBLIC_API_LIMITER"/);
+  assert.match(wrangler, /name\s*=\s*"EXPENSIVE_API_LIMITER"/);
+  assert.match(wrangler, /limit\s*=\s*120/);
+  assert.match(wrangler, /limit\s*=\s*10/);
+  assert.match(worker, /PUBLIC_API_LIMITER/);
+  assert.match(worker, /EXPENSIVE_API_LIMITER/);
+  assert.match(worker, /Rate limit exceeded/);
+  assert.match(worker, /retry-after/);
+});
+
+test('Worker protects write and sync routes with bearer authentication', () => {
+  assert.match(worker, /API_ADMIN_TOKEN/);
+  assert.match(worker, /Authorization|authorization/);
+  assert.match(worker, /Bearer/);
+  assert.match(worker, /Unauthorized/);
+});
+
+test('Worker validates request size, content type, methods, and origin', () => {
+  assert.match(worker, /MAX_REQUEST_BYTES/);
+  assert.match(worker, /Request body too large/);
+  assert.match(worker, /Content-Type must be application\/json/);
+  assert.match(worker, /Method not allowed/);
+  assert.match(worker, /ALLOWED_ORIGIN/);
+  assert.match(worker, /x-content-type-options/);
+  assert.match(worker, /cache-control/);
+});
+
 test('Provider adapters fail closed until authorized implementations exist', () => {
   assert.match(worker, /NCS adapter is not configured/);
   assert.match(worker, /GameChanger adapter is not configured/);
