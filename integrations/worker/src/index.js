@@ -17,12 +17,12 @@ const NCS_AGE_IDS = Object.freeze({
   "12 & Under": "6",
 });
 
-function resolveNcsAgeId(params = {}, env = {}) {
+function resolveNcsAgeId(params = {}) {
   if (params.ageId) return String(params.ageId);
   if (params.division && NCS_AGE_IDS[params.division]) {
     return NCS_AGE_IDS[params.division];
   }
-  return env.NCS_AGE_ID || "4";
+  return "";
 }
 
 function buildNcsTeamsUrl(params = {}, env = {}) {
@@ -31,7 +31,9 @@ function buildNcsTeamsUrl(params = {}, env = {}) {
   url.searchParams.set("seasonId", params.seasonId || env.NCS_SEASON_ID || "33");
   url.searchParams.set("country", params.country || env.NCS_COUNTRY || "US");
   url.searchParams.set("state", params.state || env.NCS_STATE || "TX");
-  url.searchParams.set("ageId", resolveNcsAgeId(params, env));
+
+  const ageId = resolveNcsAgeId(params);
+  if (ageId) url.searchParams.set("ageId", ageId);
 
   const teamName = params.teamName || params.q;
   if (teamName) url.searchParams.set("teamName", teamName);
@@ -121,7 +123,7 @@ export default {
               seasonId: env.NCS_SEASON_ID || "33",
               country: env.NCS_COUNTRY || "US",
               state: env.NCS_STATE || "TX",
-              defaultAgeId: env.NCS_AGE_ID || "4",
+              defaultAge: "any",
               ageMappings: NCS_AGE_IDS,
               teamNameParameter: "teamName",
             },
