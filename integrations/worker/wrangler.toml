@@ -8,6 +8,10 @@ crons = ["*/15 * * * *"]
 [vars]
 ALLOWED_ORIGIN = "https://jeremiah9980.github.io"
 SYNC_TIMEZONE = "America/Chicago"
+NCS_TEAMS_BASE_URL = "https://playncs.com/fastpitch/Teams"
+NCS_SEASON_ID = "33"
+NCS_COUNTRY = "US"
+NCS_STATE = "TX"
 
 # Bind a KV namespace before deployment:
 # [[kv_namespaces]]
