@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Import NCS Games — Buzz Family Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--yellow:#F5C400;--yellow2:#E6B800;--yellow-l:#FFF9E0;--blue:#1A56B0;--blue2:#1347A0;--blue-l:#E8F0FB;--white:#fff;--off:#F9F8F4;--ink:#1C1C1C;--g1:#4B5563;--g2:#6B7280;--g4:#D1D5DB;--red:#C0392B;--green:#15803D;--body:'Barlow',sans-serif;--display:'Barlow Condensed',sans-serif}*{box-sizing:border-box;margin:0;padding:0}body{background:var(--off);color:var(--ink);font-family:var(--body);line-height:1.6}a{color:var(--blue);text-decoration:none}nav{background:var(--white);border-bottom:3px solid var(--yellow);position:sticky;top:0;z-index:10}.nav-inner{max-width:1100px;margin:auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}.brand{font-family:var(--display);font-weight:900;font-size:22px;color:var(--blue);text-transform:uppercase}.nav-links{display:flex;gap:18px}.nav-links a{font-family:var(--display);font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px}.hero{background:var(--blue);color:white;padding:46px 24px;text-align:center}.hero h1{font-family:var(--display);font-size:clamp(38px,7vw,68px);line-height:1;color:var(--yellow);text-transform:uppercase;letter-spacing:2px}.hero p{max-width:760px;margin:12px auto 0;color:rgba(255,255,255,.82)}.page{max-width:1100px;margin:auto;padding:34px 24px 70px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:#fff;border:1px solid var(--g4);border-radius:12px;border-top:4px solid var(--yellow);padding:24px}.card.blue{border-top-color:var(--blue)}.card h2,.card h3{font-family:var(--display);text-transform:uppercase;color:var(--blue);letter-spacing:.6px}.card h2{font-size:27px;margin-bottom:10px}.card h3{font-size:19px;margin:20px 0 8px}.lead{color:var(--g1);margin-bottom:16px}.field{margin-bottom:14px}.field label{display:block;font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:1px;font-size:12px;margin-bottom:5px}.field input{width:100%;padding:11px 12px;border:1px solid var(--g4);border-radius:7px;font:inherit}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;border-radius:7px;border:0;font-family:var(--display);font-size:13px;font-weight:900;letter-spacing:1px;text-transform:uppercase;cursor:pointer}.btn-primary{background:var(--yellow);color:var(--blue)}.btn-blue{background:var(--blue);color:#fff}.btn-outline{background:#fff;color:var(--blue);border:2px solid #bfd2f0}.code{background:#111827;color:#e5e7eb;border-radius:9px;padding:15px;white-space:pre-wrap;overflow:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;min-height:160px}.note{background:var(--yellow-l);border-left:4px solid var(--yellow2);padding:13px 15px;border-radius:8px;color:#665300;margin-top:16px}.steps{padding-left:22px;color:var(--g1)}.steps li{margin:8px 0}.status{margin-top:12px;font-weight:600;color:var(--green)}footer{background:var(--ink);color:#c8cdd3;text-align:center;padding:24px;font-family:var(--display);font-size:12px;text-transform:uppercase;letter-spacing:1px}@media(max-width:800px){.grid{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner"><a class="brand" href="index.html">🥎 Buzz Family Portal</a><div class="nav-links"><a href="index.html#schedule">Schedule</a><a href="import-games.html">Import Games</a><a href="index.html#report">Report</a></div></div></nav>
+<section class="hero"><h1>Import NCS Games</h1><p>Build a safe local command that reads the NCS schedule with your logged-in Chrome session, previews upcoming games, and then adds them to the selected GameChanger team.</p></section>
+<main class="page"><div class="grid">
+<section class="card"><h2>Build Import Command</h2><p class="lead">Paste the exact NCS schedule page and the GameChanger team schedule page.</p>
+<div class="field"><label for="ncsUrl">NCS Schedule URL</label><input id="ncsUrl" placeholder="https://www.playncs.com/Fastpitch/.../Schedule"></div>
+<div class="field"><label for="gcUrl">GameChanger Team Schedule URL</label><input id="gcUrl" placeholder="https://web.gc.com/teams/.../schedule"></div>
+<div class="field"><label for="profile">Chrome Profile Path</label><input id="profile" value="$HOME/Library/Application Support/Google/Chrome/Default"></div>
+<div class="actions"><button class="btn btn-primary" id="dryRun">Build Dry Run</button><button class="btn btn-blue" id="liveRun">Build Live Import</button><button class="btn btn-outline" id="copy">Copy Command</button></div>
+<div id="status" class="status"></div></section>
+<section class="card blue"><h2>Local Command</h2><pre class="code" id="command">Enter both schedule URLs, then choose Dry Run or Live Import.</pre><div class="note"><strong>Start with Dry Run.</strong> Review the games written to <code>ncs-monitor/reports/ncs-gamechanger-import.json</code>. Only use Live Import after the dates, opponents, times, and locations look correct.</div></section>
+</div>
+<section class="card" style="margin-top:18px"><h2>Recommended Flow</h2><ol class="steps"><li>Pull the latest repository changes.</li><li>Install the local browser dependencies.</li><li>Close Chrome so the profile can be cloned cleanly.</li><li>Run the generated dry-run command.</li><li>Review the extracted schedule manifest.</li><li>Run the live command with <code>--confirm</code>.</li><li>Refresh the GameChanger schedule widget on the portal.</li></ol>
+<h3>One-time setup</h3><pre class="code" style="min-height:auto">cd ~/repos/Buzz-Elite-2035
+python3 -m venv .venv-gc
+./.venv-gc/bin/pip install beautifulsoup4 selenium webdriver-manager</pre></section>
+</main>
+<footer>Buzz Family Portal · NCS to GameChanger Schedule Import</footer>
+<script>
+const $=id=>document.getElementById(id);let current='';
+function q(v){return `'${String(v).replace(/'/g,"'\\''")}'`}
+function build(confirm){const ncs=$('ncsUrl').value.trim(),gc=$('gcUrl').value.trim(),profile=$('profile').value.trim();if(!ncs||!gc){$('status').textContent='Enter both schedule URLs.';return}current=`cd ~/repos/Buzz-Elite-2035\n./.venv-gc/bin/python ncs-monitor/ncs_to_gamechanger.py \\\n  --ncs-url ${q(ncs)} \\\n  --gc-team-url ${q(gc)} \\\n  --profile ${q(profile)} \\\n  --headful ${confirm?'--confirm':'--dry-run'}`;$('command').textContent=current;$('status').textContent=confirm?'Live command built. Review it carefully before running.':'Dry-run command built.'}
+$('dryRun').addEventListener('click',()=>build(false));$('liveRun').addEventListener('click',()=>build(true));$('copy').addEventListener('click',async()=>{if(!current)return;$('status').textContent='Command copied.';await navigator.clipboard.writeText(current)});
+</script>
+</body>
+</html>
