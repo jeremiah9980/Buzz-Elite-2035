@@ -238,8 +238,70 @@ async function ncsEvents(teamIds, env, options = {}) {
   return merged;
 }
 
-async function gameChangerStats() {
-  throw httpError(501, "GameChanger has no public API; stats sync is not available. Record GameChanger player IDs manually in Roster Mapping.");
+/* ---------------- gc_stats D1 cross-reference ---------------- */
+
+const normName = s => String(s || "").toLowerCase().replace(/[^a-z ]/g, " ").replace(/\s+/g, " ").trim();
+
+/** Load the whole cross-reference set (small tables) in one round trip each. */
+async function loadGcStats(env) {
+  if (!env.GC_STATS) {
+    throw httpError(503, "GameChanger has no public API and the GC_STATS D1 binding is missing; stats sync is unavailable. Record GameChanger player IDs manually in Roster Mapping.");
+  }
+  const [players, totals, teams] = await Promise.all([
+    env.GC_STATS.prepare("SELECT player_id, name, roster_team FROM players").all(),
+    env.GC_STATS.prepare("SELECT player_id, gc_url, season, section, games, stats, updated_at FROM season_totals").all(),
+    env.GC_STATS.prepare("SELECT gc_url, gc_name, season, ncs_teams FROM teams").all()
+  ]);
+  const statsByPlayer = {};
+  for (const row of totals.results) {
+    const bucket = (statsByPlayer[row.player_id] ??= { gcUrl: row.gc_url, season: row.season, updatedAt: row.updated_at, sections: {} });
+    try { bucket.sections[row.section] = { games: row.games, ...JSON.parse(row.stats) }; } catch (e) { /* skip bad row */ }
+  }
+  return { players: players.results, statsByPlayer, teams: teams.results };
+}
+
+/**
+ * Match one website player against gc_stats players.
+ * Confidence: "exact" (NCS id), "name" (full normalized name), "partial" (last name + first initial).
+ */
+function matchPlayer(sitePlayer, gcPlayers) {
+  if (sitePlayer.ncsPlayerId) {
+    const hit = gcPlayers.find(p => p.player_id === String(sitePlayer.ncsPlayerId));
+    if (hit) return { ...hit, confidence: "exact" };
+  }
+  const n = normName(sitePlayer.name);
+  if (!n) return null;
+  const full = gcPlayers.filter(p => normName(p.name) === n);
+  if (full.length === 1) return { ...full[0], confidence: "name" };
+  const parts = n.split(" ");
+  const last = parts[parts.length - 1], firstInitial = parts[0]?.[0];
+  const partial = gcPlayers.filter(p => {
+    const gp = normName(p.name).split(" ");
+    return gp[gp.length - 1] === last && gp[0]?.[0] === firstInitial;
+  });
+  if (partial.length === 1) return { ...partial[0], confidence: "partial" };
+  return null;
+}
+
+async function gameChangerStats(body, env) {
+  const sitePlayers = body?.players || [];
+  const { players: gcPlayers, statsByPlayer, teams } = await loadGcStats(env);
+  const stats = {};
+  const matches = [];
+  for (const sp of sitePlayers) {
+    const hit = matchPlayer(sp, gcPlayers);
+    if (hit && statsByPlayer[hit.player_id]) stats[hit.player_id] = statsByPlayer[hit.player_id];
+    matches.push({
+      playerId: sp.id ?? null,
+      name: sp.name ?? "",
+      matched: !!hit,
+      matchedNcsPlayerId: hit ? hit.player_id : "",
+      confidence: hit ? hit.confidence : "none",
+      rosterTeam: hit ? hit.roster_team : "",
+      hasStats: !!(hit && statsByPlayer[hit.player_id])
+    });
+  }
+  return { ok: true, source: "gc_stats", teams, matches, stats };
 }
 
 async function runScheduledSync(env) {
@@ -269,12 +331,14 @@ export default {
       if (url.pathname === "/api/health") {
         const adapter = url.searchParams.get("adapter") || "all";
         return json({
-          ok: adapter !== "gamechanger",
+          ok: adapter === "gamechanger" ? !!env.GC_STATS : true,
           service: "buzz-elite-integrations",
           adapter,
-          configured: { kv: !!env.BUZZ_DATA, ncs: true, gamechanger: false },
+          configured: { kv: !!env.BUZZ_DATA, ncs: true, gamechanger: !!env.GC_STATS },
           detail: adapter === "gamechanger"
-            ? "GameChanger has no public API; map player IDs manually in Roster Mapping."
+            ? (env.GC_STATS
+                ? "GameChanger adapter backed by the gc_stats D1 database (keyed by NCS player id)."
+                : "GameChanger has no public API and GC_STATS is not bound; map player IDs manually in Roster Mapping.")
             : adapter === "ncs" ? `NCS adapter live (scraping ${NCS_BASE})` : "Integration API reachable",
           timestamp: new Date().toISOString()
         }, 200, headers);
@@ -311,7 +375,28 @@ export default {
         return json(events[0] || {}, 200, headers);
       }
       if (url.pathname === "/api/gamechanger/sync" && request.method === "POST") {
-        return json(await gameChangerStats(), 200, headers);
+        return json(await gameChangerStats(await readJson(request), env), 200, headers);
+      }
+      if (url.pathname === "/api/gcstats/teams" && request.method === "GET") {
+        const { teams } = await loadGcStats(env);
+        return json(teams.map(t => ({ ...t, ncs_teams: JSON.parse(t.ncs_teams || "[]") })), 200, headers);
+      }
+      if (url.pathname === "/api/gcstats/match" && request.method === "POST") {
+        const body = await readJson(request);
+        const { players: gcPlayers, statsByPlayer } = await loadGcStats(env);
+        return json((body.players || []).map(sp => {
+          const hit = matchPlayer(sp, gcPlayers);
+          return {
+            playerId: sp.id ?? null,
+            name: sp.name ?? "",
+            matched: !!hit,
+            matchedNcsPlayerId: hit ? hit.player_id : "",
+            matchedName: hit ? hit.name : "",
+            rosterTeam: hit ? hit.roster_team : "",
+            confidence: hit ? hit.confidence : "none",
+            stats: hit ? statsByPlayer[hit.player_id] || null : null
+          };
+        }), 200, headers);
       }
 
       return json({ error: "Not found" }, 404, headers);

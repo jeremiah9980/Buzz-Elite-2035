@@ -43,3 +43,10 @@ namespace_id = "10402"
 # [[kv_namespaces]]
 # binding = "BUZZ_DATA"
 # id = "replace-with-kv-namespace-id"
+
+# gc_stats: GameChanger stats keyed by NCS player id, used as the
+# NCS <-> GameChanger cross-reference for /api/gamechanger/sync.
+[[d1_databases]]
+binding = "GC_STATS"
+database_name = "gc_stats"
+database_id = "57f88039-9433-45be-bcb0-ef7c6f5a16f1"
