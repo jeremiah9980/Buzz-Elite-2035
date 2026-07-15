@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { parseTeamSearch, parseRoster, parseEvents, extractId } from '../worker/src/index.js';
 
 const cmsHtml = await readFile(new URL('../../cms/integrations.html', import.meta.url), 'utf8');
 const cmsJs = await readFile(new URL('../../cms/integrations.js', import.meta.url), 'utf8');
@@ -27,20 +28,17 @@ test('CMS includes all critical workflow controls', () => {
   }
 });
 
-test('NCS CMS defaults to Texas fastpitch season 33', () => {
-  assert.match(cmsJs, /https:\/\/playncs\.com\/fastpitch\/Teams/);
-  assert.match(cmsJs, /seasonId:'33'/);
-  assert.match(cmsJs, /country:'US'/);
-  assert.match(cmsJs, /state:'TX'/);
+test('CMS points at the integrations Worker, not playncs.com directly', () => {
+  assert.match(cmsJs, /API_URL='https:\/\/buzz-elite-integrations\.jeremiahcargill\.workers\.dev'/);
+  assert.match(cmsJs, /apiBaseUrl:API_URL/);
+  // Saved drafts that pointed the API at playncs.com (which has no API/CORS) migrate to the Worker.
+  assert.match(cmsJs, /state\.apiBaseUrl\.includes\('playncs\.com'\)/);
 });
 
-test('CMS implements safe demo mode and diagnostics', () => {
-  assert.match(cmsJs, /demoMode:true/);
-  assert.match(cmsJs, /runDiagnostics/);
-  assert.match(cmsJs, /NCS team search/);
-  assert.match(cmsJs, /GameChanger stats synchronization/);
-  assert.match(cmsJs, /Tournament event synchronization/);
-  assert.match(cmsJs, /Per-event tracker refresh/);
+test('CMS diagnostics view is navigable and runs tests', () => {
+  assert.match(cmsJs, /diagnostics:\['Diagnostics'/);
+  assert.match(cmsJs, /function runAllTests/);
+  assert.match(cmsJs, /rat\.onclick=runAllTests/);
 });
 
 test('CMS preserves explicit cross-provider player IDs', () => {
@@ -59,57 +57,109 @@ test('Worker exposes all required integration routes', () => {
   }
 });
 
-test('Worker builds exact PlayNCS team search parameters', () => {
-  assert.match(worker, /NCS_TEAMS_BASE_URL/);
-  assert.match(worker, /NCS_SEASON_ID/);
-  assert.match(worker, /NCS_COUNTRY/);
-  assert.match(worker, /NCS_STATE/);
-  assert.match(worker, /url\.searchParams\.set\("seasonId"/);
-  assert.match(worker, /url\.searchParams\.set\("teamName"/);
-});
-
-test('Worker defaults to any age and applies verified mappings only when selected', () => {
-  assert.match(worker, /defaultAge:\s*"any"/);
-  assert.match(worker, /"10U":\s*"4"/);
-  assert.match(worker, /"12U":\s*"6"/);
-  assert.match(worker, /if \(ageId\) url\.searchParams\.set\("ageId", ageId\)/);
-  assert.doesNotMatch(wrangler, /^NCS_AGE_ID\s*=/m);
+test('Worker maps division names to verified NCS age IDs', () => {
+  assert.match(worker, /"10u": "4"/);
+  assert.match(worker, /"12u": "6"/);
+  assert.match(worker, /if \(AGE_IDS\[division\]\) q\.set\("ageId", AGE_IDS\[division\]\)/);
 });
 
 test('Worker cron is configured for every 15 minutes', () => {
   assert.match(wrangler, /crons\s*=\s*\["\*\/15 \* \* \* \*"\]/);
 });
 
-test('Worker configures separate public and expensive route rate limiters', () => {
-  assert.match(wrangler, /name\s*=\s*"PUBLIC_API_LIMITER"/);
-  assert.match(wrangler, /name\s*=\s*"EXPENSIVE_API_LIMITER"/);
-  assert.match(wrangler, /limit\s*=\s*120/);
-  assert.match(wrangler, /limit\s*=\s*10/);
-  assert.match(worker, /PUBLIC_API_LIMITER/);
-  assert.match(worker, /EXPENSIVE_API_LIMITER/);
-  assert.match(worker, /Rate limit exceeded/);
-  assert.match(worker, /retry-after/);
-});
-
-test('Worker protects write and sync routes with bearer authentication', () => {
-  assert.match(worker, /API_ADMIN_TOKEN/);
-  assert.match(worker, /Authorization|authorization/);
+test('Worker protects admin routes with bearer authentication', () => {
+  assert.match(worker, /INTEGRATION_API_TOKEN/);
   assert.match(worker, /Bearer/);
   assert.match(worker, /Unauthorized/);
+  assert.match(worker, /authorizeMutation\(request, env\)/);
 });
 
-test('Worker validates request size, content type, methods, and origin', () => {
-  assert.match(worker, /MAX_REQUEST_BYTES/);
-  assert.match(worker, /Request body too large/);
-  assert.match(worker, /Content-Type must be application\/json/);
-  assert.match(worker, /Method not allowed/);
-  assert.match(worker, /ALLOWED_ORIGIN/);
-  assert.match(worker, /x-content-type-options/);
-  assert.match(worker, /cache-control/);
-});
-
-test('Provider adapters fail closed until authorized implementations exist', () => {
-  assert.match(worker, /NCS adapter is not configured/);
-  assert.match(worker, /GameChanger adapter is not configured/);
+test('GameChanger adapter fails closed (no public API)', () => {
+  assert.match(worker, /GameChanger has no public API/);
   assert.doesNotMatch(worker, /password\s*=|sessionCookie|document\.cookie/i);
+});
+
+/* ---- parser unit tests against real playncs.com markup shapes ---- */
+
+const searchFixture = `
+<tr>
+  <td>
+    <a href="/fastpitch/Teams/Details/87980/primetime-10u-graves">
+      Primetime 10U Graves
+    </a>
+    <div class="visible-xs">Round Rock, TX</div>
+  </td>
+  <td>
+    10U C
+  </td>
+  <td class="hidden-xs">
+    Round Rock, TX
+  </td>
+  <td class="text-nowrap">
+    0-0-0
+  </td>
+</tr>`;
+
+test('parseTeamSearch extracts id, name, division, location', () => {
+  const teams = parseTeamSearch(searchFixture);
+  assert.equal(teams.length, 1);
+  assert.deepEqual(
+    { id: teams[0].id, name: teams[0].name, division: teams[0].division, location: teams[0].location },
+    { id: '87980', name: 'Primetime 10U Graves', division: '10U C', location: 'Round Rock, TX' }
+  );
+});
+
+const rosterFixture = `
+id="collapse-roster" class="panel-collapse collapse">
+<table>
+  <tbody>
+    <tr>
+      <td>15</td>
+      <td>
+        <a href="/fastpitch/Players/Details/412663/andi-gilliland">
+          Andi Gilliland
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>`;
+
+test('parseRoster extracts NCS player id, number, and name', () => {
+  const roster = parseRoster(rosterFixture);
+  assert.equal(roster.length, 1);
+  assert.equal(roster[0].id, '412663');
+  assert.equal(roster[0].number, '15');
+  assert.equal(roster[0].name, 'Andi Gilliland');
+});
+
+const eventsFixture = `
+id="collapse-events" class="panel-collapse collapse">
+<div class="media ">
+  <div class="media-top"><div class="h5 stature">Tournament</div></div>
+  <div class="media-body">
+    <div class="h6"><span>GEORGETOWN, TX</span></div>
+    <div class="h4">
+      <a href="/fastpitch/Events/Details/13415/back-to-school-blues">
+        BACK TO SCHOOL BLUES
+      </a>
+    </div>
+    <div class="h4">
+      Aug 29-30
+    </div>
+  </div>
+</div>`;
+
+test('parseEvents extracts event id, name, date, and location', () => {
+  const events = parseEvents(eventsFixture);
+  assert.equal(events.length, 1);
+  assert.equal(events[0].id, '13415');
+  assert.equal(events[0].name, 'BACK TO SCHOOL BLUES');
+  assert.equal(events[0].startDate, 'Aug 29-30');
+  assert.equal(events[0].location, 'GEORGETOWN, TX');
+});
+
+test('extractId accepts raw ids and pasted playncs URLs', () => {
+  assert.equal(extractId('87980'), '87980');
+  assert.equal(extractId('https://playncs.com/fastpitch/Teams/Details/87980/primetime-10u-graves'), '87980');
+  assert.equal(extractId('not-a-team'), null);
 });

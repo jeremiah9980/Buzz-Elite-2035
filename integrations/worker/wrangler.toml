@@ -6,7 +6,8 @@ compatibility_date = "2026-07-11"
 crons = ["*/15 * * * *"]
 
 [vars]
-ALLOWED_ORIGIN = "https://jeremiah9980.github.io"
+# NCS routes serve public scrape data, so any origin may read them.
+ALLOWED_ORIGIN = "*"
 SYNC_TIMEZONE = "America/Chicago"
 NCS_TEAMS_BASE_URL = "https://playncs.com/fastpitch/Teams"
 NCS_SEASON_ID = "33"
