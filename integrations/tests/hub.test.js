@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { parseTeamSearch, parseRoster, parseEvents, extractId } from '../worker/src/index.js';
+import { parseTeamSearch, parseRoster, parseEvents, extractId, extractGcTeamId, normalizeGcPlayer, matchGcRosterPlayer } from '../worker/src/index.js';
 
 const cmsHtml = await readFile(new URL('../../cms/integrations.html', import.meta.url), 'utf8');
 const cmsJs = await readFile(new URL('../../cms/integrations.js', import.meta.url), 'utf8');
@@ -162,4 +162,74 @@ test('extractId accepts raw ids and pasted playncs URLs', () => {
   assert.equal(extractId('87980'), '87980');
   assert.equal(extractId('https://playncs.com/fastpitch/Teams/Details/87980/primetime-10u-graves'), '87980');
   assert.equal(extractId('not-a-team'), null);
+});
+
+/* ---------------- GameChanger roster matching ---------------- */
+
+const gcRosterFixture = [
+  { id: 'gc-1', name: 'Avery Gilliland', number: '7' },
+  { id: 'gc-2', name: 'Bailey Ortiz', number: '12' },
+  { id: 'gc-3', name: 'Brooke Ortiz', number: '7' },
+  { id: 'gc-4', name: 'Casey Gauthier', number: '3' }
+];
+
+test('extractGcTeamId accepts raw ids and pasted web.gc.com URLs', () => {
+  assert.equal(extractGcTeamId('pk8GN5ZYVEV9'), 'pk8GN5ZYVEV9');
+  assert.equal(extractGcTeamId('https://web.gc.com/teams/pk8GN5ZYVEV9/stats'), 'pk8GN5ZYVEV9');
+  assert.equal(extractGcTeamId('  https://web.gc.com/teams/pk8GN5ZYVEV9  '), 'pk8GN5ZYVEV9');
+  assert.equal(extractGcTeamId(''), null);
+  assert.equal(extractGcTeamId('short'), null);
+});
+
+test('normalizeGcPlayer handles snake_case, camelCase, and combined names', () => {
+  assert.deepEqual(normalizeGcPlayer({ id: 9, first_name: 'Avery', last_name: 'Gilliland', number: 7 }),
+    { id: '9', name: 'Avery Gilliland', number: '7' });
+  assert.deepEqual(normalizeGcPlayer({ playerId: 'x1', firstName: 'Bailey', lastName: 'Ortiz', jerseyNumber: '#12' }),
+    { id: 'x1', name: 'Bailey Ortiz', number: '12' });
+  assert.deepEqual(normalizeGcPlayer({ id: 'x2', name: 'Casey  Gauthier' }),
+    { id: 'x2', name: 'Casey Gauthier', number: '' });
+});
+
+test('matchGcRosterPlayer uses jersey + last name for an exact match', () => {
+  // Two Ortiz players; the jersey number disambiguates.
+  const hit = matchGcRosterPlayer({ name: 'B. Ortiz', number: '12' }, gcRosterFixture);
+  assert.equal(hit.id, 'gc-2');
+  assert.equal(hit.confidence, 'exact');
+});
+
+test('matchGcRosterPlayer falls back to a full name match', () => {
+  const hit = matchGcRosterPlayer({ name: 'Brooke Ortiz' }, gcRosterFixture);
+  assert.equal(hit.id, 'gc-3');
+  assert.equal(hit.confidence, 'name');
+});
+
+test('matchGcRosterPlayer reports last name + initial as partial', () => {
+  // Nickname on the website, legal name in GameChanger: same last name and initial only.
+  const hit = matchGcRosterPlayer({ name: 'Case Gauthier' }, gcRosterFixture);
+  assert.equal(hit.id, 'gc-4');
+  assert.equal(hit.confidence, 'partial');
+});
+
+test('matchGcRosterPlayer treats a name suffix as the last name', () => {
+  // Known limitation: normName keeps "Jr"/"III", so the suffix becomes the surname
+  // and no match is found. Such players need their ID approved or entered by hand.
+  assert.equal(matchGcRosterPlayer({ name: 'Casey Gauthier Jr' }, gcRosterFixture), null);
+});
+
+test('matchGcRosterPlayer refuses ambiguous and empty input', () => {
+  // "Ortiz" alone matches two roster players, so no match is returned.
+  assert.equal(matchGcRosterPlayer({ name: 'Ortiz' }, gcRosterFixture), null);
+  assert.equal(matchGcRosterPlayer({ name: '' }, gcRosterFixture), null);
+  assert.equal(matchGcRosterPlayer({ name: 'Dana Nobody' }, gcRosterFixture), null);
+});
+
+test('Worker uses the authenticated GameChanger roster route, not a public one', () => {
+  // GameChanger's unauthenticated surface has no roster; /public/teams/:id/players is a 404.
+  assert.ok(!worker.includes('/public/teams/${'), 'Worker must not fetch a public GC roster endpoint');
+  assert.match(worker, /"gc-token": token/);
+  assert.match(worker, /env\.GC_TOKEN/);
+});
+
+test('wrangler.toml documents the GC_TOKEN secret', () => {
+  assert.match(wrangler, /wrangler secret put GC_TOKEN/);
 });

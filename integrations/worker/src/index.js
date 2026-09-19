@@ -12,7 +12,7 @@
  *   GET  /api/ncs/teams/:id/roster        (:id also accepts a pasted team URL)
  *   POST /api/ncs/events/sync             {teamIds: []}
  *   POST /api/ncs/events/:id/sync
- *   POST /api/gamechanger/sync            {teamId, players} -> GC public roster match + gc_stats D1 stats
+ *   POST /api/gamechanger/sync            {teamId, players} -> GC roster match (GC_TOKEN) + gc_stats D1 stats
  *
  * Token-protected admin routes (Authorization: Bearer <INTEGRATION_API_TOKEN>):
  *   GET/POST /api/config                  (requires BUZZ_DATA KV binding)
@@ -283,44 +283,77 @@ function matchPlayer(sitePlayer, gcPlayers) {
   return null;
 }
 
-/* ---------------- GameChanger public roster ---------------- */
+/* ---------------- GameChanger roster ---------------- */
 
 const GC_API = "https://api.team-manager.gc.com";
+
+/**
+ * GameChanger's unauthenticated surface for a team is only /public/teams/:id,
+ * /public/teams/:id/games|games/preview|live -- none of which expose players.
+ * Filling gameChangerPlayerId therefore needs the Team Manager API, which
+ * authenticates with a `gc-token` header supplied via the GC_TOKEN secret:
+ *   npx wrangler secret put GC_TOKEN
+ * Without the secret the sync degrades to manual IDs entered in Roster Mapping.
+ */
 
 /** Accepts a bare public team id (pk8GN5ZYVEV9) or a pasted web.gc.com team URL. */
 function extractGcTeamId(raw) {
   const s = String(raw ?? "").trim();
-  const m = s.match(/teams\/([A-Za-z0-9]+)/);
+  const m = s.match(/teams\/([A-Za-z0-9-]+)/);
   if (m) return m[1];
-  return /^[A-Za-z0-9]{6,}$/.test(s) ? s : null;
+  return /^[A-Za-z0-9-]{6,}$/.test(s) ? s : null;
 }
 
 function normalizeGcPlayer(p) {
   const first = p.first_name ?? p.firstName ?? "";
   const last = p.last_name ?? p.lastName ?? "";
-  const name = (p.name || `${first} ${last}`).trim();
+  const name = String(p.name || `${first} ${last}`).replace(/\s+/g, " ").trim();
   return {
     id: String(p.id ?? p.player_id ?? p.playerId ?? ""),
     name,
-    number: String(p.number ?? p.jersey_number ?? p.jerseyNumber ?? "").trim()
+    number: String(p.number ?? p.jersey_number ?? p.jerseyNumber ?? "").replace(/^#/, "").trim()
   };
 }
 
-/** Pull the team's public roster from GameChanger (same data web.gc.com shows on the public team page). */
-async function gcPublicRoster(rawTeamId) {
+async function gcFetchJson(path, token) {
+  const res = await fetch(GC_API + path, {
+    headers: { "Accept": "application/json", "User-Agent": UA, "gc-token": token }
+  });
+  if (res.status === 401 || res.status === 403) {
+    throw httpError(502, `GameChanger rejected GC_TOKEN (HTTP ${res.status}). GameChanger tokens expire; refresh the secret with \`npx wrangler secret put GC_TOKEN\`.`);
+  }
+  if (!res.ok) throw httpError(502, `GameChanger ${path} -> HTTP ${res.status}`);
+  const data = await res.json().catch(() => null);
+  if (data == null) throw httpError(502, `GameChanger ${path} returned a non-JSON body.`);
+  return data;
+}
+
+/**
+ * Public team ids (web.gc.com/teams/<id>) are 12 characters; the roster route wants the
+ * internal team id, so resolve one to the other the way the GameChanger web app does.
+ */
+async function gcInternalTeamId(publicId, token) {
+  if (publicId.length !== 12) return publicId;
+  // GameChanger answers this route with 404 (not 401) for an expired or malformed
+  // token, so a miss here is far more often a stale secret than a wrong team id.
+  const data = await gcFetchJson(`/teams/public/${publicId}`, token).catch(() => {
+    throw httpError(502, `GameChanger would not resolve team ${publicId}. This usually means GC_TOKEN is expired or invalid -- refresh it with \`npx wrangler secret put GC_TOKEN\` -- or that the team id is wrong.`);
+  });
+  return data?.id ? String(data.id) : publicId;
+}
+
+/** Pull the team's roster from the GameChanger Team Manager API. */
+async function fetchGcRoster(rawTeamId, env) {
   const teamId = extractGcTeamId(rawTeamId);
   if (!teamId) throw httpError(400, "Invalid GameChanger team ID. Paste the id from web.gc.com/teams/<id>/...");
-  const tried = [];
-  for (const path of [`/public/teams/${teamId}/players`, `/public/teams/${teamId}/roster`]) {
-    const res = await fetch(GC_API + path, { headers: { "Accept": "application/json", "User-Agent": UA } });
-    tried.push(`${path} -> HTTP ${res.status}`);
-    if (!res.ok) continue;
-    const data = await res.json().catch(() => null);
-    const list = Array.isArray(data) ? data : (data?.players || data?.roster || []);
-    const players = list.map(normalizeGcPlayer).filter(p => p.id && p.name);
-    if (players.length) return { teamId, players };
+  if (!env.GC_TOKEN) {
+    throw httpError(503, "GameChanger exposes no public roster, and the GC_TOKEN secret is not set, so player IDs cannot be synced. Set it with `npx wrangler secret put GC_TOKEN`, or enter GameChanger player IDs manually in Roster Mapping.");
   }
-  throw httpError(502, `GameChanger did not return a public roster for team ${teamId} (${tried.join("; ")}). Make sure the team page is public in GameChanger, or enter player IDs manually.`);
+  const data = await gcFetchJson(`/teams/${await gcInternalTeamId(teamId, env.GC_TOKEN)}/players`, env.GC_TOKEN);
+  const list = Array.isArray(data) ? data : (data?.players || data?.roster || []);
+  const players = list.map(normalizeGcPlayer).filter(p => p.id && p.name);
+  if (!players.length) throw httpError(502, `GameChanger returned no players for team ${teamId}.`);
+  return { teamId, players };
 }
 
 /**
@@ -349,10 +382,10 @@ async function gameChangerStats(body, env) {
   const sitePlayers = body?.players || [];
   const warnings = [];
 
-  // 1) Player IDs: straight from the GameChanger public roster for the configured team.
+  // 1) Player IDs: straight from the GameChanger roster for the configured team.
   let gcRoster = null;
   if (body?.teamId) {
-    try { gcRoster = await gcPublicRoster(body.teamId); }
+    try { gcRoster = await fetchGcRoster(body.teamId, env); }
     catch (e) { warnings.push(e.message); }
   } else {
     warnings.push("No GameChanger team ID provided; skipped roster lookup.");
@@ -385,9 +418,9 @@ async function gameChangerStats(body, env) {
   });
 
   return {
-    ok: !!gcRoster,
+    ok: !!(gcRoster || gcStats),
     source: "gamechanger",
-    teamId: gcRoster?.teamId || body?.teamId || "",
+    teamId: gcRoster?.teamId || extractGcTeamId(body?.teamId) || "",
     gcRosterCount: gcRoster ? gcRoster.players.length : 0,
     unmatchedGcPlayers: gcRoster ? gcRoster.players.filter(p => !matches.some(m => m.gameChangerPlayerId === p.id)) : [],
     teams: gcStats?.teams || [],
@@ -424,14 +457,25 @@ export default {
       if (url.pathname === "/api/health") {
         const adapter = url.searchParams.get("adapter") || "all";
         return json({
-          ok: adapter === "gamechanger" ? !!env.GC_STATS : true,
+          ok: adapter === "gamechanger" ? !!(env.GC_TOKEN || env.GC_STATS) : true,
           service: "buzz-elite-integrations",
           adapter,
-          configured: { kv: !!env.BUZZ_DATA, ncs: true, gamechanger: !!env.GC_STATS },
+          configured: {
+            kv: !!env.BUZZ_DATA,
+            ncs: true,
+            gamechanger: !!(env.GC_TOKEN || env.GC_STATS),
+            gamechangerRoster: !!env.GC_TOKEN,
+            gamechangerStats: !!env.GC_STATS
+          },
           detail: adapter === "gamechanger"
-            ? (env.GC_STATS
-                ? "GameChanger adapter backed by the gc_stats D1 database (keyed by NCS player id)."
-                : "GameChanger has no public API and GC_STATS is not bound; map player IDs manually in Roster Mapping.")
+            ? [
+                env.GC_TOKEN
+                  ? "Roster sync live via the GameChanger Team Manager API (GC_TOKEN)."
+                  : "GC_TOKEN is not set; GameChanger exposes no public roster, so map player IDs manually in Roster Mapping.",
+                env.GC_STATS
+                  ? "Stats backed by the gc_stats D1 database (keyed by NCS player id)."
+                  : "GC_STATS is not bound; no stats feed."
+              ].join(" ")
             : adapter === "ncs" ? `NCS adapter live (scraping ${NCS_BASE})` : "Integration API reachable",
           timestamp: new Date().toISOString()
         }, 200, headers);
@@ -504,4 +548,4 @@ export default {
   }
 };
 
-export { parseTeamSearch, parseRoster, parseEvents, extractId, decode };
+export { parseTeamSearch, parseRoster, parseEvents, extractId, decode, extractGcTeamId, normalizeGcPlayer, matchGcRosterPlayer };
