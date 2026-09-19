@@ -12,7 +12,7 @@
  *   GET  /api/ncs/teams/:id/roster        (:id also accepts a pasted team URL)
  *   POST /api/ncs/events/sync             {teamIds: []}
  *   POST /api/ncs/events/:id/sync
- *   POST /api/gamechanger/sync            -> 501 (GameChanger has no public API)
+ *   POST /api/gamechanger/sync            {teamId, players} -> GC public roster match + gc_stats D1 stats
  *
  * Token-protected admin routes (Authorization: Bearer <INTEGRATION_API_TOKEN>):
  *   GET/POST /api/config                  (requires BUZZ_DATA KV binding)
@@ -283,25 +283,118 @@ function matchPlayer(sitePlayer, gcPlayers) {
   return null;
 }
 
+/* ---------------- GameChanger public roster ---------------- */
+
+const GC_API = "https://api.team-manager.gc.com";
+
+/** Accepts a bare public team id (pk8GN5ZYVEV9) or a pasted web.gc.com team URL. */
+function extractGcTeamId(raw) {
+  const s = String(raw ?? "").trim();
+  const m = s.match(/teams\/([A-Za-z0-9]+)/);
+  if (m) return m[1];
+  return /^[A-Za-z0-9]{6,}$/.test(s) ? s : null;
+}
+
+function normalizeGcPlayer(p) {
+  const first = p.first_name ?? p.firstName ?? "";
+  const last = p.last_name ?? p.lastName ?? "";
+  const name = (p.name || `${first} ${last}`).trim();
+  return {
+    id: String(p.id ?? p.player_id ?? p.playerId ?? ""),
+    name,
+    number: String(p.number ?? p.jersey_number ?? p.jerseyNumber ?? "").trim()
+  };
+}
+
+/** Pull the team's public roster from GameChanger (same data web.gc.com shows on the public team page). */
+async function gcPublicRoster(rawTeamId) {
+  const teamId = extractGcTeamId(rawTeamId);
+  if (!teamId) throw httpError(400, "Invalid GameChanger team ID. Paste the id from web.gc.com/teams/<id>/...");
+  const tried = [];
+  for (const path of [`/public/teams/${teamId}/players`, `/public/teams/${teamId}/roster`]) {
+    const res = await fetch(GC_API + path, { headers: { "Accept": "application/json", "User-Agent": UA } });
+    tried.push(`${path} -> HTTP ${res.status}`);
+    if (!res.ok) continue;
+    const data = await res.json().catch(() => null);
+    const list = Array.isArray(data) ? data : (data?.players || data?.roster || []);
+    const players = list.map(normalizeGcPlayer).filter(p => p.id && p.name);
+    if (players.length) return { teamId, players };
+  }
+  throw httpError(502, `GameChanger did not return a public roster for team ${teamId} (${tried.join("; ")}). Make sure the team page is public in GameChanger, or enter player IDs manually.`);
+}
+
+/**
+ * Match a website player to a GameChanger roster player.
+ * "exact" = jersey # + last name, "name" = full normalized name, "partial" = last name + first initial (needs approval).
+ */
+function matchGcRosterPlayer(sp, gcPlayers) {
+  const n = normName(sp.name);
+  if (!n) return null;
+  const parts = n.split(" ");
+  const last = parts[parts.length - 1], firstInitial = parts[0]?.[0];
+  const lastOf = p => { const g = normName(p.name).split(" "); return g[g.length - 1]; };
+  const num = String(sp.number ?? "").replace(/^#/, "").trim();
+  if (num) {
+    const hit = gcPlayers.filter(p => p.number === num && lastOf(p) === last);
+    if (hit.length === 1) return { ...hit[0], confidence: "exact" };
+  }
+  const full = gcPlayers.filter(p => normName(p.name) === n);
+  if (full.length === 1) return { ...full[0], confidence: "name" };
+  const partial = gcPlayers.filter(p => lastOf(p) === last && normName(p.name)[0] === firstInitial);
+  if (partial.length === 1) return { ...partial[0], confidence: "partial" };
+  return null;
+}
+
 async function gameChangerStats(body, env) {
   const sitePlayers = body?.players || [];
-  const { players: gcPlayers, statsByPlayer, teams } = await loadGcStats(env);
+  const warnings = [];
+
+  // 1) Player IDs: straight from the GameChanger public roster for the configured team.
+  let gcRoster = null;
+  if (body?.teamId) {
+    try { gcRoster = await gcPublicRoster(body.teamId); }
+    catch (e) { warnings.push(e.message); }
+  } else {
+    warnings.push("No GameChanger team ID provided; skipped roster lookup.");
+  }
+
+  // 2) Stats: optional gc_stats D1 feed (keyed by NCS player id).
+  let gcStats = null;
+  if (env.GC_STATS) {
+    try { gcStats = await loadGcStats(env); } catch (e) { warnings.push(e.message); }
+  }
+
   const stats = {};
-  const matches = [];
-  for (const sp of sitePlayers) {
-    const hit = matchPlayer(sp, gcPlayers);
-    if (hit && statsByPlayer[hit.player_id]) stats[hit.player_id] = statsByPlayer[hit.player_id];
-    matches.push({
+  const matches = sitePlayers.map(sp => {
+    const gc = gcRoster ? matchGcRosterPlayer(sp, gcRoster.players) : null;
+    const st = gcStats ? matchPlayer(sp, gcStats.players) : null;
+    if (st && gcStats.statsByPlayer[st.player_id]) stats[st.player_id] = gcStats.statsByPlayer[st.player_id];
+    return {
       playerId: sp.id ?? null,
       name: sp.name ?? "",
-      matched: !!hit,
-      matchedNcsPlayerId: hit ? hit.player_id : "",
-      confidence: hit ? hit.confidence : "none",
-      rosterTeam: hit ? hit.roster_team : "",
-      hasStats: !!(hit && statsByPlayer[hit.player_id])
-    });
-  }
-  return { ok: true, source: "gc_stats", teams, matches, stats };
+      matched: !!gc,
+      gameChangerPlayerId: gc ? gc.id : "",
+      gameChangerName: gc ? gc.name : "",
+      gameChangerNumber: gc ? gc.number : "",
+      confidence: gc ? gc.confidence : "none",
+      matchedNcsPlayerId: st ? st.player_id : "",
+      statsConfidence: st ? st.confidence : "none",
+      rosterTeam: st ? st.roster_team : "",
+      hasStats: !!(st && gcStats.statsByPlayer[st.player_id])
+    };
+  });
+
+  return {
+    ok: !!gcRoster,
+    source: "gamechanger",
+    teamId: gcRoster?.teamId || body?.teamId || "",
+    gcRosterCount: gcRoster ? gcRoster.players.length : 0,
+    unmatchedGcPlayers: gcRoster ? gcRoster.players.filter(p => !matches.some(m => m.gameChangerPlayerId === p.id)) : [],
+    teams: gcStats?.teams || [],
+    matches,
+    stats,
+    warnings
+  };
 }
 
 async function runScheduledSync(env) {
