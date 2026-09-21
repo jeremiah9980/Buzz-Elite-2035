@@ -44,6 +44,11 @@ namespace_id = "10402"
 # binding = "BUZZ_DATA"
 # id = "replace-with-kv-namespace-id"
 
+# GameChanger's unauthenticated API exposes team info and games but no roster, so
+# /api/gamechanger/sync needs a Team Manager token to fill gameChangerPlayerId:
+#   npx wrangler secret put GC_TOKEN
+# Without it the sync still runs and simply reports that IDs must be entered by hand.
+
 # gc_stats: GameChanger stats keyed by NCS player id, used as the
 # NCS <-> GameChanger cross-reference for /api/gamechanger/sync.
 [[d1_databases]]
